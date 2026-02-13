@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPI Global Phone Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .loading-ring { border-top-color: #3b82f6; animation: spinner 0.6s linear infinite; }
+        @keyframes spinner { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-900 font-sans">
+
+    <div class="max-w-4xl mx-auto p-4 py-8">
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+            <div class="p-6 border-b border-slate-100 bg-slate-50/50">
+                <h1 class="text-xl font-bold text-slate-800 mb-4">NPI Master Search</h1>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-blue-600 uppercase mb-1">Global Phone/NPI Search</label>
+                        <div class="relative">
+                            <input type="text" id="phoneInput" placeholder="Enter phone (e.g. 954577...)" 
+                                   class="w-full pl-4 pr-10 py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none shadow-sm">
+                            <button id="execSearch" class="absolute right-2 top-2 p-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                            </button>
+                        </div>
+                        <p class="text-[10px] text-slate-400 mt-1">* Searches backward through all monthly files until found.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">View Specific Month</label>
+                        <select id="dateSelect" class="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none shadow-sm appearance-none">
+                            <option value="">Select Month...</option>
+                            </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="statusBar" class="hidden px-6 py-2 bg-blue-50 border-b border-blue-100 items-center gap-3">
+                <div class="loading-ring w-4 h-4 border-2 border-transparent rounded-full"></div>
+                <span id="statusText" class="text-sm text-blue-700 font-medium"></span>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="bg-slate-800 text-white">
+                            <th class="p-4 text-xs font-bold uppercase tracking-wider">Provider / NPI</th>
+                            <th class="p-4 text-xs font-bold uppercase tracking-wider">Location</th>
+                            <th class="p-4 text-xs font-bold uppercase tracking-wider text-right">Phones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody" class="divide-y divide-slate-100">
+                        <tr><td colspan="3" class="p-10 text-center text-slate-400">Enter a phone number or select a date to begin.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const CONFIG = {
+            user: "your-username", // Change this
+            repo: "your-repo",     // Change this
+            branch: "main"
+        };
+        const BASE_URL = `https://raw.githubusercontent.com/${CONFIG.user}/${CONFIG.repo}/${CONFIG.branch}/`;
+        const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+
+        const dateSelect = document.getElementById('dateSelect');
+        const phoneInput = document.getElementById('phoneInput');
+        const resultsBody = document.getElementById('resultsBody');
+        const statusBar = document.getElementById('statusBar');
+        const statusText = document.getElementById('statusText');
+        const execSearch = document.getElementById('execSearch');
+
+        // Populate Date Dropdown (Last 24 months)
+        function init() {
+            let d = new Date();
+            for (let i = 0; i < 24; i++) {
+                let m = MONTHS[d.getMonth()];
+                let y = d.getFullYear();
+                dateSelect.add(new Option(`${m.toUpperCase()} ${y}`, `${m}-${y}`));
+                d.setMonth(d.getMonth() - 1);
+            }
+        }
+
+        function updateStatus(msg, show = true) {
+            statusBar.classList.toggle('hidden', !show);
+            statusBar.classList.toggle('flex', show);
+            statusText.innerText = msg;
+        }
+
+        // --- SCENARIO 1: VIEW SPECIFIC DATE ---
+        async function loadSpecificDate(dateVal) {
+            if(!dateVal) return;
+            phoneInput.value = ""; // Clear phone search
+            updateStatus(`Fetching records for ${dateVal}...`);
+            
+            try {
+                const response = await fetch(`${BASE_URL}${dateVal}.ndjson`);
+                if(!response.ok) throw new Error("File not found");
+                const text = await response.text();
+                const data = text.split("\n").filter(l => l.trim()).map(l => JSON.parse(l));
+                renderResults(data);
+                updateStatus(`${data.length} records loaded from ${dateVal}.`);
+            } catch (err) {
+                updateStatus(`Error: Could not find data for ${dateVal}.`, true);
+            }
+        }
+
+        // --- SCENARIO 2: GLOBAL PHONE SEARCH (BACKWARD WATERFALL) ---
+        async function globalPhoneSearch() {
+            const query = phoneInput.value.replace(/\D/g, '');
+            if(query.length < 3) return alert("Please enter at least 3 digits.");
+            
+            dateSelect.value = ""; // Clear date selection
+            resultsBody.innerHTML = "";
+            let foundCount = 0;
+            
+            // Loop through the dropdown options (latest to oldest)
+            for (let i = 1; i < dateSelect.options.length; i++) {
+                const dateVal = dateSelect.options[i].value;
+                updateStatus(`Searching in ${dateVal}...`);
+
+                try {
+                    const response = await fetch(`${BASE_URL}${dateVal}.ndjson`);
+                    if(!response.ok) continue;
+
+                    const text = await response.text();
+                    const lines = text.split("\n");
+                    
+                    for(let line of lines) {
+                        if(!line.trim()) continue;
+                        const row = JSON.parse(line);
+                        // Check NPI(0), Phone1(6), Phone2(7), Phone3(8)
+                        if(row[0].includes(query) || row[6].includes(query) || row[7].includes(query) || row[8].includes(query)) {
+                            appendRow(row, dateVal);
+                            foundCount++;
+                        }
+                    }
+
+                    // If we found results in this file, we can stop searching older files
+                    // OR you can remove the 'break' to search the entire history.
+                    if(foundCount > 0) {
+                        updateStatus(`Found ${foundCount} matches in ${dateVal}. Search complete.`);
+                        return; 
+                    }
+                } catch (e) { console.log(`Skipping ${dateVal}`); }
+            }
+            
+            if(foundCount === 0) updateStatus("No matches found in any database files.", true);
+        }
+
+        function renderResults(data) {
+            resultsBody.innerHTML = "";
+            data.forEach(item => appendRow(item));
+        }
+
+        function appendRow(item, source = "") {
+            const tr = document.createElement('tr');
+            tr.className = "hover:bg-slate-50 transition-colors";
+            tr.innerHTML = `
+                <td class="p-4">
+                    <div class="font-bold text-slate-800">${item[2]}</div>
+                    <div class="text-xs font-mono text-slate-400">NPI: ${item[0]} ${source ? `• Found in ${source}` : ''}</div>
+                </td>
+                <td class="p-4 text-sm text-slate-600">
+                    <span class="bg-slate-100 px-2 py-0.5 rounded text-xs font-bold uppercase">${item[5]}</span>
+                </td>
+                <td class="p-4 text-right">
+                    <div class="text-sm font-bold text-slate-700">${item[7] || 'N/A'}</div>
+                    <div class="text-[10px] text-slate-400">Mail: ${item[6] || 'N/A'}</div>
+                </td>
+            `;
+            resultsBody.appendChild(tr);
+        }
+
+        dateSelect.addEventListener('change', (e) => loadSpecificDate(e.target.value));
+        execSearch.addEventListener('click', globalPhoneSearch);
+        phoneInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') globalPhoneSearch(); });
+
+        init();
+    </script>
+</body>
+</html>

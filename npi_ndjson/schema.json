@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "fields": [
+    {
+      "index": 0,
+      "name": "npi",
+      "type": "string"
+    },
+    {
+      "index": 1,
+      "name": "entity_type",
+      "type": "string"
+    },
+    {
+      "index": 2,
+      "name": "full_name",
+      "type": "string"
+    },
+    {
+      "index": 3,
+      "name": "enumeration_date",
+      "type": "string"
+    },
+    {
+      "index": 4,
+      "name": "gender_code",
+      "type": "string"
+    },
+    {
+      "index": 5,
+      "name": "state",
+      "type": "string"
+    },
+    {
+      "index": 6,
+      "name": "mail_phone",
+      "type": "string"
+    },
+    {
+      "index": 7,
+      "name": "practice_phone",
+      "type": "string"
+    },
+    {
+      "index": 8,
+      "name": "authorized_phone",
+      "type": "string"
+    }
+  ]
+}

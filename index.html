@@ -6,67 +6,150 @@
     <title>NPI Master Lookup</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .loader { border-top-color: #3b82f6; animation: spin 0.8s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .month-card { transition: all 0.2s; }
-        .month-card:hover { transform: translateY(-2px); }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .gradient-border {
+            position: relative;
+        }
+
+        .gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 1.5rem;
+            padding: 1px;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .loader { 
+            border-top-color: #6366f1; 
+            animation: spin 0.8s linear infinite; 
+        }
+        
+        @keyframes spin { 
+            to { transform: rotate(360deg); } 
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-4px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse-soft {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-pulse-icon {
+            animation: pulse-soft 3s ease-in-out infinite;
+        }
+
+        .month-card { 
+            transition: all 0.2s; 
+        }
+        
+        .month-card:hover { 
+            transform: translateY(-2px); 
+        }
+        
         .month-picker-dropdown { 
             max-height: 400px; 
             overflow-y: auto;
             scrollbar-width: thin;
-            scrollbar-color: #cbd5e1 #f1f5f9;
+            scrollbar-color: rgba(99, 102, 241, 0.5) rgba(255, 255, 255, 0.05);
         }
-        .month-picker-dropdown::-webkit-scrollbar { width: 6px; }
-        .month-picker-dropdown::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
-        .month-picker-dropdown::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        
+        .month-picker-dropdown::-webkit-scrollbar { 
+            width: 6px; 
+        }
+        
+        .month-picker-dropdown::-webkit-scrollbar-track { 
+            background: rgba(255, 255, 255, 0.05); 
+            border-radius: 10px; 
+        }
+        
+        .month-picker-dropdown::-webkit-scrollbar-thumb { 
+            background: rgba(99, 102, 241, 0.5); 
+            border-radius: 10px; 
+        }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen font-sans text-gray-900">
+<body class="min-h-screen text-slate-200 p-4 md:p-8">
 
-    <div class="max-w-5xl mx-auto p-4 md:p-8">
-        <div class="bg-white rounded-3xl shadow-xl border border-gray-100 mb-8">
-            <div class="p-6 md:p-8">
-                <h1 class="text-2xl font-black text-gray-800 mb-6 flex items-center gap-2">
-                    <span class="bg-blue-600 text-white p-2 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+    <div class="max-w-6xl mx-auto">
+        <!-- Header Card -->
+        <div class="group relative mb-8 transition-all duration-500 z-50">
+            <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-3xl blur opacity-10 group-hover:opacity-25 transition duration-700"></div>
+            
+            <div class="glass-effect gradient-border relative bg-slate-900/60 p-6 md:p-8 rounded-3xl overflow-visible">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 animate-pulse-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                     </span>
-                    NPI Provider Database
-                </h1>
+                    <h1 class="text-2xl md:text-3xl font-black text-white uppercase tracking-tight">
+                        NPI Provider Database
+                    </h1>
+                </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 relative z-10">
+                    <!-- Search Input -->
                     <div class="md:col-span-8">
-                        <label class="block text-xs font-bold text-blue-600 uppercase tracking-widest mb-2 ml-1">Global Phone/NPI Search</label>
+                        <label class="block text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3">Global Phone/NPI Search</label>
                         <div class="relative group">
                             <input type="text" id="phoneInput" placeholder="Enter NPI or Phone (searching all history...)" 
-                                   class="w-full pl-5 pr-14 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all text-lg font-medium">
-                            <button id="execSearch" class="absolute right-3 top-3 bottom-3 px-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200">
+                                   class="w-full pl-5 pr-32 py-4 bg-white/5 border border-white/10 rounded-2xl focus:border-indigo-500/50 focus:bg-white/10 outline-none transition-all text-base font-medium text-white placeholder-slate-500">
+                            <button id="execSearch" class="absolute right-3 top-3 bottom-3 px-5 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white rounded-xl hover:from-indigo-600 hover:to-cyan-600 transition-all shadow-lg shadow-indigo-500/20 font-bold text-sm uppercase tracking-wide">
                                 Search
                             </button>
                         </div>
                     </div>
 
-                    <div class="md:col-span-4">
-                        <label class="block text-xs font-bold text-blue-600 uppercase tracking-widest mb-2 ml-1">Browse by Month</label>
+                    <!-- Month Picker -->
+                    <div class="md:col-span-4 relative z-20">
+                        <label class="block text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3">Browse by Month</label>
                         <div class="relative">
-                            <button id="monthPickerBtn" class="w-full px-5 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl hover:border-blue-300 hover:bg-white outline-none transition-all font-semibold text-gray-700 text-left flex items-center justify-between group">
+                            <button id="monthPickerBtn" class="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-2xl hover:border-indigo-500/50 hover:bg-white/10 outline-none transition-all font-semibold text-slate-300 text-left flex items-center justify-between group">
                                 <span id="selectedMonthText" class="flex items-center gap-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                                    <span class="text-gray-600">Select Month...</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                    <span class="text-slate-400">Select Month...</span>
                                 </span>
-                                <svg id="monthPickerChevron" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                <svg id="monthPickerChevron" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-500 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                             </button>
                             
-                            <!-- Month Picker Dropdown -->
-                            <div id="monthPickerDropdown" class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50">
+                            <!-- Month Dropdown -->
+                            <div id="monthPickerDropdown" class="hidden absolute top-full left-0 right-0 mt-2 glass-effect bg-slate-900/90 rounded-2xl border border-white/10 z-[100] shadow-2xl">
                                 <div class="p-4">
-                                    <div class="flex items-center justify-between mb-3 pb-3 border-b border-gray-100">
-                                        <h3 class="font-bold text-gray-700 text-sm">Select Database Month</h3>
-                                        <button id="closeMonthPicker" class="text-gray-400 hover:text-gray-600 transition-colors">
+                                    <div class="flex items-center justify-between mb-3 pb-3 border-b border-white/10">
+                                        <h3 class="font-bold text-white text-sm uppercase tracking-wide">Select Database Month</h3>
+                                        <button id="closeMonthPicker" class="text-slate-400 hover:text-white transition-colors">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
                                         </button>
                                     </div>
                                     <div id="monthPickerContent" class="month-picker-dropdown space-y-3">
-                                        <!-- Months will be injected here -->
+                                        <!-- Months injected here -->
                                     </div>
                                 </div>
                             </div>
@@ -74,70 +157,77 @@
                     </div>
                 </div>
 
-                <div id="statusBar" class="hidden mt-6 p-4 rounded-2xl bg-blue-50 border border-blue-100 items-center justify-between">
+                <!-- Status Bar -->
+                <div id="statusBar" class="hidden mt-6 p-4 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 items-center justify-between backdrop-blur-sm">
                     <div class="flex items-center gap-3">
-                        <div class="loader w-5 h-5 border-2 border-gray-200 rounded-full"></div>
-                        <span id="statusText" class="text-sm font-bold text-blue-800">Searching...</span>
+                        <div class="loader w-5 h-5 border-2 border-white/20 rounded-full"></div>
+                        <span id="statusText" class="text-sm font-bold text-indigo-300">Searching...</span>
                     </div>
-                    <button id="stopBtn" class="text-xs font-bold text-red-500 hover:text-red-700 uppercase tracking-tight">Stop Search</button>
+                    <button id="stopBtn" class="text-xs font-bold text-red-400 hover:text-red-300 uppercase tracking-tight transition-colors">Stop Search</button>
                 </div>
+
+                <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-indigo-500/10 blur-3xl rounded-full"></div>
             </div>
         </div>
 
-        <!-- Pagination Controls (Top) -->
-        <div id="paginationTop" class="hidden bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-4">
+        <!-- Pagination Top -->
+        <div id="paginationTop" class="hidden glass-effect bg-slate-900/60 p-4 rounded-2xl border border-white/10 mb-4 relative z-0">
             <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="text-sm font-bold text-gray-600">
-                    Showing <span id="rangeStart">1</span>-<span id="rangeEnd">100</span> of <span id="totalResults">0</span> results
+                <div class="text-sm font-bold text-slate-300">
+                    Showing <span id="rangeStart" class="text-indigo-400">1</span>-<span id="rangeEnd" class="text-indigo-400">100</span> of <span id="totalResults" class="text-white">0</span> results
                 </div>
                 <div class="flex items-center gap-2">
-                    <button id="firstBtn" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                    <button id="firstBtn" class="px-4 py-2 bg-white/5 border border-white/10 text-slate-300 rounded-xl hover:bg-white/10 hover:border-indigo-500/50 transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed">
                         First
                     </button>
-                    <button id="prevBtn" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                    <button id="prevBtn" class="px-4 py-2 bg-white/5 border border-white/10 text-slate-300 rounded-xl hover:bg-white/10 hover:border-indigo-500/50 transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed">
                         ← Prev
                     </button>
-                    <div class="flex items-center gap-2 px-3">
-                        <span class="text-sm font-bold text-gray-600">Page</span>
-                        <span id="currentPageNum" class="text-sm font-black text-blue-600">1</span>
-                        <span class="text-sm font-bold text-gray-600">of</span>
-                        <span id="totalPages" class="text-sm font-black text-gray-800">1</span>
+                    <div class="flex items-center gap-2 px-4">
+                        <span class="text-sm font-semibold text-slate-400">Page</span>
+                        <span id="currentPageNum" class="text-sm font-black text-indigo-400">1</span>
+                        <span class="text-sm font-semibold text-slate-400">of</span>
+                        <span id="totalPages" class="text-sm font-black text-white">1</span>
                     </div>
-                    <button id="nextBtn" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                    <button id="nextBtn" class="px-4 py-2 bg-white/5 border border-white/10 text-slate-300 rounded-xl hover:bg-white/10 hover:border-indigo-500/50 transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed">
                         Next →
                     </button>
-                    <button id="lastBtn" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                    <button id="lastBtn" class="px-4 py-2 bg-white/5 border border-white/10 text-slate-300 rounded-xl hover:bg-white/10 hover:border-indigo-500/50 transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed">
                         Last
                     </button>
                 </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 gap-4" id="resultsArea">
-            <div class="bg-white p-12 rounded-3xl border border-dashed border-gray-200 text-center text-gray-400">
-                Search results will appear here line-by-line.
+        <!-- Results Area -->
+        <div class="grid grid-cols-1 gap-4 relative z-0" id="resultsArea">
+            <div class="glass-effect bg-slate-900/40 p-12 rounded-3xl border border-dashed border-white/10 text-center text-slate-500">
+                <div class="animate-float inline-block mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-indigo-500/30" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                </div>
+                <p class="text-sm font-medium">Search results will appear here</p>
             </div>
         </div>
 
-        <!-- Pagination Controls (Bottom) -->
-        <div id="paginationBottom" class="hidden bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mt-4">
+        <!-- Pagination Bottom -->
+        <div id="paginationBottom" class="hidden glass-effect bg-slate-900/60 p-4 rounded-2xl border border-white/10 mt-4 relative z-0">
             <div class="flex items-center justify-center gap-2">
-                <button id="firstBtn2" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                <button id="firstBtn2" class="px-4 py-2 bg-white/5 border border-white/10 text-slate-300 rounded-xl hover:bg-white/10 hover:border-indigo-500/50 transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed">
                     First
                 </button>
-                <button id="prevBtn2" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                <button id="prevBtn2" class="px-4 py-2 bg-white/5 border border-white/10 text-slate-300 rounded-xl hover:bg-white/10 hover:border-indigo-500/50 transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed">
                     ← Prev
                 </button>
-                <div class="flex items-center gap-2 px-3">
-                    <span class="text-sm font-bold text-gray-600">Page</span>
-                    <span id="currentPageNum2" class="text-sm font-black text-blue-600">1</span>
-                    <span class="text-sm font-bold text-gray-600">of</span>
-                    <span id="totalPages2" class="text-sm font-black text-gray-800">1</span>
+                <div class="flex items-center gap-2 px-4">
+                    <span class="text-sm font-semibold text-slate-400">Page</span>
+                    <span id="currentPageNum2" class="text-sm font-black text-indigo-400">1</span>
+                    <span class="text-sm font-semibold text-slate-400">of</span>
+                    <span id="totalPages2" class="text-sm font-black text-white">1</span>
                 </div>
-                <button id="nextBtn2" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                <button id="nextBtn2" class="px-4 py-2 bg-white/5 border border-white/10 text-slate-300 rounded-xl hover:bg-white/10 hover:border-indigo-500/50 transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed">
                     Next →
                 </button>
-                <button id="lastBtn2" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                <button id="lastBtn2" class="px-4 py-2 bg-white/5 border border-white/10 text-slate-300 rounded-xl hover:bg-white/10 hover:border-indigo-500/50 transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed">
                     Last
                 </button>
             </div>
@@ -145,7 +235,6 @@
     </div>
 
     <script>
-        // CONFIG
         const BASE_URL = `https://lylanoble.github.io/phone_lookup/npi_ndjson/`;
         const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
         const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -158,7 +247,6 @@
         const execSearch = document.getElementById('execSearch');
         const stopBtn = document.getElementById('stopBtn');
 
-        // Month Picker elements
         const monthPickerBtn = document.getElementById('monthPickerBtn');
         const monthPickerDropdown = document.getElementById('monthPickerDropdown');
         const monthPickerContent = document.getElementById('monthPickerContent');
@@ -166,7 +254,6 @@
         const closeMonthPicker = document.getElementById('closeMonthPicker');
         const monthPickerChevron = document.getElementById('monthPickerChevron');
 
-        // Pagination elements
         const paginationTop = document.getElementById('paginationTop');
         const paginationBottom = document.getElementById('paginationBottom');
         const rangeStart = document.getElementById('rangeStart');
@@ -192,7 +279,6 @@
         let totalPages = 1;
         let selectedMonth = null;
 
-        // Initialize Month Picker
         function initMonthPicker() {
             let d = new Date();
             let yearGroups = {};
@@ -212,13 +298,12 @@
                 d.setMonth(d.getMonth() - 1);
             }
 
-            // Render year groups
             Object.keys(yearGroups).reverse().forEach(year => {
                 const yearSection = document.createElement('div');
                 yearSection.className = 'mb-2';
                 
                 const yearHeader = document.createElement('div');
-                yearHeader.className = 'text-xs font-bold text-gray-500 uppercase tracking-wide mb-2 px-1';
+                yearHeader.className = 'text-xs font-bold text-indigo-400 uppercase tracking-wide mb-2 px-1';
                 yearHeader.textContent = year;
                 yearSection.appendChild(yearHeader);
 
@@ -227,7 +312,7 @@
                 
                 yearGroups[year].forEach(month => {
                     const monthCard = document.createElement('button');
-                    monthCard.className = 'month-card px-3 py-2 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-blue-50 hover:border-blue-200 font-semibold text-xs text-gray-700 transition-all';
+                    monthCard.className = 'month-card px-3 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-indigo-500/10 hover:border-indigo-500/30 font-semibold text-xs text-slate-300 transition-all';
                     monthCard.textContent = month.monthShort.toUpperCase();
                     monthCard.dataset.fileName = month.fileName;
                     monthCard.dataset.displayName = `${month.monthName} ${year}`;
@@ -250,15 +335,14 @@
         function selectMonth(fileName, displayName) {
             selectedMonth = fileName;
             selectedMonthText.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                <span class="text-gray-800">${displayName}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                <span class="text-white">${displayName}</span>
             `;
             monthPickerDropdown.classList.add('hidden');
             monthPickerChevron.classList.remove('rotate-180');
             loadDate(fileName);
         }
 
-        // Close month picker when clicking outside
         document.addEventListener('click', (e) => {
             if (!monthPickerBtn.contains(e.target) && !monthPickerDropdown.contains(e.target)) {
                 monthPickerDropdown.classList.add('hidden');
@@ -361,7 +445,7 @@
                 setResults(data);
                 setStatus(`Showing ${data.length} records from ${fileName.toUpperCase()}`);
             } catch (e) {
-                setStatus(`Error: Could not load ${fileName} (Check GitHub path)`, true);
+                setStatus(`Error: Could not load ${fileName}`, true);
             }
         }
 
@@ -372,8 +456,8 @@
             isSearching = true;
             selectedMonth = null;
             selectedMonthText.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                <span class="text-gray-600">Select Month...</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                <span class="text-slate-400">Select Month...</span>
             `;
             allResults = [];
             currentPage = 1;
@@ -381,7 +465,6 @@
             paginationTop.classList.add('hidden');
             paginationBottom.classList.add('hidden');
 
-            // Get all available months from the month picker
             const allMonthCards = monthPickerContent.querySelectorAll('.month-card');
             const fileNames = Array.from(allMonthCards).map(card => card.dataset.fileName);
 
@@ -408,7 +491,7 @@
 
                     if(matches.length > 0) {
                         addResults(matches, fileName);
-                        setStatus(`Found ${allResults.length} total results. Currently viewing ${fileName.toUpperCase()}...`);
+                        setStatus(`Found ${allResults.length} total results in ${fileName.toUpperCase()}...`);
                     }
 
                     if(allResults.length > 0) {
@@ -420,42 +503,60 @@
             }
 
             if(allResults.length === 0) {
-                resultsArea.innerHTML = '<div class="bg-white p-12 rounded-3xl border border-dashed border-gray-200 text-center text-gray-400">No matches found in any database files.</div>';
-                setStatus("No matches found in any database files.", true);
+                resultsArea.innerHTML = '<div class="glass-effect bg-slate-900/40 p-12 rounded-3xl border border-dashed border-white/10 text-center text-slate-500"><p class="text-sm font-medium">No matches found in any database files.</p></div>';
+                setStatus("No matches found", true);
             }
             isSearching = false;
         }
 
         function createCard(item, source = "") {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'group relative transition-all duration-500 z-0';
+            
+            const glow = document.createElement('div');
+            glow.className = 'absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-700';
+            
             const card = document.createElement('div');
-            card.className = "bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-200 transition-all flex flex-col md:flex-row justify-between items-start md:items-center gap-4";
+            card.className = "glass-effect gradient-border relative bg-slate-900/60 p-5 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4";
             card.innerHTML = `
                 <div class="flex-1">
-                    <div class="flex items-center gap-2 mb-1">
-                        <span class="bg-blue-50 text-blue-600 text-[10px] font-black px-2 py-0.5 rounded-md uppercase">NPI ${item[0]}</span>
-                        ${source ? `<span class="text-gray-400 text-[10px] font-bold uppercase">Source: ${source}</span>` : ''}
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider">NPI ${item[0]}</span>
+                        ${source ? `<span class="text-slate-500 text-[10px] font-bold uppercase tracking-wide">• ${source}</span>` : ''}
                     </div>
-                    <h3 class="font-black text-gray-800 text-lg uppercase leading-tight">${item[2]}</h3>
-                    <div class="flex gap-3 mt-2">
-                        <span class="text-xs font-bold text-gray-400">📍 ${item[5]} (STATE)</span>
-                        <span class="text-xs font-bold text-gray-400">👤 ${item[1] == '1' ? 'INDIVIDUAL' : 'ORG'}</span>
-                    </div>
-                </div>
-                <div class="bg-gray-50 p-4 rounded-xl w-full md:w-auto min-w-[200px]">
-                    <div class="flex items-center justify-between md:justify-end gap-3 mb-1">
-                        <span class="text-[10px] font-bold text-gray-400">PRACTICE</span>
-                        <span class="text-sm font-black text-gray-700">${item[7] || 'N/A'}</span>
-                    </div>
-                    <div class="flex items-center justify-between md:justify-end gap-3">
-                        <span class="text-[10px] font-bold text-gray-400">MAILING</span>
-                        <span class="text-xs font-bold text-gray-500">${item[6] || 'N/A'}</span>
+                    <h3 class="font-black text-white text-lg md:text-xl uppercase leading-tight group-hover:text-indigo-400 transition-colors">${item[2]}</h3>
+                    <div class="flex flex-wrap gap-3 mt-3">
+                        <div class="flex items-center gap-2 text-slate-400 bg-white/5 px-3 py-1.5 rounded-full border border-white/5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span class="text-xs font-semibold uppercase tracking-wide">${item[5]}</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-500">
+                            <span class="text-[10px] font-bold uppercase">${item[1] == '1' ? '👤 Individual' : '🏢 Organization'}</span>
+                        </div>
                     </div>
                 </div>
+                <div class="bg-white/5 border border-white/10 p-4 rounded-2xl min-w-[240px] backdrop-blur-sm">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] font-black text-slate-500 uppercase tracking-wider">Practice</span>
+                        <span class="text-sm font-bold text-indigo-400">${item[7] || 'N/A'}</span>
+                    </div>
+                    <div class="h-[1px] w-full bg-white/5 my-2"></div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] font-black text-slate-500 uppercase tracking-wider">Mailing</span>
+                        <span class="text-xs font-semibold text-slate-400">${item[6] || 'N/A'}</span>
+                    </div>
+                </div>
+                <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-indigo-500/10 blur-2xl rounded-full"></div>
             `;
-            return card;
+            
+            wrapper.appendChild(glow);
+            wrapper.appendChild(card);
+            return wrapper;
         }
 
-        // PAGINATION LISTENERS
         firstBtn.addEventListener('click', () => goToPage(1));
         prevBtn.addEventListener('click', () => goToPage(currentPage - 1));
         nextBtn.addEventListener('click', () => goToPage(currentPage + 1));
@@ -465,7 +566,6 @@
         nextBtn2.addEventListener('click', () => goToPage(currentPage + 1));
         lastBtn2.addEventListener('click', () => goToPage(totalPages));
 
-        // MAIN LISTENERS
         execSearch.addEventListener('click', globalSearch);
         stopBtn.addEventListener('click', () => { isSearching = false; setStatus("Search cancelled."); });
         phoneInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') globalSearch(); });

@@ -52,9 +52,62 @@
             </div>
         </div>
 
+        <!-- Pagination Controls (Top) -->
+        <div id="paginationTop" class="hidden bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="text-sm font-bold text-gray-600">
+                    Showing <span id="rangeStart">1</span>-<span id="rangeEnd">100</span> of <span id="totalResults">0</span> results
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="firstBtn" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                        First
+                    </button>
+                    <button id="prevBtn" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                        ← Prev
+                    </button>
+                    <div class="flex items-center gap-2 px-3">
+                        <span class="text-sm font-bold text-gray-600">Page</span>
+                        <span id="currentPageNum" class="text-sm font-black text-blue-600">1</span>
+                        <span class="text-sm font-bold text-gray-600">of</span>
+                        <span id="totalPages" class="text-sm font-black text-gray-800">1</span>
+                    </div>
+                    <button id="nextBtn" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                        Next →
+                    </button>
+                    <button id="lastBtn" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                        Last
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <div class="grid grid-cols-1 gap-4" id="resultsArea">
             <div class="bg-white p-12 rounded-3xl border border-dashed border-gray-200 text-center text-gray-400">
                 Search results will appear here line-by-line.
+            </div>
+        </div>
+
+        <!-- Pagination Controls (Bottom) -->
+        <div id="paginationBottom" class="hidden bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mt-4">
+            <div class="flex items-center justify-center gap-2">
+                <button id="firstBtn2" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                    First
+                </button>
+                <button id="prevBtn2" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                    ← Prev
+                </button>
+                <div class="flex items-center gap-2 px-3">
+                    <span class="text-sm font-bold text-gray-600">Page</span>
+                    <span id="currentPageNum2" class="text-sm font-black text-blue-600">1</span>
+                    <span class="text-sm font-bold text-gray-600">of</span>
+                    <span id="totalPages2" class="text-sm font-black text-gray-800">1</span>
+                </div>
+                <button id="nextBtn2" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                    Next →
+                </button>
+                <button id="lastBtn2" class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                    Last
+                </button>
             </div>
         </div>
     </div>
@@ -63,6 +116,7 @@
         // CONFIG
         const BASE_URL = `https://lylanoble.github.io/phone_lookup/npi_ndjson/`;
         const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+        const RESULTS_PER_PAGE = 100;
         
         const dateSelect = document.getElementById('dateSelect');
         const phoneInput = document.getElementById('phoneInput');
@@ -72,7 +126,30 @@
         const execSearch = document.getElementById('execSearch');
         const stopBtn = document.getElementById('stopBtn');
 
+        // Pagination elements
+        const paginationTop = document.getElementById('paginationTop');
+        const paginationBottom = document.getElementById('paginationBottom');
+        const rangeStart = document.getElementById('rangeStart');
+        const rangeEnd = document.getElementById('rangeEnd');
+        const totalResults = document.getElementById('totalResults');
+        const currentPageNum = document.getElementById('currentPageNum');
+        const currentPageNum2 = document.getElementById('currentPageNum2');
+        const totalPagesElem = document.getElementById('totalPages');
+        const totalPagesElem2 = document.getElementById('totalPages2');
+        
+        const firstBtn = document.getElementById('firstBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const lastBtn = document.getElementById('lastBtn');
+        const firstBtn2 = document.getElementById('firstBtn2');
+        const prevBtn2 = document.getElementById('prevBtn2');
+        const nextBtn2 = document.getElementById('nextBtn2');
+        const lastBtn2 = document.getElementById('lastBtn2');
+
         let isSearching = false;
+        let allResults = [];
+        let currentPage = 1;
+        let totalPages = 1;
 
         // Populate Dropdown with UNDERSCORE format: jan_2025
         function initDropdown() {
@@ -80,7 +157,7 @@
             for (let i = 0; i < 24; i++) {
                 let m = MONTHS[d.getMonth()];
                 let y = d.getFullYear();
-                let fileName = `${m}_${y}`; // Changed to underscore
+                let fileName = `${m}_${y}`;
                 dateSelect.add(new Option(`${m.toUpperCase()} ${y}`, fileName));
                 d.setMonth(d.getMonth() - 1);
             }
@@ -92,12 +169,80 @@
             statusText.innerText = msg;
         }
 
+        function updatePaginationControls() {
+            const start = (currentPage - 1) * RESULTS_PER_PAGE + 1;
+            const end = Math.min(currentPage * RESULTS_PER_PAGE, allResults.length);
+            
+            rangeStart.textContent = allResults.length > 0 ? start : 0;
+            rangeEnd.textContent = end;
+            totalResults.textContent = allResults.length;
+            currentPageNum.textContent = currentPage;
+            currentPageNum2.textContent = currentPage;
+            totalPagesElem.textContent = totalPages;
+            totalPagesElem2.textContent = totalPages;
+
+            // Enable/disable buttons
+            const isFirstPage = currentPage === 1;
+            const isLastPage = currentPage === totalPages;
+            
+            firstBtn.disabled = isFirstPage;
+            prevBtn.disabled = isFirstPage;
+            nextBtn.disabled = isLastPage;
+            lastBtn.disabled = isLastPage;
+            firstBtn2.disabled = isFirstPage;
+            prevBtn2.disabled = isFirstPage;
+            nextBtn2.disabled = isLastPage;
+            lastBtn2.disabled = isLastPage;
+
+            // Show/hide pagination
+            const showPagination = allResults.length > RESULTS_PER_PAGE;
+            paginationTop.classList.toggle('hidden', !showPagination);
+            paginationBottom.classList.toggle('hidden', !showPagination);
+        }
+
+        function renderCurrentPage() {
+            resultsArea.innerHTML = "";
+            const start = (currentPage - 1) * RESULTS_PER_PAGE;
+            const end = Math.min(start + RESULTS_PER_PAGE, allResults.length);
+            const pageResults = allResults.slice(start, end);
+            
+            pageResults.forEach(item => {
+                const card = createCard(item.data, item.source);
+                resultsArea.appendChild(card);
+            });
+
+            updatePaginationControls();
+            
+            // Scroll to top when changing pages
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function setResults(data, source = "") {
+            allResults = data.map(item => ({ data: item, source }));
+            currentPage = 1;
+            totalPages = Math.ceil(allResults.length / RESULTS_PER_PAGE);
+            renderCurrentPage();
+        }
+
+        function addResults(data, source = "") {
+            data.forEach(item => {
+                allResults.push({ data: item, source });
+            });
+            totalPages = Math.ceil(allResults.length / RESULTS_PER_PAGE);
+            renderCurrentPage();
+        }
+
+        function goToPage(page) {
+            currentPage = Math.max(1, Math.min(page, totalPages));
+            renderCurrentPage();
+        }
+
         // SCENARIO 1: LOAD SPECIFIC MONTH
         async function loadDate(fileName) {
             if(!fileName) return;
-            isSearching = false; // Cancel any global search
+            isSearching = false;
             phoneInput.value = "";
-            resultsArea.innerHTML = "";
+            allResults = [];
             setStatus(`Loading ${fileName}.ndjson...`);
 
             try {
@@ -105,10 +250,10 @@
                 if(!res.ok) throw new Error("File not found");
                 const text = await res.text();
                 const data = text.split("\n").filter(l => l.trim()).map(l => JSON.parse(l));
-                renderResults(data);
+                setResults(data);
                 setStatus(`Showing ${data.length} records from ${fileName.toUpperCase()}`);
             } catch (e) {
-                setStatus(`Error: Could not load ${fileName}_2025 (Check GitHub path)`, true);
+                setStatus(`Error: Could not load ${fileName} (Check GitHub path)`, true);
             }
         }
 
@@ -119,8 +264,11 @@
 
             isSearching = true;
             dateSelect.value = "";
+            allResults = [];
+            currentPage = 1;
             resultsArea.innerHTML = "";
-            let foundCount = 0;
+            paginationTop.classList.add('hidden');
+            paginationBottom.classList.add('hidden');
 
             for (let i = 1; i < dateSelect.options.length; i++) {
                 if(!isSearching) break;
@@ -134,36 +282,39 @@
 
                     const text = await response.text();
                     const lines = text.split("\n");
+                    const matches = [];
                     
                     lines.forEach(line => {
                         if(!line.trim()) return;
                         const row = JSON.parse(line);
                         // Search NPI, Practice Phone, Mail Phone, Authorized Phone
                         if(row[0].includes(query) || row[6].includes(query) || row[7].includes(query) || row[8].includes(query)) {
-                            appendCard(row, fileName);
-                            foundCount++;
+                            matches.push(row);
                         }
                     });
 
-                    // If we found the provider, we stop searching older files
-                    if(foundCount > 0) {
-                        setStatus(`Found ${foundCount} results in ${fileName.toUpperCase()}. Search Finished.`);
+                    if(matches.length > 0) {
+                        addResults(matches, fileName);
+                        setStatus(`Found ${allResults.length} total results. Currently viewing ${fileName.toUpperCase()}...`);
+                    }
+
+                    // Stop after finding results in the most recent file
+                    if(allResults.length > 0) {
+                        setStatus(`Search complete. Found ${allResults.length} results.`);
                         isSearching = false;
                         return;
                     }
                 } catch (e) { console.warn("Skipping " + fileName); }
             }
 
-            if(foundCount === 0) setStatus("No matches found in any database files.", true);
+            if(allResults.length === 0) {
+                resultsArea.innerHTML = '<div class="bg-white p-12 rounded-3xl border border-dashed border-gray-200 text-center text-gray-400">No matches found in any database files.</div>';
+                setStatus("No matches found in any database files.", true);
+            }
             isSearching = false;
         }
 
-        function renderResults(data) {
-            resultsArea.innerHTML = "";
-            data.forEach(item => appendCard(item));
-        }
-
-        function appendCard(item, source = "") {
+        function createCard(item, source = "") {
             const card = document.createElement('div');
             card.className = "bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-200 transition-all flex flex-col md:flex-row justify-between items-start md:items-center gap-4";
             card.innerHTML = `
@@ -189,10 +340,20 @@
                     </div>
                 </div>
             `;
-            resultsArea.appendChild(card);
+            return card;
         }
 
-        // LISTENERS
+        // PAGINATION LISTENERS
+        firstBtn.addEventListener('click', () => goToPage(1));
+        prevBtn.addEventListener('click', () => goToPage(currentPage - 1));
+        nextBtn.addEventListener('click', () => goToPage(currentPage + 1));
+        lastBtn.addEventListener('click', () => goToPage(totalPages));
+        firstBtn2.addEventListener('click', () => goToPage(1));
+        prevBtn2.addEventListener('click', () => goToPage(currentPage - 1));
+        nextBtn2.addEventListener('click', () => goToPage(currentPage + 1));
+        lastBtn2.addEventListener('click', () => goToPage(totalPages));
+
+        // MAIN LISTENERS
         dateSelect.addEventListener('change', (e) => loadDate(e.target.value));
         execSearch.addEventListener('click', globalSearch);
         stopBtn.addEventListener('click', () => { isSearching = false; setStatus("Search cancelled."); });

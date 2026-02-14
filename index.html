@@ -8,12 +8,23 @@
     <style>
         .loader { border-top-color: #3b82f6; animation: spin 0.8s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
+        .month-card { transition: all 0.2s; }
+        .month-card:hover { transform: translateY(-2px); }
+        .month-picker-dropdown { 
+            max-height: 400px; 
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 #f1f5f9;
+        }
+        .month-picker-dropdown::-webkit-scrollbar { width: 6px; }
+        .month-picker-dropdown::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+        .month-picker-dropdown::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen font-sans text-gray-900">
 
     <div class="max-w-5xl mx-auto p-4 md:p-8">
-        <div class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden mb-8">
+        <div class="bg-white rounded-3xl shadow-xl border border-gray-100 mb-8">
             <div class="p-6 md:p-8">
                 <h1 class="text-2xl font-black text-gray-800 mb-6 flex items-center gap-2">
                     <span class="bg-blue-600 text-white p-2 rounded-lg">
@@ -35,10 +46,31 @@
                     </div>
 
                     <div class="md:col-span-4">
-                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">Specific Month</label>
-                        <select id="dateSelect" class="w-full px-5 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none appearance-none cursor-pointer font-semibold text-gray-600">
-                            <option value="">Select File...</option>
-                        </select>
+                        <label class="block text-xs font-bold text-blue-600 uppercase tracking-widest mb-2 ml-1">Browse by Month</label>
+                        <div class="relative">
+                            <button id="monthPickerBtn" class="w-full px-5 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl hover:border-blue-300 hover:bg-white outline-none transition-all font-semibold text-gray-700 text-left flex items-center justify-between group">
+                                <span id="selectedMonthText" class="flex items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                    <span class="text-gray-600">Select Month...</span>
+                                </span>
+                                <svg id="monthPickerChevron" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                            </button>
+                            
+                            <!-- Month Picker Dropdown -->
+                            <div id="monthPickerDropdown" class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50">
+                                <div class="p-4">
+                                    <div class="flex items-center justify-between mb-3 pb-3 border-b border-gray-100">
+                                        <h3 class="font-bold text-gray-700 text-sm">Select Database Month</h3>
+                                        <button id="closeMonthPicker" class="text-gray-400 hover:text-gray-600 transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                        </button>
+                                    </div>
+                                    <div id="monthPickerContent" class="month-picker-dropdown space-y-3">
+                                        <!-- Months will be injected here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -116,15 +148,23 @@
         // CONFIG
         const BASE_URL = `https://lylanoble.github.io/phone_lookup/npi_ndjson/`;
         const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+        const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const RESULTS_PER_PAGE = 100;
         
-        const dateSelect = document.getElementById('dateSelect');
         const phoneInput = document.getElementById('phoneInput');
         const resultsArea = document.getElementById('resultsArea');
         const statusBar = document.getElementById('statusBar');
         const statusText = document.getElementById('statusText');
         const execSearch = document.getElementById('execSearch');
         const stopBtn = document.getElementById('stopBtn');
+
+        // Month Picker elements
+        const monthPickerBtn = document.getElementById('monthPickerBtn');
+        const monthPickerDropdown = document.getElementById('monthPickerDropdown');
+        const monthPickerContent = document.getElementById('monthPickerContent');
+        const selectedMonthText = document.getElementById('selectedMonthText');
+        const closeMonthPicker = document.getElementById('closeMonthPicker');
+        const monthPickerChevron = document.getElementById('monthPickerChevron');
 
         // Pagination elements
         const paginationTop = document.getElementById('paginationTop');
@@ -150,18 +190,91 @@
         let allResults = [];
         let currentPage = 1;
         let totalPages = 1;
+        let selectedMonth = null;
 
-        // Populate Dropdown with UNDERSCORE format: jan_2025
-        function initDropdown() {
+        // Initialize Month Picker
+        function initMonthPicker() {
             let d = new Date();
+            let yearGroups = {};
+            
             for (let i = 0; i < 24; i++) {
-                let m = MONTHS[d.getMonth()];
-                let y = d.getFullYear();
-                let fileName = `${m}_${y}`;
-                dateSelect.add(new Option(`${m.toUpperCase()} ${y}`, fileName));
+                let monthIdx = d.getMonth();
+                let year = d.getFullYear();
+                let fileName = `${MONTHS[monthIdx]}_${year}`;
+                
+                if (!yearGroups[year]) yearGroups[year] = [];
+                yearGroups[year].push({
+                    fileName: fileName,
+                    monthName: MONTH_NAMES[monthIdx],
+                    monthShort: MONTHS[monthIdx]
+                });
+                
                 d.setMonth(d.getMonth() - 1);
             }
+
+            // Render year groups
+            Object.keys(yearGroups).reverse().forEach(year => {
+                const yearSection = document.createElement('div');
+                yearSection.className = 'mb-2';
+                
+                const yearHeader = document.createElement('div');
+                yearHeader.className = 'text-xs font-bold text-gray-500 uppercase tracking-wide mb-2 px-1';
+                yearHeader.textContent = year;
+                yearSection.appendChild(yearHeader);
+
+                const monthsGrid = document.createElement('div');
+                monthsGrid.className = 'grid grid-cols-3 gap-2';
+                
+                yearGroups[year].forEach(month => {
+                    const monthCard = document.createElement('button');
+                    monthCard.className = 'month-card px-3 py-2 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-blue-50 hover:border-blue-200 font-semibold text-xs text-gray-700 transition-all';
+                    monthCard.textContent = month.monthShort.toUpperCase();
+                    monthCard.dataset.fileName = month.fileName;
+                    monthCard.dataset.displayName = `${month.monthName} ${year}`;
+                    
+                    monthCard.addEventListener('click', () => selectMonth(month.fileName, `${month.monthName} ${year}`));
+                    monthsGrid.appendChild(monthCard);
+                });
+                
+                yearSection.appendChild(monthsGrid);
+                monthPickerContent.appendChild(yearSection);
+            });
         }
+
+        function toggleMonthPicker() {
+            const isHidden = monthPickerDropdown.classList.contains('hidden');
+            monthPickerDropdown.classList.toggle('hidden', !isHidden);
+            monthPickerChevron.classList.toggle('rotate-180', isHidden);
+        }
+
+        function selectMonth(fileName, displayName) {
+            selectedMonth = fileName;
+            selectedMonthText.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                <span class="text-gray-800">${displayName}</span>
+            `;
+            monthPickerDropdown.classList.add('hidden');
+            monthPickerChevron.classList.remove('rotate-180');
+            loadDate(fileName);
+        }
+
+        // Close month picker when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!monthPickerBtn.contains(e.target) && !monthPickerDropdown.contains(e.target)) {
+                monthPickerDropdown.classList.add('hidden');
+                monthPickerChevron.classList.remove('rotate-180');
+            }
+        });
+
+        monthPickerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMonthPicker();
+        });
+
+        closeMonthPicker.addEventListener('click', () => {
+            monthPickerDropdown.classList.add('hidden');
+            monthPickerChevron.classList.remove('rotate-180');
+        });
 
         function setStatus(msg, show = true) {
             statusBar.classList.toggle('hidden', !show);
@@ -181,7 +294,6 @@
             totalPagesElem.textContent = totalPages;
             totalPagesElem2.textContent = totalPages;
 
-            // Enable/disable buttons
             const isFirstPage = currentPage === 1;
             const isLastPage = currentPage === totalPages;
             
@@ -194,7 +306,6 @@
             nextBtn2.disabled = isLastPage;
             lastBtn2.disabled = isLastPage;
 
-            // Show/hide pagination
             const showPagination = allResults.length > RESULTS_PER_PAGE;
             paginationTop.classList.toggle('hidden', !showPagination);
             paginationBottom.classList.toggle('hidden', !showPagination);
@@ -212,8 +323,6 @@
             });
 
             updatePaginationControls();
-            
-            // Scroll to top when changing pages
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -237,7 +346,6 @@
             renderCurrentPage();
         }
 
-        // SCENARIO 1: LOAD SPECIFIC MONTH
         async function loadDate(fileName) {
             if(!fileName) return;
             isSearching = false;
@@ -257,23 +365,29 @@
             }
         }
 
-        // SCENARIO 2: GLOBAL BACKWARDS SEARCH
         async function globalSearch() {
             const query = phoneInput.value.replace(/\D/g, '');
             if(query.length < 3) return alert("Enter at least 3 digits");
 
             isSearching = true;
-            dateSelect.value = "";
+            selectedMonth = null;
+            selectedMonthText.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                <span class="text-gray-600">Select Month...</span>
+            `;
             allResults = [];
             currentPage = 1;
             resultsArea.innerHTML = "";
             paginationTop.classList.add('hidden');
             paginationBottom.classList.add('hidden');
 
-            for (let i = 1; i < dateSelect.options.length; i++) {
+            // Get all available months from the month picker
+            const allMonthCards = monthPickerContent.querySelectorAll('.month-card');
+            const fileNames = Array.from(allMonthCards).map(card => card.dataset.fileName);
+
+            for (let fileName of fileNames) {
                 if(!isSearching) break;
                 
-                const fileName = dateSelect.options[i].value;
                 setStatus(`Scanning ${fileName.toUpperCase()}...`);
 
                 try {
@@ -287,7 +401,6 @@
                     lines.forEach(line => {
                         if(!line.trim()) return;
                         const row = JSON.parse(line);
-                        // Search NPI, Practice Phone, Mail Phone, Authorized Phone
                         if(row[0].includes(query) || row[6].includes(query) || row[7].includes(query) || row[8].includes(query)) {
                             matches.push(row);
                         }
@@ -298,7 +411,6 @@
                         setStatus(`Found ${allResults.length} total results. Currently viewing ${fileName.toUpperCase()}...`);
                     }
 
-                    // Stop after finding results in the most recent file
                     if(allResults.length > 0) {
                         setStatus(`Search complete. Found ${allResults.length} results.`);
                         isSearching = false;
@@ -354,12 +466,11 @@
         lastBtn2.addEventListener('click', () => goToPage(totalPages));
 
         // MAIN LISTENERS
-        dateSelect.addEventListener('change', (e) => loadDate(e.target.value));
         execSearch.addEventListener('click', globalSearch);
         stopBtn.addEventListener('click', () => { isSearching = false; setStatus("Search cancelled."); });
         phoneInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') globalSearch(); });
 
-        initDropdown();
+        initMonthPicker();
     </script>
 </body>
 </html>

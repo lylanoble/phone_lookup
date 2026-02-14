@@ -3,182 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NPI Global Phone Search</title>
+    <title>NPI Master Lookup</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .loading-ring { border-top-color: #3b82f6; animation: spinner 0.6s linear infinite; }
-        @keyframes spinner { to { transform: rotate(360deg); } }
+        .loader { border-top-color: #3b82f6; animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="bg-slate-50 min-h-screen text-slate-900 font-sans">
+<body class="bg-gray-50 min-h-screen font-sans text-gray-900">
 
-    <div class="max-w-4xl mx-auto p-4 py-8">
-        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
-            <div class="p-6 border-b border-slate-100 bg-slate-50/50">
-                <h1 class="text-xl font-bold text-slate-800 mb-4">NPI Master Search</h1>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-blue-600 uppercase mb-1">Global Phone/NPI Search</label>
-                        <div class="relative">
-                            <input type="text" id="phoneInput" placeholder="Enter phone (e.g. 954577...)" 
-                                   class="w-full pl-4 pr-10 py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none shadow-sm">
-                            <button id="execSearch" class="absolute right-2 top-2 p-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <div class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden mb-8">
+            <div class="p-6 md:p-8">
+                <h1 class="text-2xl font-black text-gray-800 mb-6 flex items-center gap-2">
+                    <span class="bg-blue-600 text-white p-2 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    </span>
+                    NPI Provider Database
+                </h1>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <div class="md:col-span-8">
+                        <label class="block text-xs font-bold text-blue-600 uppercase tracking-widest mb-2 ml-1">Global Phone/NPI Search</label>
+                        <div class="relative group">
+                            <input type="text" id="phoneInput" placeholder="Enter NPI or Phone (searching all history...)" 
+                                   class="w-full pl-5 pr-14 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all text-lg font-medium">
+                            <button id="execSearch" class="absolute right-3 top-3 bottom-3 px-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200">
+                                Search
                             </button>
                         </div>
-                        <p class="text-[10px] text-slate-400 mt-1">* Searches backward through all monthly files until found.</p>
                     </div>
 
-                    <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">View Specific Month</label>
-                        <select id="dateSelect" class="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none shadow-sm appearance-none">
-                            <option value="">Select Month...</option>
-                            </select>
+                    <div class="md:col-span-4">
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">Specific Month</label>
+                        <select id="dateSelect" class="w-full px-5 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none appearance-none cursor-pointer font-semibold text-gray-600">
+                            <option value="">Select File...</option>
+                        </select>
                     </div>
                 </div>
-            </div>
 
-            <div id="statusBar" class="hidden px-6 py-2 bg-blue-50 border-b border-blue-100 items-center gap-3">
-                <div class="loading-ring w-4 h-4 border-2 border-transparent rounded-full"></div>
-                <span id="statusText" class="text-sm text-blue-700 font-medium"></span>
+                <div id="statusBar" class="hidden mt-6 p-4 rounded-2xl bg-blue-50 border border-blue-100 items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="loader w-5 h-5 border-2 border-gray-200 rounded-full"></div>
+                        <span id="statusText" class="text-sm font-bold text-blue-800">Searching...</span>
+                    </div>
+                    <button id="stopBtn" class="text-xs font-bold text-red-500 hover:text-red-700 uppercase tracking-tight">Stop Search</button>
+                </div>
             </div>
+        </div>
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-left">
-                    <thead>
-                        <tr class="bg-slate-800 text-white">
-                            <th class="p-4 text-xs font-bold uppercase tracking-wider">Provider / NPI</th>
-                            <th class="p-4 text-xs font-bold uppercase tracking-wider">Location</th>
-                            <th class="p-4 text-xs font-bold uppercase tracking-wider text-right">Phones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="resultsBody" class="divide-y divide-slate-100">
-                        <tr><td colspan="3" class="p-10 text-center text-slate-400">Enter a phone number or select a date to begin.</td></tr>
-                    </tbody>
-                </table>
+        <div class="grid grid-cols-1 gap-4" id="resultsArea">
+            <div class="bg-white p-12 rounded-3xl border border-dashed border-gray-200 text-center text-gray-400">
+                Search results will appear here line-by-line.
             </div>
         </div>
     </div>
 
     <script>
-        const BASE_URL = `https://lylanoble.github.io/phone_lookup/npi_ndjson/`;
+        // CONFIG
+        const GITHUB = {
+            user: "YOUR_USERNAME",
+            repo: "YOUR_REPO",
+            branch: "main"
+        };
+        const BASE_URL = `https://raw.githubusercontent.com/${GITHUB.user}/${GITHUB.repo}/${GITHUB.branch}/`;
         const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
-
+        
         const dateSelect = document.getElementById('dateSelect');
         const phoneInput = document.getElementById('phoneInput');
-        const resultsBody = document.getElementById('resultsBody');
+        const resultsArea = document.getElementById('resultsArea');
         const statusBar = document.getElementById('statusBar');
         const statusText = document.getElementById('statusText');
         const execSearch = document.getElementById('execSearch');
+        const stopBtn = document.getElementById('stopBtn');
 
-        // Populate Date Dropdown (Last 24 months)
-        function init() {
+        let isSearching = false;
+
+        // Populate Dropdown with UNDERSCORE format: jan_2025
+        function initDropdown() {
             let d = new Date();
             for (let i = 0; i < 24; i++) {
                 let m = MONTHS[d.getMonth()];
                 let y = d.getFullYear();
-                dateSelect.add(new Option(`${m.toUpperCase()} ${y}`, `${m}-${y}`));
+                let fileName = `${m}_${y}`; // Changed to underscore
+                dateSelect.add(new Option(`${m.toUpperCase()} ${y}`, fileName));
                 d.setMonth(d.getMonth() - 1);
             }
         }
 
-        function updateStatus(msg, show = true) {
+        function setStatus(msg, show = true) {
             statusBar.classList.toggle('hidden', !show);
             statusBar.classList.toggle('flex', show);
             statusText.innerText = msg;
         }
 
-        // --- SCENARIO 1: VIEW SPECIFIC DATE ---
-        async function loadSpecificDate(dateVal) {
-            if(!dateVal) return;
-            phoneInput.value = ""; // Clear phone search
-            updateStatus(`Fetching records for ${dateVal}...`);
-            
+        // SCENARIO 1: LOAD SPECIFIC MONTH
+        async function loadDate(fileName) {
+            if(!fileName) return;
+            isSearching = false; // Cancel any global search
+            phoneInput.value = "";
+            resultsArea.innerHTML = "";
+            setStatus(`Loading ${fileName}.ndjson...`);
+
             try {
-                const response = await fetch(`${BASE_URL}${dateVal}.ndjson`);
-                if(!response.ok) throw new Error("File not found");
-                const text = await response.text();
+                const res = await fetch(`${BASE_URL}${fileName}.ndjson`);
+                if(!res.ok) throw new Error("File not found");
+                const text = await res.text();
                 const data = text.split("\n").filter(l => l.trim()).map(l => JSON.parse(l));
                 renderResults(data);
-                updateStatus(`${data.length} records loaded from ${dateVal}.`);
-            } catch (err) {
-                updateStatus(`Error: Could not find data for ${dateVal}.`, true);
+                setStatus(`Showing ${data.length} records from ${fileName.toUpperCase()}`);
+            } catch (e) {
+                setStatus(`Error: Could not load ${fileName}_2025 (Check GitHub path)`, true);
             }
         }
 
-        // --- SCENARIO 2: GLOBAL PHONE SEARCH (BACKWARD WATERFALL) ---
-        async function globalPhoneSearch() {
+        // SCENARIO 2: GLOBAL BACKWARDS SEARCH
+        async function globalSearch() {
             const query = phoneInput.value.replace(/\D/g, '');
-            if(query.length < 3) return alert("Please enter at least 3 digits.");
-            
-            dateSelect.value = ""; // Clear date selection
-            resultsBody.innerHTML = "";
+            if(query.length < 3) return alert("Enter at least 3 digits");
+
+            isSearching = true;
+            dateSelect.value = "";
+            resultsArea.innerHTML = "";
             let foundCount = 0;
-            
-            // Loop through the dropdown options (latest to oldest)
+
             for (let i = 1; i < dateSelect.options.length; i++) {
-                const dateVal = dateSelect.options[i].value;
-                updateStatus(`Searching in ${dateVal}...`);
+                if(!isSearching) break;
+                
+                const fileName = dateSelect.options[i].value;
+                setStatus(`Scanning ${fileName.toUpperCase()}...`);
 
                 try {
-                    const response = await fetch(`${BASE_URL}${dateVal}.ndjson`);
+                    const response = await fetch(`${BASE_URL}${fileName}.ndjson`);
                     if(!response.ok) continue;
 
                     const text = await response.text();
                     const lines = text.split("\n");
                     
-                    for(let line of lines) {
-                        if(!line.trim()) continue;
+                    lines.forEach(line => {
+                        if(!line.trim()) return;
                         const row = JSON.parse(line);
-                        // Check NPI(0), Phone1(6), Phone2(7), Phone3(8)
+                        // Search NPI, Practice Phone, Mail Phone, Authorized Phone
                         if(row[0].includes(query) || row[6].includes(query) || row[7].includes(query) || row[8].includes(query)) {
-                            appendRow(row, dateVal);
+                            appendCard(row, fileName);
                             foundCount++;
                         }
-                    }
+                    });
 
-                    // If we found results in this file, we can stop searching older files
-                    // OR you can remove the 'break' to search the entire history.
+                    // If we found the provider, we stop searching older files
                     if(foundCount > 0) {
-                        updateStatus(`Found ${foundCount} matches in ${dateVal}. Search complete.`);
-                        return; 
+                        setStatus(`Found ${foundCount} results in ${fileName.toUpperCase()}. Search Finished.`);
+                        isSearching = false;
+                        return;
                     }
-                } catch (e) { console.log(`Skipping ${dateVal}`); }
+                } catch (e) { console.warn("Skipping " + fileName); }
             }
-            
-            if(foundCount === 0) updateStatus("No matches found in any database files.", true);
+
+            if(foundCount === 0) setStatus("No matches found in any database files.", true);
+            isSearching = false;
         }
 
         function renderResults(data) {
-            resultsBody.innerHTML = "";
-            data.forEach(item => appendRow(item));
+            resultsArea.innerHTML = "";
+            data.forEach(item => appendCard(item));
         }
 
-        function appendRow(item, source = "") {
-            const tr = document.createElement('tr');
-            tr.className = "hover:bg-slate-50 transition-colors";
-            tr.innerHTML = `
-                <td class="p-4">
-                    <div class="font-bold text-slate-800">${item[2]}</div>
-                    <div class="text-xs font-mono text-slate-400">NPI: ${item[0]} ${source ? `• Found in ${source}` : ''}</div>
-                </td>
-                <td class="p-4 text-sm text-slate-600">
-                    <span class="bg-slate-100 px-2 py-0.5 rounded text-xs font-bold uppercase">${item[5]}</span>
-                </td>
-                <td class="p-4 text-right">
-                    <div class="text-sm font-bold text-slate-700">${item[7] || 'N/A'}</div>
-                    <div class="text-[10px] text-slate-400">Mail: ${item[6] || 'N/A'}</div>
-                </td>
+        function appendCard(item, source = "") {
+            const card = document.createElement('div');
+            card.className = "bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-200 transition-all flex flex-col md:flex-row justify-between items-start md:items-center gap-4";
+            card.innerHTML = `
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="bg-blue-50 text-blue-600 text-[10px] font-black px-2 py-0.5 rounded-md uppercase">NPI ${item[0]}</span>
+                        ${source ? `<span class="text-gray-400 text-[10px] font-bold uppercase">Source: ${source}</span>` : ''}
+                    </div>
+                    <h3 class="font-black text-gray-800 text-lg uppercase leading-tight">${item[2]}</h3>
+                    <div class="flex gap-3 mt-2">
+                        <span class="text-xs font-bold text-gray-400">📍 ${item[5]} (STATE)</span>
+                        <span class="text-xs font-bold text-gray-400">👤 ${item[1] == '1' ? 'INDIVIDUAL' : 'ORG'}</span>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-xl w-full md:w-auto min-w-[200px]">
+                    <div class="flex items-center justify-between md:justify-end gap-3 mb-1">
+                        <span class="text-[10px] font-bold text-gray-400">PRACTICE</span>
+                        <span class="text-sm font-black text-gray-700">${item[7] || 'N/A'}</span>
+                    </div>
+                    <div class="flex items-center justify-between md:justify-end gap-3">
+                        <span class="text-[10px] font-bold text-gray-400">MAILING</span>
+                        <span class="text-xs font-bold text-gray-500">${item[6] || 'N/A'}</span>
+                    </div>
+                </div>
             `;
-            resultsBody.appendChild(tr);
+            resultsArea.appendChild(card);
         }
 
-        dateSelect.addEventListener('change', (e) => loadSpecificDate(e.target.value));
-        execSearch.addEventListener('click', globalPhoneSearch);
-        phoneInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') globalPhoneSearch(); });
+        // LISTENERS
+        dateSelect.addEventListener('change', (e) => loadDate(e.target.value));
+        execSearch.addEventListener('click', globalSearch);
+        stopBtn.addEventListener('click', () => { isSearching = false; setStatus("Search cancelled."); });
+        phoneInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') globalSearch(); });
 
-        init();
+        initDropdown();
     </script>
 </body>
 </html>

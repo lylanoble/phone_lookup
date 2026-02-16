@@ -464,10 +464,20 @@
             toggleMonthPicker();
         });
 
-        function setStatus(msg, show = true) {
+        function setStatus(msg, show = true, showLoader = true) {
             statusBar.classList.toggle('hidden', !show);
             statusBar.classList.toggle('flex', show);
             statusText.innerText = msg;
+            
+            // Show/hide loader and stop button based on state
+            const loader = statusBar.querySelector('.loader');
+            const stopButton = document.getElementById('stopBtn');
+            if (loader) {
+                loader.style.display = showLoader ? 'block' : 'none';
+            }
+            if (stopButton) {
+                stopButton.style.display = showLoader ? 'block' : 'none';
+            }
         }
 
         function updatePaginationControls() {
@@ -539,7 +549,7 @@
             isSearching = false;
             phoneInput.value = "";
             allResults = [];
-            setStatus(`Loading ${fileName}.ndjson...`);
+            setStatus(`Loading ${fileName}.ndjson...`, true, true);
 
             try {
                 const res = await fetch(`${BASE_URL}${fileName}.ndjson`);
@@ -547,9 +557,17 @@
                 const text = await res.text();
                 const data = text.split("\n").filter(l => l.trim()).map(l => JSON.parse(l));
                 setResults(data);
-                setStatus(`Showing ${data.length} records from ${fileName.toUpperCase()}`);
+                setStatus(`Showing ${data.length} records from ${fileName.toUpperCase()}`, true, false);
+                // Hide status bar after 3 seconds
+                setTimeout(() => {
+                    setStatus('', false, false);
+                }, 3000);
             } catch (e) {
-                setStatus(`Error: Could not load ${fileName}`, true);
+                setStatus(`Error: Could not load ${fileName}`, true, false);
+                // Hide status bar after 5 seconds on error
+                setTimeout(() => {
+                    setStatus('', false, false);
+                }, 5000);
             }
         }
 
@@ -575,7 +593,7 @@
             for (let fileName of fileNames) {
                 if(!isSearching) break;
                 
-                setStatus(`Scanning ${fileName.toUpperCase()}...`);
+                setStatus(`Scanning ${fileName.toUpperCase()}...`, true, true);
 
                 try {
                     const response = await fetch(`${BASE_URL}${fileName}.ndjson`);
@@ -595,12 +613,16 @@
 
                     if(matches.length > 0) {
                         addResults(matches, fileName);
-                        setStatus(`Found ${allResults.length} total results in ${fileName.toUpperCase()}...`);
+                        setStatus(`Found ${allResults.length} total results in ${fileName.toUpperCase()}...`, true, true);
                     }
 
                     if(allResults.length > 0) {
-                        setStatus(`Search complete. Found ${allResults.length} results.`);
+                        setStatus(`Search complete. Found ${allResults.length} results.`, true, false);
                         isSearching = false;
+                        // Hide status bar after 3 seconds
+                        setTimeout(() => {
+                            setStatus('', false, false);
+                        }, 3000);
                         return;
                     }
                 } catch (e) { console.warn("Skipping " + fileName); }
@@ -613,7 +635,11 @@
                 emptyDiv.innerHTML = '<p class="text-sm font-medium">No matches found in any database files.</p>';
                 resultsArea.innerHTML = '';
                 resultsArea.appendChild(emptyDiv);
-                setStatus("No matches found", true);
+                setStatus("No matches found", true, false);
+                // Hide status bar after 3 seconds
+                setTimeout(() => {
+                    setStatus('', false, false);
+                }, 3000);
             }
             isSearching = false;
         }
@@ -626,7 +652,7 @@
             glow.className = 'absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-700';
             
             const card = document.createElement('div');
-            card.className = "glass-effect gradient-border relative p-5 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4";
+            card.className = "glass-effect relative p-5 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4";
             card.style.background = 'var(--bg-secondary)';
             card.innerHTML = `
                 <div class="flex-1">
@@ -677,7 +703,13 @@
         lastBtn2.addEventListener('click', () => goToPage(totalPages));
 
         execSearch.addEventListener('click', globalSearch);
-        stopBtn.addEventListener('click', () => { isSearching = false; setStatus("Search cancelled."); });
+        stopBtn.addEventListener('click', () => { 
+            isSearching = false; 
+            setStatus("Search cancelled.", true, false);
+            setTimeout(() => {
+                setStatus('', false, false);
+            }, 2000);
+        });
         phoneInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') globalSearch(); });
 
         initTheme();

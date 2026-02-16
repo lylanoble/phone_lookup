@@ -174,7 +174,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                         </span>
                         <h1 class="text-2xl md:text-3xl font-black uppercase tracking-tight" style="color: var(--text-primary);">
-                            CREDIGO. PROVIDER DATABASE
+                            NPI Provider Database
                         </h1>
                     </div>
                     
@@ -194,9 +194,9 @@
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-6 relative z-10">
                     <!-- Search Input -->
                     <div class="md:col-span-8">
-                        <label class="block text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3">Global Phone / NPI Search</label>
+                        <label class="block text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3">Global Phone/NPI Search</label>
                         <div class="relative group">
-                            <input type="text" id="phoneInput" placeholder="Enter NPI or Phone NUmber" 
+                            <input type="text" id="phoneInput" placeholder="Enter NPI or Phone (searching all history...)" 
                                    class="w-full pl-5 pr-32 py-4 rounded-2xl focus:border-indigo-500/50 outline-none transition-all text-base font-medium" 
                                    style="background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-primary);">
                             <button id="execSearch" class="absolute right-3 top-3 bottom-3 px-5 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white rounded-xl hover:from-indigo-600 hover:to-cyan-600 transition-all shadow-lg shadow-indigo-500/20 font-bold text-sm uppercase tracking-wide">
@@ -261,23 +261,27 @@
                     Showing <span id="rangeStart" class="text-indigo-400">1</span>-<span id="rangeEnd" class="text-indigo-400">100</span> of <span id="totalResults" style="color: var(--text-primary);">0</span> results
                 </div>
                 <div class="flex items-center gap-2">
-                    <button id="firstBtn" class="px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
-                        First
+                    <button id="firstBtn" class="px-3 md:px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" /></svg>
+                        <span class="hidden md:inline">First</span>
                     </button>
-                    <button id="prevBtn" class="px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
-                        ← Prev
+                    <button id="prevBtn" class="px-3 md:px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                        <span class="hidden md:inline">Prev</span>
                     </button>
-                    <div class="flex items-center gap-2 px-4">
-                        <span class="text-sm font-semibold" style="color: var(--text-tertiary);">Page</span>
+                    <div class="flex items-center gap-2 px-2 md:px-4">
+                        <span class="text-xs md:text-sm font-semibold" style="color: var(--text-tertiary);">Page</span>
                         <span id="currentPageNum" class="text-sm font-black text-indigo-400">1</span>
-                        <span class="text-sm font-semibold" style="color: var(--text-tertiary);">of</span>
+                        <span class="text-xs md:text-sm font-semibold" style="color: var(--text-tertiary);">/</span>
                         <span id="totalPages" class="text-sm font-black" style="color: var(--text-primary);">1</span>
                     </div>
-                    <button id="nextBtn" class="px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
-                        Next →
+                    <button id="nextBtn" class="px-3 md:px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
+                        <span class="hidden md:inline">Next</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                     </button>
-                    <button id="lastBtn" class="px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
-                        Last
+                    <button id="lastBtn" class="px-3 md:px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
+                        <span class="hidden md:inline">Last</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" /></svg>
                     </button>
                 </div>
             </div>
@@ -296,23 +300,27 @@
         <!-- Pagination Bottom -->
         <div id="paginationBottom" class="hidden glass-effect p-4 rounded-2xl mt-4 relative z-0" style="background: var(--bg-secondary); border: 1px solid var(--border-color);">
             <div class="flex items-center justify-center gap-2">
-                <button id="firstBtn2" class="px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
-                    First
+                <button id="firstBtn2" class="px-3 md:px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" /></svg>
+                    <span class="hidden md:inline">First</span>
                 </button>
-                <button id="prevBtn2" class="px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
-                    ← Prev
+                <button id="prevBtn2" class="px-3 md:px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    <span class="hidden md:inline">Prev</span>
                 </button>
-                <div class="flex items-center gap-2 px-4">
-                    <span class="text-sm font-semibold" style="color: var(--text-tertiary);">Page</span>
+                <div class="flex items-center gap-2 px-2 md:px-4">
+                    <span class="text-xs md:text-sm font-semibold" style="color: var(--text-tertiary);">Page</span>
                     <span id="currentPageNum2" class="text-sm font-black text-indigo-400">1</span>
-                    <span class="text-sm font-semibold" style="color: var(--text-tertiary);">of</span>
+                    <span class="text-xs md:text-sm font-semibold" style="color: var(--text-tertiary);">/</span>
                     <span id="totalPages2" class="text-sm font-black" style="color: var(--text-primary);">1</span>
                 </div>
-                <button id="nextBtn2" class="px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
-                    Next →
+                <button id="nextBtn2" class="px-3 md:px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
+                    <span class="hidden md:inline">Next</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                 </button>
-                <button id="lastBtn2" class="px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
-                    Last
+                <button id="lastBtn2" class="px-3 md:px-4 py-2 rounded-xl transition-all font-semibold text-sm disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2" style="background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
+                    <span class="hidden md:inline">Last</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" /></svg>
                 </button>
             </div>
         </div>

@@ -458,7 +458,7 @@
         function initMonthPicker() {
             // Generate list of available months (last 48 months / 4 years)
             let d = new Date();
-            for (let i = 0; i < 48; i++) {
+            for (let i = 0; i < 240; i++) {
                 let monthIdx = d.getMonth();
                 let year = d.getFullYear();
                 let fileName = `${MONTHS[monthIdx]}_${year}`;

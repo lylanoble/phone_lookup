@@ -208,6 +208,41 @@
         .month-card:hover { 
             transform: translateY(-2px); 
         }
+
+        /* Cache progress bar */
+        #cacheProgressBar {
+            transition: width 0.4s ease;
+        }
+
+        .month-card.cached {
+            border-color: rgba(99, 102, 241, 0.4) !important;
+        }
+
+        .month-card.cached::after {
+            content: '✓';
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            font-size: 8px;
+            color: #6366f1;
+            font-weight: 900;
+        }
+
+        .month-card {
+            position: relative;
+        }
+
+        .card-active {
+            border-color: rgba(99, 102, 241, 0.6) !important;
+            background: rgba(99, 102, 241, 0.08) !important;
+            box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.3), 0 20px 50px rgba(99, 102, 241, 0.15) !important;
+        }
+
+        .card-active .npi-badge {
+            background: rgba(99, 102, 241, 0.1) !important;
+            color: rgb(165 180 252) !important;
+            border-color: rgba(99, 102, 241, 0.2) !important;
+        }
     </style>
 </head>
 <body class="min-h-screen text-slate-200 p-4 md:p-16">
@@ -300,6 +335,17 @@
                     <button id="stopBtn" class="text-xs font-bold text-red-400 hover:text-red-300 uppercase tracking-tight transition-colors">Stop Search</button>
                 </div>
 
+                <!-- Background Cache Progress Bar -->
+                <div id="cacheProgressContainer" class="hidden mt-4 px-1">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-indigo-400/60">Caching database in background</span>
+                        <span id="cacheProgressText" class="text-[10px] font-bold text-indigo-400/60">0%</span>
+                    </div>
+                    <div class="w-full rounded-full h-1" style="background: var(--input-bg);">
+                        <div id="cacheProgressBar" class="h-1 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-500" style="width: 0%;"></div>
+                    </div>
+                </div>
+
                 <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-indigo-500/10 blur-3xl rounded-full"></div>
             </div>
         </div>
@@ -381,7 +427,13 @@
         const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
         const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const RESULTS_PER_PAGE = 100;
-        
+
+        // Cache config
+        const DB_NAME = 'npi_cache';
+        const DB_VERSION = 1;
+        const STORE_NAME = 'files';
+        const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+
         const phoneInput = document.getElementById('phoneInput');
         const resultsArea = document.getElementById('resultsArea');
         const statusBar = document.getElementById('statusBar');
@@ -407,7 +459,7 @@
         const currentPageNum2 = document.getElementById('currentPageNum2');
         const totalPagesElem = document.getElementById('totalPages');
         const totalPagesElem2 = document.getElementById('totalPages2');
-        
+
         const firstBtn = document.getElementById('firstBtn');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
@@ -419,8 +471,12 @@
 
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
+        const cacheProgressContainer = document.getElementById('cacheProgressContainer');
+        const cacheProgressBar = document.getElementById('cacheProgressBar');
+        const cacheProgressText = document.getElementById('cacheProgressText');
 
         let isSearching = false;
+        let activeCard = null;
         let allResults = [];
         let currentPage = 1;
         let totalPages = 1;
@@ -428,7 +484,148 @@
         let displayYear = new Date().getFullYear();
         let availableMonths = new Set();
 
+        // In-memory cache (populated from IndexedDB or network)
+        const memoryCache = new Map();
+
+        // ─────────────────────────────────────────────
+        // IndexedDB helpers
+        // ─────────────────────────────────────────────
+        let db = null;
+
+        function openDB() {
+            return new Promise((resolve, reject) => {
+                const req = indexedDB.open(DB_NAME, DB_VERSION);
+                req.onupgradeneeded = e => {
+                    const d = e.target.result;
+                    if (!d.objectStoreNames.contains(STORE_NAME)) {
+                        d.createObjectStore(STORE_NAME, { keyPath: 'fileName' });
+                    }
+                };
+                req.onsuccess = e => resolve(e.target.result);
+                req.onerror = e => reject(e.target.error);
+            });
+        }
+
+        async function idbGet(fileName) {
+            try {
+                return await new Promise((resolve, reject) => {
+                    const tx = db.transaction(STORE_NAME, 'readonly');
+                    const req = tx.objectStore(STORE_NAME).get(fileName);
+                    req.onsuccess = () => resolve(req.result || null);
+                    req.onerror = () => resolve(null);
+                });
+            } catch { return null; }
+        }
+
+        async function idbSet(fileName, data) {
+            try {
+                await new Promise((resolve, reject) => {
+                    const tx = db.transaction(STORE_NAME, 'readwrite');
+                    tx.objectStore(STORE_NAME).put({ fileName, data, cachedAt: Date.now() });
+                    tx.oncomplete = resolve;
+                    tx.onerror = reject;
+                });
+            } catch(e) { console.warn('IDB write failed', e); }
+        }
+
+        function isCacheStale(cachedAt) {
+            return (Date.now() - cachedAt) > CACHE_TTL_MS;
+        }
+
+        // ─────────────────────────────────────────────
+        // Fetch + cache a single file (network → IDB → memory)
+        // ─────────────────────────────────────────────
+        async function fetchAndCache(fileName) {
+            // 1. Already in memory?
+            if (memoryCache.has(fileName)) return memoryCache.get(fileName);
+
+            // 2. Check IndexedDB
+            if (db) {
+                const cached = await idbGet(fileName);
+                if (cached && !isCacheStale(cached.cachedAt)) {
+                    memoryCache.set(fileName, cached.data);
+                    return cached.data;
+                }
+            }
+
+            // 3. Fetch from network
+            try {
+                const res = await fetch(`${BASE_URL}${fileName}.ndjson`);
+                if (!res.ok) return null;
+                const text = await res.text();
+                const data = text.split('\n').filter(l => l.trim()).map(l => JSON.parse(l));
+
+                // Store in memory + IDB
+                memoryCache.set(fileName, data);
+                if (db) idbSet(fileName, data); // fire-and-forget
+
+                return data;
+            } catch(e) {
+                console.warn('Fetch failed for', fileName, e);
+                return null;
+            }
+        }
+
+        // ─────────────────────────────────────────────
+        // Background prefetch — runs quietly on load
+        // ─────────────────────────────────────────────
+        async function prefetchAll() {
+            const fileNames = Array.from(availableMonths);
+            let done = 0;
+
+            cacheProgressContainer.classList.remove('hidden');
+
+            for (const fileName of fileNames) {
+                // Don't block if user is actively searching
+                if (isSearching) {
+                    await new Promise(r => setTimeout(r, 500));
+                }
+
+                // Skip if already in memory
+                if (!memoryCache.has(fileName)) {
+                    // Check IDB first (cheap), only network-fetch if missing/stale
+                    let needsNetwork = true;
+                    if (db) {
+                        const cached = await idbGet(fileName);
+                        if (cached && !isCacheStale(cached.cachedAt)) {
+                            memoryCache.set(fileName, cached.data);
+                            needsNetwork = false;
+                            markMonthCached(fileName);
+                        }
+                    }
+
+                    if (needsNetwork) {
+                        await fetchAndCache(fileName);
+                        markMonthCached(fileName);
+                    }
+                }
+
+                done++;
+                const pct = Math.round((done / fileNames.length) * 100);
+                cacheProgressBar.style.width = pct + '%';
+                cacheProgressText.textContent = pct + '%';
+
+                // Small yield to keep UI responsive
+                await new Promise(r => setTimeout(r, 30));
+            }
+
+            // Hide progress bar when done
+            setTimeout(() => {
+                cacheProgressContainer.style.opacity = '0';
+                cacheProgressContainer.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => cacheProgressContainer.classList.add('hidden'), 600);
+            }, 1500);
+        }
+
+        function markMonthCached(fileName) {
+            // Find the button in the month grid and add the cached style
+            const btn = monthsGrid.querySelector(`[data-file-name="${fileName}"]`);
+            if (btn) btn.classList.add('cached');
+        }
+
+        // ─────────────────────────────────────────────
         // Theme Management
+        // ─────────────────────────────────────────────
         function initTheme() {
             const savedTheme = localStorage.getItem('theme') || 'dark';
             setTheme(savedTheme);
@@ -453,10 +650,12 @@
             setTheme(newTheme);
         }
 
-        themeToggle.addEventListener('click', toggleTheme); // Track which month_year combinations have data
+        themeToggle.addEventListener('click', toggleTheme);
 
+        // ─────────────────────────────────────────────
+        // Month Picker
+        // ─────────────────────────────────────────────
         function initMonthPicker() {
-            // Generate list of available months (last 48 months / 4 years)
             let d = new Date();
             for (let i = 0; i < 240; i++) {
                 let monthIdx = d.getMonth();
@@ -465,8 +664,6 @@
                 availableMonths.add(fileName);
                 d.setMonth(d.getMonth() - 1);
             }
-
-            // Set initial display year
             displayYear = new Date().getFullYear();
             renderMonthsGrid();
         }
@@ -478,25 +675,26 @@
             MONTHS.forEach((month, idx) => {
                 const fileName = `${month}_${displayYear}`;
                 const isAvailable = availableMonths.has(fileName);
-                
+                const isCached = memoryCache.has(fileName);
+
                 const monthBtn = document.createElement('button');
                 monthBtn.className = `month-card px-4 py-3 rounded-xl border font-semibold text-xs uppercase transition-all ${
-                    isAvailable 
-                        ? 'hover:bg-indigo-500/10 hover:border-indigo-500/30 cursor-pointer' 
+                    isAvailable
+                        ? 'hover:bg-indigo-500/10 hover:border-indigo-500/30 cursor-pointer'
                         : 'cursor-not-allowed opacity-40'
-                }`;
-                monthBtn.style.cssText = isAvailable 
+                } ${isCached ? 'cached' : ''}`;
+                monthBtn.style.cssText = isAvailable
                     ? `border-color: var(--border-color); background: var(--input-bg); color: var(--text-secondary);`
                     : `border-color: var(--border-color); background: rgba(0,0,0,0.1); color: var(--text-tertiary);`;
                 monthBtn.textContent = month.toUpperCase();
                 monthBtn.disabled = !isAvailable;
-                
+
                 if (isAvailable) {
                     monthBtn.dataset.fileName = fileName;
                     monthBtn.dataset.displayName = `${MONTH_NAMES[idx]} ${displayYear}`;
                     monthBtn.addEventListener('click', () => selectMonth(fileName, `${MONTH_NAMES[idx]} ${displayYear}`));
                 }
-                
+
                 monthsGrid.appendChild(monthBtn);
             });
         }
@@ -538,26 +736,23 @@
             toggleMonthPicker();
         });
 
+        // ─────────────────────────────────────────────
+        // UI Helpers
+        // ─────────────────────────────────────────────
         function setStatus(msg, show = true, showLoader = true) {
             statusBar.classList.toggle('hidden', !show);
             statusBar.classList.toggle('flex', show);
             statusText.innerText = msg;
-            
-            // Show/hide loader and stop button based on state
             const loader = statusBar.querySelector('.loader');
             const stopButton = document.getElementById('stopBtn');
-            if (loader) {
-                loader.style.display = showLoader ? 'block' : 'none';
-            }
-            if (stopButton) {
-                stopButton.style.display = showLoader ? 'block' : 'none';
-            }
+            if (loader) loader.style.display = showLoader ? 'block' : 'none';
+            if (stopButton) stopButton.style.display = showLoader ? 'block' : 'none';
         }
 
         function updatePaginationControls() {
             const start = (currentPage - 1) * RESULTS_PER_PAGE + 1;
             const end = Math.min(currentPage * RESULTS_PER_PAGE, allResults.length);
-            
+
             rangeStart.textContent = allResults.length > 0 ? start : 0;
             rangeEnd.textContent = end;
             totalResults.textContent = allResults.length;
@@ -568,7 +763,7 @@
 
             const isFirstPage = currentPage === 1;
             const isLastPage = currentPage === totalPages;
-            
+
             firstBtn.disabled = isFirstPage;
             prevBtn.disabled = isFirstPage;
             nextBtn.disabled = isLastPage;
@@ -588,7 +783,7 @@
             const start = (currentPage - 1) * RESULTS_PER_PAGE;
             const end = Math.min(start + RESULTS_PER_PAGE, allResults.length);
             const pageResults = allResults.slice(start, end);
-            
+
             pageResults.forEach(item => {
                 const card = createCard(item.data, item.source);
                 resultsArea.appendChild(card);
@@ -606,9 +801,7 @@
         }
 
         function addResults(data, source = "") {
-            data.forEach(item => {
-                allResults.push({ data: item, source });
-            });
+            data.forEach(item => allResults.push({ data: item, source }));
             totalPages = Math.ceil(allResults.length / RESULTS_PER_PAGE);
             renderCurrentPage();
         }
@@ -618,36 +811,34 @@
             renderCurrentPage();
         }
 
+        // ─────────────────────────────────────────────
+        // Load by Month (uses cache)
+        // ─────────────────────────────────────────────
         async function loadDate(fileName) {
-            if(!fileName) return;
+            if (!fileName) return;
             isSearching = false;
             phoneInput.value = "";
             allResults = [];
-            setStatus(`Loading ${fileName}.ndjson...`, true, true);
+            setStatus(`Loading ${fileName.toUpperCase()}...`, true, true);
 
             try {
-                const res = await fetch(`${BASE_URL}${fileName}.ndjson`);
-                if(!res.ok) throw new Error("File not found");
-                const text = await res.text();
-                const data = text.split("\n").filter(l => l.trim()).map(l => JSON.parse(l));
+                const data = await fetchAndCache(fileName);
+                if (!data) throw new Error('Not found');
                 setResults(data);
                 setStatus(`Showing ${data.length} records from ${fileName.toUpperCase()}`, true, false);
-                // Hide status bar after 3 seconds
-                setTimeout(() => {
-                    setStatus('', false, false);
-                }, 3000);
+                setTimeout(() => setStatus('', false, false), 3000);
             } catch (e) {
                 setStatus(`Error: Could not load ${fileName}`, true, false);
-                // Hide status bar after 5 seconds on error
-                setTimeout(() => {
-                    setStatus('', false, false);
-                }, 5000);
+                setTimeout(() => setStatus('', false, false), 5000);
             }
         }
 
+        // ─────────────────────────────────────────────
+        // Global Search (uses cache — instant if prefetched)
+        // ─────────────────────────────────────────────
         async function globalSearch() {
             const query = phoneInput.value.replace(/\D/g, '');
-            if(query.length < 3) return alert("Enter at least 3 digits");
+            if (query.length < 3) return alert("Enter at least 3 digits");
 
             isSearching = true;
             selectedMonth = null;
@@ -661,48 +852,45 @@
             paginationTop.classList.add('hidden');
             paginationBottom.classList.add('hidden');
 
-            // Convert Set to Array and search through available months
             const fileNames = Array.from(availableMonths);
 
             for (let fileName of fileNames) {
-                if(!isSearching) break;
-                
-                setStatus(`Scanning ${fileName.toUpperCase()}...`, true, true);
+                if (!isSearching) break;
+
+                const cached = memoryCache.has(fileName);
+                setStatus(
+                    cached
+                        ? `Searching ${fileName.toUpperCase()} (cached)...`
+                        : `Fetching ${fileName.toUpperCase()}...`,
+                    true, true
+                );
 
                 try {
-                    const response = await fetch(`${BASE_URL}${fileName}.ndjson`);
-                    if(!response.ok) continue;
+                    const data = await fetchAndCache(fileName);
+                    if (!data) continue;
 
-                    const text = await response.text();
-                    const lines = text.split("\n");
-                    const matches = [];
-                    
-                    lines.forEach(line => {
-                        if(!line.trim()) return;
-                        const row = JSON.parse(line);
-                        if(row[0].includes(query) || row[6].includes(query) || row[7].includes(query) || row[8].includes(query)) {
-                            matches.push(row);
-                        }
-                    });
+                    const matches = data.filter(row =>
+                        row[0].includes(query) ||
+                        row[6].includes(query) ||
+                        row[7].includes(query) ||
+                        row[8].includes(query)
+                    );
 
-                    if(matches.length > 0) {
+                    if (matches.length > 0) {
                         addResults(matches, fileName);
-                        setStatus(`Found ${allResults.length} total results in ${fileName.toUpperCase()}...`, true, true);
+                        setStatus(`Found ${allResults.length} total results...`, true, true);
                     }
 
-                    if(allResults.length > 0) {
+                    if (allResults.length > 0) {
                         setStatus(`Search complete. Found ${allResults.length} results.`, true, false);
                         isSearching = false;
-                        // Hide status bar after 3 seconds
-                        setTimeout(() => {
-                            setStatus('', false, false);
-                        }, 3000);
+                        setTimeout(() => setStatus('', false, false), 3000);
                         return;
                     }
                 } catch (e) { console.warn("Skipping " + fileName); }
             }
 
-            if(allResults.length === 0) {
+            if (allResults.length === 0) {
                 const emptyDiv = document.createElement('div');
                 emptyDiv.className = 'glass-effect p-12 rounded-3xl border border-dashed text-center';
                 emptyDiv.style.cssText = 'background: var(--bg-card); border-color: var(--border-color); color: var(--text-tertiary);';
@@ -710,23 +898,23 @@
                 resultsArea.innerHTML = '';
                 resultsArea.appendChild(emptyDiv);
                 setStatus("No matches found", true, false);
-                // Hide status bar after 3 seconds
-                setTimeout(() => {
-                    setStatus('', false, false);
-                }, 3000);
+                setTimeout(() => setStatus('', false, false), 3000);
             }
             isSearching = false;
         }
 
+        // ─────────────────────────────────────────────
+        // Card Renderer (unchanged)
+        // ─────────────────────────────────────────────
         function createCard(item, source = "") {
             const wrapper = document.createElement('div');
             wrapper.className = 'group relative transition-all duration-500 z-0';
-            
+
             const glow = document.createElement('div');
             glow.className = 'absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-700';
-            
+
             const isIndividual = item[1] == '1';
-            const providerIcon = isIndividual 
+            const providerIcon = isIndividual
                 ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
                     <circle cx="12" cy="7" r="4"/>
@@ -740,20 +928,18 @@
                     <path d="M9 15v.01"/>
                     <path d="M9 18v.01"/>
                    </svg>`;
-            
+
             const card = document.createElement('div');
             card.className = "glass-effect relative p-5 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 h-full";
             card.style.background = 'var(--bg-secondary)';
             card.innerHTML = `
                 <div class="md:w-1/2 flex flex-col justify-between">
                     <div class="flex items-center gap-3 mb-3">
-                        <!-- Animated Provider Icon -->
                         <span class="animate-float-hover flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 shadow-inner transition-colors hover:bg-indigo-500/20">
                             ${providerIcon}
                         </span>
-                        <!-- Clickable NPI Badge -->
-                        <a href="https://npiregistry.cms.hhs.gov/provider-view/${item[0]}" target="_blank" class="bg-indigo-500/10 text-indigo-300 hover:text-white hover:bg-indigo-600/30 hover:border-indigo-400/50 transition-all duration-300 text-[10px] font-black px-3 py-1.5 rounded-lg border border-indigo-500/20 tracking-widest uppercase flex items-center gap-2 group/npi">
-                            <span>NPI ${item[0]}</span>
+                        <a href="https://npiregistry.cms.hhs.gov/provider-view/${item[0]}" target="_blank" onclick="event.stopPropagation()" class="npi-badge bg-indigo-500/10 hover:text-white hover:bg-indigo-600/30 hover:border-indigo-400/50 transition-all duration-300 text-[10px] font-black px-3 py-1.5 rounded-lg border border-indigo-500/20 tracking-widest uppercase flex items-center gap-2 group/npi" style="color: rgb(165 180 252); background: rgba(99,102,241,0.1); border-color: rgba(99,102,241,0.2);">
+                            <span style="color: rgb(165 180 252);">NPI ${item[0]}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="opacity-50 group-hover/npi:translate-x-0.5 group-hover/npi:-translate-y-0.5 transition-transform">
                                 <path d="M7 7h10v10"/><path d="M7 17 17 7"/>
                             </svg>
@@ -778,9 +964,7 @@
                     ${item[7] ? `
                     <a href="tel:${item[7].replace(/\D/g, '')}" class="phone-link flex justify-between items-center mb-2 hover:opacity-80 transition-opacity group/phone">
                         <span class="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5" style="color: var(--text-tertiary);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                             Practice
                         </span>
                         <span class="text-sm font-bold text-indigo-400 group-hover/phone:text-indigo-300 transition-colors underline decoration-indigo-500/30 underline-offset-4">${item[7]}</span>
@@ -793,9 +977,7 @@
                     ${item[6] ? `
                     <a href="tel:${item[6].replace(/\D/g, '')}" class="phone-link flex justify-between items-center hover:opacity-80 transition-opacity group/phone">
                         <span class="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5" style="color: var(--text-tertiary);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                             Mailing
                         </span>
                         <span class="text-sm font-bold text-indigo-400 group-hover/phone:text-indigo-300 transition-colors underline decoration-indigo-500/30 underline-offset-4">${item[6]}</span>
@@ -808,9 +990,7 @@
                     ${item[8] ? `
                     <a href="tel:${item[8].replace(/\D/g, '')}" class="phone-link flex justify-between items-center hover:opacity-80 transition-opacity group/phone">
                         <span class="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5" style="color: var(--text-tertiary);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                             Authorized
                         </span>
                         <span class="text-sm font-bold text-indigo-400 group-hover/phone:text-indigo-300 transition-colors underline decoration-indigo-500/30 underline-offset-4">${item[8]}</span>
@@ -821,12 +1001,36 @@
                     </div>`}
                 </div>
             `;
-            
+
             wrapper.appendChild(glow);
             wrapper.appendChild(card);
+
+            wrapper.addEventListener('click', () => {
+                // Deactivate previous card
+                if (activeCard && activeCard !== card) {
+                    activeCard.style.removeProperty('border');
+                    activeCard.style.removeProperty('box-shadow');
+                    activeCard = null;
+                }
+                // Toggle current card
+                const isNowActive = card !== activeCard;
+                if (isNowActive) {
+                    card.style.setProperty('border', '2px solid rgba(99,102,241,0.7)', 'important');
+                    card.style.setProperty('box-shadow', '0 0 0 1px rgba(99,102,241,0.4)', 'important');
+                    activeCard = card;
+                } else {
+                    card.style.removeProperty('border');
+                    card.style.removeProperty('box-shadow');
+                    activeCard = null;
+                }
+            });
+
             return wrapper;
         }
 
+        // ─────────────────────────────────────────────
+        // Pagination events
+        // ─────────────────────────────────────────────
         firstBtn.addEventListener('click', () => goToPage(1));
         prevBtn.addEventListener('click', () => goToPage(currentPage - 1));
         nextBtn.addEventListener('click', () => goToPage(currentPage + 1));
@@ -837,17 +1041,32 @@
         lastBtn2.addEventListener('click', () => goToPage(totalPages));
 
         execSearch.addEventListener('click', globalSearch);
-        stopBtn.addEventListener('click', () => { 
-            isSearching = false; 
+        stopBtn.addEventListener('click', () => {
+            isSearching = false;
             setStatus("Search cancelled.", true, false);
-            setTimeout(() => {
-                setStatus('', false, false);
-            }, 2000);
+            setTimeout(() => setStatus('', false, false), 2000);
         });
-        phoneInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') globalSearch(); });
+        phoneInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') globalSearch(); });
 
-        initTheme();
-        initMonthPicker();
+        // ─────────────────────────────────────────────
+        // Init
+        // ─────────────────────────────────────────────
+        async function init() {
+            initTheme();
+            initMonthPicker();
+
+            // Open IndexedDB, then start background prefetch
+            try {
+                db = await openDB();
+            } catch(e) {
+                console.warn('IndexedDB unavailable, will use memory-only cache', e);
+            }
+
+            // Start prefetch after a short delay so the page renders first
+            setTimeout(() => prefetchAll(), 1000);
+        }
+
+        init();
     </script>
 </body>
 </html>

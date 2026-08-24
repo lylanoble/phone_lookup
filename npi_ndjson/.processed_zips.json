@@ -1,1393 +1,2345 @@
 {
   "processed_zips": {
+    "NPPES_Data_Dissemination_010118_010718_Weekly.zip": {
+      "processed_at": "2026-08-24T10:55:55.768440",
+      "record_count": 5049
+    },
     "NPPES_Data_Dissemination_010124_010724_Weekly.zip": {
-      "processed_at": "2026-02-16T13:48:58.161183",
+      "processed_at": "2026-08-24T10:55:57.141507",
       "record_count": 7662
     },
+    "NPPES_Data_Dissemination_010217_010817_Weekly.zip": {
+      "processed_at": "2026-08-24T10:55:57.989483",
+      "record_count": 4642
+    },
     "NPPES_Data_Dissemination_010223_010823_Weekly.zip": {
-      "processed_at": "2026-02-16T13:48:59.623708",
+      "processed_at": "2026-08-24T10:55:59.256243",
       "record_count": 7232
     },
     "NPPES_Data_Dissemination_010322_010922_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:01.527191",
+      "processed_at": "2026-08-24T10:56:00.878325",
       "record_count": 8157
     },
+    "NPPES_Data_Dissemination_010416_011016_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:01.888447",
+      "record_count": 5147
+    },
     "NPPES_Data_Dissemination_010421_011021_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:03.310820",
+      "processed_at": "2026-08-24T10:56:03.454486",
       "record_count": 8676
     },
+    "NPPES_Data_Dissemination_010526_011126_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:05.463221",
+      "record_count": 12042
+    },
     "NPPES_Data_Dissemination_010620_011220_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:04.707680",
+      "processed_at": "2026-08-24T10:56:06.675351",
       "record_count": 7371
     },
     "NPPES_Data_Dissemination_010625_011225_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:06.807780",
+      "processed_at": "2026-08-24T10:56:08.479054",
       "record_count": 10791
     },
+    "NPPES_Data_Dissemination_010719_011319_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:09.628569",
+      "record_count": 7483
+    },
+    "NPPES_Data_Dissemination_010818_011418_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:10.595702",
+      "record_count": 6576
+    },
     "NPPES_Data_Dissemination_010824_011424_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:08.807018",
+      "processed_at": "2026-08-24T10:56:12.346433",
       "record_count": 10616
     },
+    "NPPES_Data_Dissemination_010917_011517_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:13.382587",
+      "record_count": 5652
+    },
     "NPPES_Data_Dissemination_010923_011523_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:10.543786",
+      "processed_at": "2026-08-24T10:56:14.900103",
       "record_count": 8595
     },
     "NPPES_Data_Dissemination_011022_011622_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:12.233799",
+      "processed_at": "2026-08-24T10:56:16.354868",
       "record_count": 8248
     },
+    "NPPES_Data_Dissemination_011116_011716_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:17.525206",
+      "record_count": 5216
+    },
     "NPPES_Data_Dissemination_011121_011721_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:13.962266",
+      "processed_at": "2026-08-24T10:56:19.085449",
       "record_count": 9104
     },
+    "NPPES_Data_Dissemination_011226_011826_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:21.131449",
+      "record_count": 12102
+    },
     "NPPES_Data_Dissemination_011320_011920_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:15.512844",
+      "processed_at": "2026-08-24T10:56:22.505858",
       "record_count": 7200
     },
     "NPPES_Data_Dissemination_011325_011925_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:17.640380",
+      "processed_at": "2026-08-24T10:56:24.392819",
       "record_count": 11404
     },
+    "NPPES_Data_Dissemination_011419_012019_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:25.722676",
+      "record_count": 7227
+    },
+    "NPPES_Data_Dissemination_011518_012118_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:26.629803",
+      "record_count": 5667
+    },
     "NPPES_Data_Dissemination_011524_012124_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:19.431933",
+      "processed_at": "2026-08-24T10:56:28.250778",
       "record_count": 9006
     },
+    "NPPES_Data_Dissemination_011617_012217_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:29.485844",
+      "record_count": 5276
+    },
     "NPPES_Data_Dissemination_011623_012223_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:21.283760",
+      "processed_at": "2026-08-24T10:56:30.940359",
       "record_count": 7694
     },
     "NPPES_Data_Dissemination_011722_012322_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:22.797718",
+      "processed_at": "2026-08-24T10:56:32.563919",
       "record_count": 8003
     },
+    "NPPES_Data_Dissemination_011816_012416_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:33.680567",
+      "record_count": 4826
+    },
     "NPPES_Data_Dissemination_011821_012421_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:24.594805",
+      "processed_at": "2026-08-24T10:56:35.627326",
       "record_count": 8075
     },
+    "NPPES_Data_Dissemination_011926_012526_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:38.650471",
+      "record_count": 10840
+    },
     "NPPES_Data_Dissemination_012020_012620_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:25.958189",
+      "processed_at": "2026-08-24T10:56:41.484231",
       "record_count": 6920
     },
     "NPPES_Data_Dissemination_012025_012625_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:28.302461",
+      "processed_at": "2026-08-24T10:56:45.140191",
       "record_count": 10258
     },
+    "NPPES_Data_Dissemination_012119_012719_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:46.297902",
+      "record_count": 6770
+    },
+    "NPPES_Data_Dissemination_012218_012818_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:47.483097",
+      "record_count": 6755
+    },
     "NPPES_Data_Dissemination_012224_012824_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:30.756774",
+      "processed_at": "2026-08-24T10:56:49.277459",
       "record_count": 9687
     },
+    "NPPES_Data_Dissemination_012317_012917_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:50.324395",
+      "record_count": 5636
+    },
     "NPPES_Data_Dissemination_012323_012923_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:32.876857",
+      "processed_at": "2026-08-24T10:56:52.037906",
       "record_count": 8995
     },
     "NPPES_Data_Dissemination_012422_013022_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:34.739069",
+      "processed_at": "2026-08-24T10:56:53.724502",
       "record_count": 8328
     },
+    "NPPES_Data_Dissemination_012516_013116_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:54.681755",
+      "record_count": 5383
+    },
     "NPPES_Data_Dissemination_012521_013121_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:36.429026",
+      "processed_at": "2026-08-24T10:56:56.174860",
       "record_count": 8670
     },
+    "NPPES_Data_Dissemination_012626_020126_Weekly.zip": {
+      "processed_at": "2026-08-24T10:56:58.124275",
+      "record_count": 11727
+    },
     "NPPES_Data_Dissemination_012720_020220_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:38.091431",
+      "processed_at": "2026-08-24T10:56:59.584659",
       "record_count": 7864
     },
     "NPPES_Data_Dissemination_012725_020225_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:40.325245",
+      "processed_at": "2026-08-24T10:57:01.557484",
       "record_count": 11764
     },
+    "NPPES_Data_Dissemination_012819_020319_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:02.699161",
+      "record_count": 6915
+    },
+    "NPPES_Data_Dissemination_012918_020418_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:03.763178",
+      "record_count": 6689
+    },
     "NPPES_Data_Dissemination_012924_020424_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:42.547049",
+      "processed_at": "2026-08-24T10:57:05.533931",
       "record_count": 9973
     },
+    "NPPES_Data_Dissemination_013017_020517_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:06.638462",
+      "record_count": 5832
+    },
     "NPPES_Data_Dissemination_013023_020523_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:44.227615",
+      "processed_at": "2026-08-24T10:57:08.221070",
       "record_count": 8595
     },
     "NPPES_Data_Dissemination_013122_020622_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:46.045914",
+      "processed_at": "2026-08-24T10:57:09.831736",
       "record_count": 8372
     },
+    "NPPES_Data_Dissemination_020116_020716_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:10.844857",
+      "record_count": 5483
+    },
     "NPPES_Data_Dissemination_020121_020721_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:47.632529",
+      "processed_at": "2026-08-24T10:57:12.276971",
       "record_count": 8386
     },
+    "NPPES_Data_Dissemination_020226_020826_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:14.327599",
+      "record_count": 11798
+    },
     "NPPES_Data_Dissemination_020320_020920_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:49.123351",
+      "processed_at": "2026-08-24T10:57:15.613708",
       "record_count": 7953
     },
     "NPPES_Data_Dissemination_020325_020925_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:51.254242",
+      "processed_at": "2026-08-24T10:57:17.497259",
       "record_count": 11486
     },
+    "NPPES_Data_Dissemination_020419_021019_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:18.610692",
+      "record_count": 7299
+    },
+    "NPPES_Data_Dissemination_020518_021118_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:19.591058",
+      "record_count": 6827
+    },
     "NPPES_Data_Dissemination_020524_021124_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:53.255536",
+      "processed_at": "2026-08-24T10:57:21.329558",
       "record_count": 9978
     },
+    "NPPES_Data_Dissemination_020617_021217_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:22.416252",
+      "record_count": 6337
+    },
     "NPPES_Data_Dissemination_020623_021223_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:54.984729",
+      "processed_at": "2026-08-24T10:57:23.922028",
       "record_count": 8848
     },
     "NPPES_Data_Dissemination_020722_021322_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:57.173076",
+      "processed_at": "2026-08-24T10:57:25.529833",
       "record_count": 8363
     },
+    "NPPES_Data_Dissemination_020816_021416_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:26.502097",
+      "record_count": 5654
+    },
     "NPPES_Data_Dissemination_020821_021421_Weekly.zip": {
-      "processed_at": "2026-02-16T13:49:58.891315",
+      "processed_at": "2026-08-24T10:57:27.995993",
       "record_count": 8465
     },
+    "NPPES_Data_Dissemination_020926_021526_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:30.110639",
+      "record_count": 12217
+    },
     "NPPES_Data_Dissemination_021020_021620_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:00.552129",
+      "processed_at": "2026-08-24T10:57:31.506934",
       "record_count": 7306
     },
     "NPPES_Data_Dissemination_021025_021625_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:02.752357",
+      "processed_at": "2026-08-24T10:57:33.789621",
       "record_count": 11973
     },
+    "NPPES_Data_Dissemination_021119_021719_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:35.033540",
+      "record_count": 6852
+    },
+    "NPPES_Data_Dissemination_021218_021818_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:36.001484",
+      "record_count": 7177
+    },
     "NPPES_Data_Dissemination_021224_021824_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:04.652560",
+      "processed_at": "2026-08-24T10:57:37.632262",
       "record_count": 9153
     },
+    "NPPES_Data_Dissemination_021317_021917_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:38.923558",
+      "record_count": 6026
+    },
     "NPPES_Data_Dissemination_021323_021923_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:06.342270",
+      "processed_at": "2026-08-24T10:57:40.403939",
       "record_count": 8762
     },
     "NPPES_Data_Dissemination_021422_022022_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:07.824652",
+      "processed_at": "2026-08-24T10:57:41.738235",
       "record_count": 7729
     },
+    "NPPES_Data_Dissemination_021516_022116_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:42.726124",
+      "record_count": 5425
+    },
     "NPPES_Data_Dissemination_021521_022121_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:09.301769",
+      "processed_at": "2026-08-24T10:57:44.079845",
       "record_count": 7724
     },
+    "NPPES_Data_Dissemination_021626_022226_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:46.009912",
+      "record_count": 11018
+    },
     "NPPES_Data_Dissemination_021720_022320_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:10.944625",
+      "processed_at": "2026-08-24T10:57:47.425974",
       "record_count": 7332
     },
     "NPPES_Data_Dissemination_021725_022325_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:13.093933",
+      "processed_at": "2026-08-24T10:57:49.414749",
       "record_count": 12475
     },
+    "NPPES_Data_Dissemination_021819_022419_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:50.503473",
+      "record_count": 6756
+    },
+    "NPPES_Data_Dissemination_021918_022518_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:51.675980",
+      "record_count": 9291
+    },
     "NPPES_Data_Dissemination_021924_022524_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:14.956257",
+      "processed_at": "2026-08-24T10:57:53.340278",
       "record_count": 9286
     },
+    "NPPES_Data_Dissemination_022017_022617_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:54.457208",
+      "record_count": 5317
+    },
     "NPPES_Data_Dissemination_022023_022623_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:17.680162",
+      "processed_at": "2026-08-24T10:57:55.917456",
       "record_count": 8653
     },
     "NPPES_Data_Dissemination_022122_022722_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:19.236910",
+      "processed_at": "2026-08-24T10:57:57.264652",
       "record_count": 7847
     },
+    "NPPES_Data_Dissemination_022216_022816_Weekly.zip": {
+      "processed_at": "2026-08-24T10:57:58.263937",
+      "record_count": 5659
+    },
     "NPPES_Data_Dissemination_022221_022821_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:20.876647",
+      "processed_at": "2026-08-24T10:57:59.701165",
       "record_count": 8345
     },
+    "NPPES_Data_Dissemination_022326_030126_Weekly.zip": {
+      "processed_at": "2026-08-24T10:58:01.785417",
+      "record_count": 11944
+    },
     "NPPES_Data_Dissemination_022420_030120_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:22.317562",
+      "processed_at": "2026-08-24T10:58:03.029978",
       "record_count": 7199
     },
     "NPPES_Data_Dissemination_022425_030225_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:24.596467",
+      "processed_at": "2026-08-24T10:58:05.007369",
       "record_count": 12362
     },
+    "NPPES_Data_Dissemination_022519_030319_Weekly.zip": {
+      "processed_at": "2026-08-24T10:58:06.224382",
+      "record_count": 7002
+    },
+    "NPPES_Data_Dissemination_022618_030418_Weekly.zip": {
+      "processed_at": "2026-08-24T10:58:07.468651",
+      "record_count": 9063
+    },
     "NPPES_Data_Dissemination_022624_030324_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:26.548260",
+      "processed_at": "2026-08-24T10:58:09.122200",
       "record_count": 9806
     },
+    "NPPES_Data_Dissemination_022717_030517_Weekly.zip": {
+      "processed_at": "2026-08-24T10:58:10.254616",
+      "record_count": 5397
+    },
     "NPPES_Data_Dissemination_022723_030523_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:28.535899",
+      "processed_at": "2026-08-24T10:58:13.324280",
       "record_count": 9323
     },
     "NPPES_Data_Dissemination_022822_030622_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:30.231270",
+      "processed_at": "2026-08-24T10:58:16.489392",
       "record_count": 8421
     },
+    "NPPES_Data_Dissemination_022916_030616_Weekly.zip": {
+      "processed_at": "2026-08-24T10:58:18.025221",
+      "record_count": 5436
+    },
     "NPPES_Data_Dissemination_030121_030721_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:31.975581",
+      "processed_at": "2026-08-24T10:58:20.053423",
       "record_count": 8333
     },
     "NPPES_Data_Dissemination_030220_030820_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:33.632777",
+      "processed_at": "2026-08-24T10:58:23.253522",
       "record_count": 7313
     },
+    "NPPES_Data_Dissemination_030226_030826_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T10:58:28.146850",
+      "record_count": 12058
+    },
     "NPPES_Data_Dissemination_030325_030925_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:35.971985",
+      "processed_at": "2026-08-24T10:58:31.451417",
       "record_count": 12256
     },
+    "NPPES_Data_Dissemination_030419_031019_Weekly.zip": {
+      "processed_at": "2026-08-24T10:58:32.704984",
+      "record_count": 7182
+    },
     "NPPES_Data_Dissemination_030424_031024_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:37.980860",
+      "processed_at": "2026-08-24T10:58:34.720977",
       "record_count": 9976
     },
+    "NPPES_Data_Dissemination_030518_031118_Weekly.zip": {
+      "processed_at": "2026-08-24T10:58:36.090013",
+      "record_count": 7545
+    },
+    "NPPES_Data_Dissemination_030617_031217_Weekly.zip": {
+      "processed_at": "2026-08-24T10:58:38.210479",
+      "record_count": 5681
+    },
     "NPPES_Data_Dissemination_030623_031223_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:41.545730",
+      "processed_at": "2026-08-24T10:58:44.214994",
       "record_count": 9710
     },
+    "NPPES_Data_Dissemination_030716_031316_Weekly.zip": {
+      "processed_at": "2026-08-24T10:58:45.416541",
+      "record_count": 5503
+    },
     "NPPES_Data_Dissemination_030722_031322_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:43.264605",
+      "processed_at": "2026-08-24T10:58:47.079208",
       "record_count": 8468
     },
     "NPPES_Data_Dissemination_030821_031421_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:45.182003",
+      "processed_at": "2026-08-24T10:58:48.671708",
       "record_count": 8008
     },
+    "NPPES_Data_Dissemination_030915_031515_Weekly.zip": {
+      "processed_at": "2026-08-24T10:58:49.977483",
+      "record_count": 5377
+    },
     "NPPES_Data_Dissemination_030920_031520_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:47.028117",
+      "processed_at": "2026-08-24T10:58:51.542799",
       "record_count": 6837
     },
+    "NPPES_Data_Dissemination_030926_031526_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T10:58:54.044215",
+      "record_count": 12281
+    },
     "NPPES_Data_Dissemination_031025_031625_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:50.722993",
+      "processed_at": "2026-08-24T10:58:56.593928",
       "record_count": 12789
     },
+    "NPPES_Data_Dissemination_031119_031719_Weekly.zip": {
+      "processed_at": "2026-08-24T10:58:57.899569",
+      "record_count": 7211
+    },
     "NPPES_Data_Dissemination_031124_031724_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:54.870770",
+      "processed_at": "2026-08-24T10:58:59.853614",
       "record_count": 9820
     },
+    "NPPES_Data_Dissemination_031218_031818_Weekly.zip": {
+      "processed_at": "2026-08-24T10:59:05.144356",
+      "record_count": 7759
+    },
+    "NPPES_Data_Dissemination_031317_031917_Weekly.zip": {
+      "processed_at": "2026-08-24T10:59:06.274663",
+      "record_count": 5612
+    },
     "NPPES_Data_Dissemination_031323_031923_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:57.565917",
+      "processed_at": "2026-08-24T10:59:08.015947",
       "record_count": 9599
     },
+    "NPPES_Data_Dissemination_031416_032016_Weekly.zip": {
+      "processed_at": "2026-08-24T10:59:09.103174",
+      "record_count": 5360
+    },
     "NPPES_Data_Dissemination_031422_032022_Weekly.zip": {
-      "processed_at": "2026-02-16T13:50:59.535889",
+      "processed_at": "2026-08-24T10:59:11.209724",
       "record_count": 8941
     },
     "NPPES_Data_Dissemination_031521_032121_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:01.613072",
+      "processed_at": "2026-08-24T10:59:12.870646",
       "record_count": 8377
     },
+    "NPPES_Data_Dissemination_031615_032215_Weekly.zip": {
+      "processed_at": "2026-08-24T10:59:13.979198",
+      "record_count": 5123
+    },
     "NPPES_Data_Dissemination_031620_032220_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:03.183092",
+      "processed_at": "2026-08-24T10:59:15.182038",
       "record_count": 7094
     },
+    "NPPES_Data_Dissemination_031626_032226_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T10:59:17.436590",
+      "record_count": 12836
+    },
     "NPPES_Data_Dissemination_031725_032325_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:05.963061",
+      "processed_at": "2026-08-24T10:59:19.703136",
       "record_count": 12003
     },
+    "NPPES_Data_Dissemination_031819_032419_Weekly.zip": {
+      "processed_at": "2026-08-24T10:59:22.522807",
+      "record_count": 13230
+    },
     "NPPES_Data_Dissemination_031824_032424_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:08.904463",
+      "processed_at": "2026-08-24T10:59:26.969657",
       "record_count": 17171
     },
+    "NPPES_Data_Dissemination_031918_032518_Weekly.zip": {
+      "processed_at": "2026-08-24T10:59:30.746655",
+      "record_count": 11140
+    },
+    "NPPES_Data_Dissemination_032017_032617_Weekly.zip": {
+      "processed_at": "2026-08-24T10:59:32.324668",
+      "record_count": 9692
+    },
     "NPPES_Data_Dissemination_032023_032623_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:11.542382",
+      "processed_at": "2026-08-24T10:59:34.665698",
       "record_count": 16558
     },
+    "NPPES_Data_Dissemination_032116_032716_Weekly.zip": {
+      "processed_at": "2026-08-24T10:59:35.902383",
+      "record_count": 8165
+    },
     "NPPES_Data_Dissemination_032122_032722_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:14.218432",
+      "processed_at": "2026-08-24T10:59:38.061719",
       "record_count": 14496
     },
     "NPPES_Data_Dissemination_032221_032821_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:16.813055",
+      "processed_at": "2026-08-24T10:59:40.535533",
       "record_count": 15141
     },
+    "NPPES_Data_Dissemination_032315_032915_Weekly.zip": {
+      "processed_at": "2026-08-24T10:59:41.685635",
+      "record_count": 7385
+    },
     "NPPES_Data_Dissemination_032320_032920_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:18.704435",
+      "processed_at": "2026-08-24T10:59:43.786022",
       "record_count": 13957
     },
+    "NPPES_Data_Dissemination_032326_032926_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T10:59:46.763513",
+      "record_count": 20178
+    },
     "NPPES_Data_Dissemination_032425_033025_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:21.529436",
+      "processed_at": "2026-08-24T10:59:49.510555",
       "record_count": 18544
     },
+    "NPPES_Data_Dissemination_032519_033119_Weekly.zip": {
+      "processed_at": "2026-08-24T10:59:51.114990",
+      "record_count": 11853
+    },
     "NPPES_Data_Dissemination_032524_033124_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:23.911771",
+      "processed_at": "2026-08-24T10:59:53.340400",
       "record_count": 15135
     },
+    "NPPES_Data_Dissemination_032618_040118_Weekly.zip": {
+      "processed_at": "2026-08-24T10:59:54.962599",
+      "record_count": 10325
+    },
+    "NPPES_Data_Dissemination_032717_040217_Weekly.zip": {
+      "processed_at": "2026-08-24T10:59:56.720709",
+      "record_count": 9986
+    },
     "NPPES_Data_Dissemination_032723_040223_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:26.291690",
+      "processed_at": "2026-08-24T10:59:59.615336",
       "record_count": 15152
     },
+    "NPPES_Data_Dissemination_032816_040316_Weekly.zip": {
+      "processed_at": "2026-08-24T11:00:01.357975",
+      "record_count": 9113
+    },
     "NPPES_Data_Dissemination_032822_040322_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:28.631036",
+      "processed_at": "2026-08-24T11:00:04.214902",
       "record_count": 14575
     },
     "NPPES_Data_Dissemination_032921_040421_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:31.197273",
+      "processed_at": "2026-08-24T11:00:07.823014",
       "record_count": 13299
     },
+    "NPPES_Data_Dissemination_033015_040515_Weekly.zip": {
+      "processed_at": "2026-08-24T11:00:09.168252",
+      "record_count": 8335
+    },
     "NPPES_Data_Dissemination_033020_040520_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:32.896059",
+      "processed_at": "2026-08-24T11:00:11.916688",
       "record_count": 11617
     },
+    "NPPES_Data_Dissemination_033026_040526_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:00:17.091453",
+      "record_count": 17773
+    },
     "NPPES_Data_Dissemination_033125_040625_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:35.654963",
+      "processed_at": "2026-08-24T11:00:19.773965",
       "record_count": 17106
     },
+    "NPPES_Data_Dissemination_040119_040719_Weekly.zip": {
+      "processed_at": "2026-08-24T11:00:21.238379",
+      "record_count": 10580
+    },
     "NPPES_Data_Dissemination_040124_040724_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:37.936350",
+      "processed_at": "2026-08-24T11:00:23.591062",
       "record_count": 13564
     },
+    "NPPES_Data_Dissemination_040218_040818_Weekly.zip": {
+      "processed_at": "2026-08-24T11:00:25.336503",
+      "record_count": 10453
+    },
+    "NPPES_Data_Dissemination_040317_040917_Weekly.zip": {
+      "processed_at": "2026-08-24T11:00:26.977843",
+      "record_count": 9294
+    },
     "NPPES_Data_Dissemination_040323_040923_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:39.944986",
+      "processed_at": "2026-08-24T11:00:29.045317",
       "record_count": 12609
     },
+    "NPPES_Data_Dissemination_040416_041016_Weekly.zip": {
+      "processed_at": "2026-08-24T11:00:30.759163",
+      "record_count": 8400
+    },
     "NPPES_Data_Dissemination_040422_041022_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:42.136506",
+      "processed_at": "2026-08-24T11:00:33.477939",
       "record_count": 12594
     },
     "NPPES_Data_Dissemination_040521_041121_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:44.304090",
+      "processed_at": "2026-08-24T11:00:35.856887",
       "record_count": 12022
     },
+    "NPPES_Data_Dissemination_040615_041215_Weekly.zip": {
+      "processed_at": "2026-08-24T11:00:37.585654",
+      "record_count": 7644
+    },
     "NPPES_Data_Dissemination_040620_041220_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:45.865022",
+      "processed_at": "2026-08-24T11:00:39.002172",
       "record_count": 9576
     },
+    "NPPES_Data_Dissemination_040626_041226_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:00:41.918532",
+      "record_count": 15970
+    },
     "NPPES_Data_Dissemination_040725_041325_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:48.433232",
+      "processed_at": "2026-08-24T11:00:45.171026",
       "record_count": 14716
     },
+    "NPPES_Data_Dissemination_040819_041419_Weekly.zip": {
+      "processed_at": "2026-08-24T11:00:47.892415",
+      "record_count": 9483
+    },
     "NPPES_Data_Dissemination_040824_041424_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:50.924289",
+      "processed_at": "2026-08-24T11:00:51.340546",
       "record_count": 12529
     },
+    "NPPES_Data_Dissemination_040918_041518_Weekly.zip": {
+      "processed_at": "2026-08-24T11:00:52.744061",
+      "record_count": 9115
+    },
+    "NPPES_Data_Dissemination_041017_041617_Weekly.zip": {
+      "processed_at": "2026-08-24T11:00:54.379784",
+      "record_count": 7601
+    },
     "NPPES_Data_Dissemination_041023_041623_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:52.916212",
+      "processed_at": "2026-08-24T11:00:56.921661",
       "record_count": 11522
     },
+    "NPPES_Data_Dissemination_041116_041716_Weekly.zip": {
+      "processed_at": "2026-08-24T11:00:58.243116",
+      "record_count": 7544
+    },
     "NPPES_Data_Dissemination_041122_041722_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:54.937739",
+      "processed_at": "2026-08-24T11:01:00.196158",
       "record_count": 10641
     },
     "NPPES_Data_Dissemination_041221_041821_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:56.954556",
+      "processed_at": "2026-08-24T11:01:02.135561",
       "record_count": 10739
     },
     "NPPES_Data_Dissemination_041320_041920_Weekly.zip": {
-      "processed_at": "2026-02-16T13:51:58.420938",
+      "processed_at": "2026-08-24T11:01:03.500866",
       "record_count": 7987
     },
+    "NPPES_Data_Dissemination_041326_041926_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:01:06.379695",
+      "record_count": 14413
+    },
     "NPPES_Data_Dissemination_041425_042025_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:01.093095",
+      "processed_at": "2026-08-24T11:01:08.785364",
       "record_count": 13041
     },
+    "NPPES_Data_Dissemination_041519_042119_Weekly.zip": {
+      "processed_at": "2026-08-24T11:01:10.179783",
+      "record_count": 8347
+    },
     "NPPES_Data_Dissemination_041524_042124_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:03.428477",
+      "processed_at": "2026-08-24T11:01:12.177840",
       "record_count": 12115
     },
+    "NPPES_Data_Dissemination_041618_042218_Weekly.zip": {
+      "processed_at": "2026-08-24T11:01:13.392662",
+      "record_count": 7704
+    },
+    "NPPES_Data_Dissemination_041717_042317_Weekly.zip": {
+      "processed_at": "2026-08-24T11:01:14.610988",
+      "record_count": 7307
+    },
     "NPPES_Data_Dissemination_041723_042323_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:05.353572",
+      "processed_at": "2026-08-24T11:01:16.404903",
       "record_count": 11043
     },
+    "NPPES_Data_Dissemination_041816_042416_Weekly.zip": {
+      "processed_at": "2026-08-24T11:01:17.549783",
+      "record_count": 7065
+    },
     "NPPES_Data_Dissemination_041822_042422_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:07.126994",
+      "processed_at": "2026-08-24T11:01:19.184408",
       "record_count": 9504
     },
     "NPPES_Data_Dissemination_041921_042521_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:08.941128",
+      "processed_at": "2026-08-24T11:01:20.837356",
       "record_count": 10231
     },
     "NPPES_Data_Dissemination_042020_042620_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:10.566724",
+      "processed_at": "2026-08-24T11:01:22.379804",
       "record_count": 7180
     },
+    "NPPES_Data_Dissemination_042026_042626_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:01:24.922749",
+      "record_count": 14336
+    },
     "NPPES_Data_Dissemination_042125_042725_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:13.106450",
+      "processed_at": "2026-08-24T11:01:27.932579",
       "record_count": 12574
     },
+    "NPPES_Data_Dissemination_042219_042819_Weekly.zip": {
+      "processed_at": "2026-08-24T11:01:29.488208",
+      "record_count": 7839
+    },
     "NPPES_Data_Dissemination_042224_042824_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:15.588991",
+      "processed_at": "2026-08-24T11:01:32.842950",
       "record_count": 11063
     },
+    "NPPES_Data_Dissemination_042318_042918_Weekly.zip": {
+      "processed_at": "2026-08-24T11:01:34.758697",
+      "record_count": 8006
+    },
+    "NPPES_Data_Dissemination_042417_043017_Weekly.zip": {
+      "processed_at": "2026-08-24T11:01:36.013081",
+      "record_count": 6738
+    },
     "NPPES_Data_Dissemination_042423_043023_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:17.490920",
+      "processed_at": "2026-08-24T11:01:37.974586",
       "record_count": 10068
     },
+    "NPPES_Data_Dissemination_042516_050116_Weekly.zip": {
+      "processed_at": "2026-08-24T11:01:39.616759",
+      "record_count": 5983
+    },
     "NPPES_Data_Dissemination_042522_050122_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:19.245441",
+      "processed_at": "2026-08-24T11:01:41.849553",
       "record_count": 9429
     },
     "NPPES_Data_Dissemination_042621_050221_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:21.090594",
+      "processed_at": "2026-08-24T11:01:44.574466",
       "record_count": 9291
     },
     "NPPES_Data_Dissemination_042720_050320_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:22.331001",
+      "processed_at": "2026-08-24T11:01:46.777614",
       "record_count": 6521
     },
+    "NPPES_Data_Dissemination_042726_050326_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:01:50.693664",
+      "record_count": 14317
+    },
     "NPPES_Data_Dissemination_042825_050425_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:24.703840",
+      "processed_at": "2026-08-24T11:01:54.608210",
       "record_count": 12586
     },
+    "NPPES_Data_Dissemination_042919_050519_Weekly.zip": {
+      "processed_at": "2026-08-24T11:01:57.160994",
+      "record_count": 7616
+    },
     "NPPES_Data_Dissemination_042924_050524_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:26.883533",
+      "processed_at": "2026-08-24T11:02:00.960202",
       "record_count": 11368
     },
+    "NPPES_Data_Dissemination_043018_050618_Weekly.zip": {
+      "processed_at": "2026-08-24T11:02:02.808346",
+      "record_count": 7553
+    },
+    "NPPES_Data_Dissemination_050117_050717_Weekly.zip": {
+      "processed_at": "2026-08-24T11:02:04.231174",
+      "record_count": 6278
+    },
     "NPPES_Data_Dissemination_050123_050723_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:28.945135",
+      "processed_at": "2026-08-24T11:02:06.496697",
       "record_count": 10265
     },
+    "NPPES_Data_Dissemination_050216_050816_Weekly.zip": {
+      "processed_at": "2026-08-24T11:02:07.804147",
+      "record_count": 7016
+    },
     "NPPES_Data_Dissemination_050222_050822_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:30.601772",
+      "processed_at": "2026-08-24T11:02:09.552418",
       "record_count": 9189
     },
     "NPPES_Data_Dissemination_050321_050921_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:32.416841",
+      "processed_at": "2026-08-24T11:02:11.524607",
       "record_count": 9704
     },
     "NPPES_Data_Dissemination_050420_051020_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:33.687744",
+      "processed_at": "2026-08-24T11:02:13.025051",
       "record_count": 6374
     },
+    "NPPES_Data_Dissemination_050426_051026_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:02:15.774886",
+      "record_count": 13914
+    },
     "NPPES_Data_Dissemination_050525_051125_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:36.144370",
+      "processed_at": "2026-08-24T11:02:18.281374",
       "record_count": 12151
     },
+    "NPPES_Data_Dissemination_050619_051219_Weekly.zip": {
+      "processed_at": "2026-08-24T11:02:19.970931",
+      "record_count": 7700
+    },
     "NPPES_Data_Dissemination_050624_051224_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:38.475063",
+      "processed_at": "2026-08-24T11:02:22.171740",
       "record_count": 11107
     },
+    "NPPES_Data_Dissemination_050718_051318_Weekly.zip": {
+      "processed_at": "2026-08-24T11:02:23.610061",
+      "record_count": 7732
+    },
+    "NPPES_Data_Dissemination_050817_051417_Weekly.zip": {
+      "processed_at": "2026-08-24T11:02:24.894565",
+      "record_count": 7165
+    },
     "NPPES_Data_Dissemination_050823_051423_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:40.519355",
+      "processed_at": "2026-08-24T11:02:27.136277",
       "record_count": 10471
     },
+    "NPPES_Data_Dissemination_050916_051516_Weekly.zip": {
+      "processed_at": "2026-08-24T11:02:28.536543",
+      "record_count": 6836
+    },
     "NPPES_Data_Dissemination_050922_051522_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:42.298137",
+      "processed_at": "2026-08-24T11:02:30.384621",
       "record_count": 9245
     },
     "NPPES_Data_Dissemination_051021_051621_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:43.997781",
+      "processed_at": "2026-08-24T11:02:32.293290",
       "record_count": 9380
     },
     "NPPES_Data_Dissemination_051120_051720_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:45.593445",
+      "processed_at": "2026-08-24T11:02:33.874135",
       "record_count": 6614
     },
+    "NPPES_Data_Dissemination_051126_051726_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:02:36.875691",
+      "record_count": 13901
+    },
     "NPPES_Data_Dissemination_051225_051825_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:48.199846",
+      "processed_at": "2026-08-24T11:02:39.516249",
       "record_count": 13026
     },
+    "NPPES_Data_Dissemination_051319_051919_Weekly.zip": {
+      "processed_at": "2026-08-24T11:02:41.092733",
+      "record_count": 7719
+    },
     "NPPES_Data_Dissemination_051324_051924_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:51.458631",
+      "processed_at": "2026-08-24T11:02:43.320994",
       "record_count": 11027
     },
+    "NPPES_Data_Dissemination_051418_052018_Weekly.zip": {
+      "processed_at": "2026-08-24T11:02:45.175707",
+      "record_count": 7861
+    },
+    "NPPES_Data_Dissemination_051517_052117_Weekly.zip": {
+      "processed_at": "2026-08-24T11:02:46.157772",
+      "record_count": 5229
+    },
     "NPPES_Data_Dissemination_051523_052123_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:54.159962",
+      "processed_at": "2026-08-24T11:02:49.848511",
       "record_count": 10900
     },
+    "NPPES_Data_Dissemination_051616_052216_Weekly.zip": {
+      "processed_at": "2026-08-24T11:02:52.672505",
+      "record_count": 7163
+    },
     "NPPES_Data_Dissemination_051622_052222_Weekly.zip": {
-      "processed_at": "2026-02-16T13:52:57.942563",
+      "processed_at": "2026-08-24T11:02:55.849238",
       "record_count": 9304
     },
     "NPPES_Data_Dissemination_051721_052321_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:01.204638",
+      "processed_at": "2026-08-24T11:02:59.020753",
       "record_count": 10128
     },
     "NPPES_Data_Dissemination_051820_052420_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:04.260069",
+      "processed_at": "2026-08-24T11:03:01.116491",
       "record_count": 6514
     },
+    "NPPES_Data_Dissemination_051826_052426_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:03:05.309896",
+      "record_count": 14381
+    },
     "NPPES_Data_Dissemination_051925_052525_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:08.420813",
+      "processed_at": "2026-08-24T11:03:07.927563",
       "record_count": 13149
     },
+    "NPPES_Data_Dissemination_052019_052619_Weekly.zip": {
+      "processed_at": "2026-08-24T11:03:09.223448",
+      "record_count": 8006
+    },
     "NPPES_Data_Dissemination_052024_052624_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:10.707440",
+      "processed_at": "2026-08-24T11:03:11.490490",
       "record_count": 10932
     },
+    "NPPES_Data_Dissemination_052118_052718_Weekly.zip": {
+      "processed_at": "2026-08-24T11:03:12.936438",
+      "record_count": 7318
+    },
+    "NPPES_Data_Dissemination_052217_052817_Weekly.zip": {
+      "processed_at": "2026-08-24T11:03:13.736086",
+      "record_count": 5517
+    },
     "NPPES_Data_Dissemination_052223_052823_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:12.985621",
+      "processed_at": "2026-08-24T11:03:15.530080",
       "record_count": 11257
     },
+    "NPPES_Data_Dissemination_052316_052916_Weekly.zip": {
+      "processed_at": "2026-08-24T11:03:16.684459",
+      "record_count": 7272
+    },
     "NPPES_Data_Dissemination_052322_052922_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:14.725908",
+      "processed_at": "2026-08-24T11:03:18.671936",
       "record_count": 9588
     },
     "NPPES_Data_Dissemination_052421_053021_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:16.699515",
+      "processed_at": "2026-08-24T11:03:21.583991",
       "record_count": 9514
     },
     "NPPES_Data_Dissemination_052520_053120_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:17.822688",
+      "processed_at": "2026-08-24T11:03:23.622190",
       "record_count": 6071
     },
+    "NPPES_Data_Dissemination_052526_053126_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:03:26.562909",
+      "record_count": 12032
+    },
     "NPPES_Data_Dissemination_052625_060125_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:20.624523",
+      "processed_at": "2026-08-24T11:03:28.511113",
       "record_count": 11791
     },
+    "NPPES_Data_Dissemination_052719_060219_Weekly.zip": {
+      "processed_at": "2026-08-24T11:03:29.723061",
+      "record_count": 7041
+    },
     "NPPES_Data_Dissemination_052724_060224_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:22.732565",
+      "processed_at": "2026-08-24T11:03:31.335985",
       "record_count": 9913
     },
+    "NPPES_Data_Dissemination_052818_060318_Weekly.zip": {
+      "processed_at": "2026-08-24T11:03:32.382778",
+      "record_count": 6907
+    },
+    "NPPES_Data_Dissemination_052917_060417_Weekly.zip": {
+      "processed_at": "2026-08-24T11:03:33.121746",
+      "record_count": 5197
+    },
     "NPPES_Data_Dissemination_052923_060423_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:24.749446",
+      "processed_at": "2026-08-24T11:03:34.791898",
       "record_count": 9358
     },
+    "NPPES_Data_Dissemination_053016_060516_Weekly.zip": {
+      "processed_at": "2026-08-24T11:03:36.681879",
+      "record_count": 6518
+    },
     "NPPES_Data_Dissemination_053022_060522_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:26.425421",
+      "processed_at": "2026-08-24T11:03:38.887523",
       "record_count": 8781
     },
     "NPPES_Data_Dissemination_053121_060621_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:28.159321",
+      "processed_at": "2026-08-24T11:03:41.271568",
       "record_count": 8634
     },
     "NPPES_Data_Dissemination_060120_060720_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:29.612554",
+      "processed_at": "2026-08-24T11:03:43.066409",
       "record_count": 7241
     },
+    "NPPES_Data_Dissemination_060126_060726_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:03:46.237320",
+      "record_count": 14895
+    },
     "NPPES_Data_Dissemination_060225_060825_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:32.342218",
+      "processed_at": "2026-08-24T11:03:48.673722",
       "record_count": 13336
     },
+    "NPPES_Data_Dissemination_060319_060919_Weekly.zip": {
+      "processed_at": "2026-08-24T11:03:50.078705",
+      "record_count": 8871
+    },
     "NPPES_Data_Dissemination_060324_060924_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:35.037785",
+      "processed_at": "2026-08-24T11:03:52.232618",
       "record_count": 11957
     },
+    "NPPES_Data_Dissemination_060418_061018_Weekly.zip": {
+      "processed_at": "2026-08-24T11:03:53.631282",
+      "record_count": 8724
+    },
+    "NPPES_Data_Dissemination_060517_061117_Weekly.zip": {
+      "processed_at": "2026-08-24T11:03:54.709032",
+      "record_count": 8245
+    },
     "NPPES_Data_Dissemination_060523_061123_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:37.190110",
+      "processed_at": "2026-08-24T11:03:56.800909",
       "record_count": 11150
     },
+    "NPPES_Data_Dissemination_060616_061216_Weekly.zip": {
+      "processed_at": "2026-08-24T11:03:58.931825",
+      "record_count": 7920
+    },
     "NPPES_Data_Dissemination_060622_061222_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:39.375096",
+      "processed_at": "2026-08-24T11:04:01.396202",
       "record_count": 11201
     },
     "NPPES_Data_Dissemination_060721_061321_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:41.245972",
+      "processed_at": "2026-08-24T11:04:04.012023",
       "record_count": 10203
     },
+    "NPPES_Data_Dissemination_060815_061415_Weekly.zip": {
+      "processed_at": "2026-08-24T11:04:05.375307",
+      "record_count": 7102
+    },
     "NPPES_Data_Dissemination_060820_061420_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:43.050247",
+      "processed_at": "2026-08-24T11:04:07.112440",
       "record_count": 7916
     },
+    "NPPES_Data_Dissemination_060826_061426_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:04:12.033403",
+      "record_count": 14250
+    },
     "NPPES_Data_Dissemination_060925_061525_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:45.975350",
+      "processed_at": "2026-08-24T11:04:15.059377",
       "record_count": 14116
     },
+    "NPPES_Data_Dissemination_061019_061619_Weekly.zip": {
+      "processed_at": "2026-08-24T11:04:16.944969",
+      "record_count": 9287
+    },
     "NPPES_Data_Dissemination_061024_061624_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:48.279471",
+      "processed_at": "2026-08-24T11:04:19.365504",
       "record_count": 11789
     },
+    "NPPES_Data_Dissemination_061217_061817_Weekly.zip": {
+      "processed_at": "2026-08-24T11:04:20.471952",
+      "record_count": 8050
+    },
     "NPPES_Data_Dissemination_061223_061823_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:50.414348",
+      "processed_at": "2026-08-24T11:04:22.725436",
       "record_count": 11223
     },
+    "NPPES_Data_Dissemination_061316_061916_Weekly.zip": {
+      "processed_at": "2026-08-24T11:04:24.033570",
+      "record_count": 7365
+    },
     "NPPES_Data_Dissemination_061322_061922_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:52.218892",
+      "processed_at": "2026-08-24T11:04:25.793051",
       "record_count": 10294
     },
     "NPPES_Data_Dissemination_061421_062021_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:54.201243",
+      "processed_at": "2026-08-24T11:04:27.594262",
       "record_count": 10005
     },
+    "NPPES_Data_Dissemination_061515_062115_Weekly.zip": {
+      "processed_at": "2026-08-24T11:04:28.981110",
+      "record_count": 7370
+    },
     "NPPES_Data_Dissemination_061520_062120_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:55.640424",
+      "processed_at": "2026-08-24T11:04:30.313356",
       "record_count": 7482
     },
+    "NPPES_Data_Dissemination_061526_062126_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:04:32.756205",
+      "record_count": 12951
+    },
     "NPPES_Data_Dissemination_061625_062225_Weekly.zip": {
-      "processed_at": "2026-02-16T13:53:59.024298",
+      "processed_at": "2026-08-24T11:04:35.128941",
       "record_count": 13381
     },
+    "NPPES_Data_Dissemination_061719_062319_Weekly.zip": {
+      "processed_at": "2026-08-24T11:04:36.751886",
+      "record_count": 9165
+    },
     "NPPES_Data_Dissemination_061724_062324_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:01.369335",
+      "processed_at": "2026-08-24T11:04:39.024447",
       "record_count": 11480
     },
+    "NPPES_Data_Dissemination_061917_062517_Weekly.zip": {
+      "processed_at": "2026-08-24T11:04:40.155701",
+      "record_count": 8348
+    },
     "NPPES_Data_Dissemination_061923_062523_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:03.580612",
+      "processed_at": "2026-08-24T11:04:42.308082",
       "record_count": 11057
     },
+    "NPPES_Data_Dissemination_062016_062616_Weekly.zip": {
+      "processed_at": "2026-08-24T11:04:43.544162",
+      "record_count": 7347
+    },
     "NPPES_Data_Dissemination_062022_062622_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:05.504195",
+      "processed_at": "2026-08-24T11:04:45.181508",
       "record_count": 9871
     },
     "NPPES_Data_Dissemination_062121_062721_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:07.567880",
+      "processed_at": "2026-08-24T11:04:47.203904",
       "record_count": 9914
     },
+    "NPPES_Data_Dissemination_062215_062815_Weekly.zip": {
+      "processed_at": "2026-08-24T11:04:48.538137",
+      "record_count": 6789
+    },
     "NPPES_Data_Dissemination_062220_062820_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:09.110440",
+      "processed_at": "2026-08-24T11:04:50.089992",
       "record_count": 7924
     },
+    "NPPES_Data_Dissemination_062226_062826_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:04:54.427702",
+      "record_count": 12788
+    },
     "NPPES_Data_Dissemination_062325_062925_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:11.828156",
+      "processed_at": "2026-08-24T11:04:58.271042",
       "record_count": 14455
     },
+    "NPPES_Data_Dissemination_062419_063019_Weekly.zip": {
+      "processed_at": "2026-08-24T11:04:59.801031",
+      "record_count": 9408
+    },
     "NPPES_Data_Dissemination_062424_063024_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:14.332560",
+      "processed_at": "2026-08-24T11:05:02.054280",
       "record_count": 11969
     },
+    "NPPES_Data_Dissemination_062617_070217_Weekly.zip": {
+      "processed_at": "2026-08-24T11:05:03.271691",
+      "record_count": 8371
+    },
     "NPPES_Data_Dissemination_062623_070223_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:16.807646",
+      "processed_at": "2026-08-24T11:05:05.711400",
       "record_count": 11907
     },
+    "NPPES_Data_Dissemination_062716_070316_Weekly.zip": {
+      "processed_at": "2026-08-24T11:05:06.949289",
+      "record_count": 7077
+    },
     "NPPES_Data_Dissemination_062722_070322_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:18.729828",
+      "processed_at": "2026-08-24T11:05:08.840121",
       "record_count": 10030
     },
     "NPPES_Data_Dissemination_062821_070421_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:20.619529",
+      "processed_at": "2026-08-24T11:05:10.524295",
       "record_count": 9926
     },
+    "NPPES_Data_Dissemination_062915_070515_Weekly.zip": {
+      "processed_at": "2026-08-24T11:05:11.584348",
+      "record_count": 6050
+    },
     "NPPES_Data_Dissemination_062920_070520_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:21.966358",
+      "processed_at": "2026-08-24T11:05:12.942674",
       "record_count": 6454
     },
+    "NPPES_Data_Dissemination_062926_070526_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:05:15.483144",
+      "record_count": 11479
+    },
     "NPPES_Data_Dissemination_063025_070625_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:24.230348",
+      "processed_at": "2026-08-24T11:05:19.253307",
       "record_count": 11952
     },
+    "NPPES_Data_Dissemination_070119_070719_Weekly.zip": {
+      "processed_at": "2026-08-24T11:05:21.557774",
+      "record_count": 6680
+    },
     "NPPES_Data_Dissemination_070124_070724_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:26.064798",
+      "processed_at": "2026-08-24T11:05:24.859590",
       "record_count": 9079
     },
+    "NPPES_Data_Dissemination_070218_070818_Weekly.zip": {
+      "processed_at": "2026-08-24T11:05:26.454994",
+      "record_count": 6252
+    },
+    "NPPES_Data_Dissemination_070317_070917_Weekly.zip": {
+      "processed_at": "2026-08-24T11:05:28.468393",
+      "record_count": 5492
+    },
     "NPPES_Data_Dissemination_070323_070923_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:27.969427",
+      "processed_at": "2026-08-24T11:05:31.729440",
       "record_count": 9128
     },
+    "NPPES_Data_Dissemination_070416_071016_Weekly.zip": {
+      "processed_at": "2026-08-24T11:05:32.941009",
+      "record_count": 5361
+    },
     "NPPES_Data_Dissemination_070422_071022_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:29.549471",
+      "processed_at": "2026-08-24T11:05:34.760205",
       "record_count": 8531
     },
     "NPPES_Data_Dissemination_070521_071121_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:31.087952",
+      "processed_at": "2026-08-24T11:05:36.792489",
       "record_count": 8435
     },
+    "NPPES_Data_Dissemination_070615_071215_Weekly.zip": {
+      "processed_at": "2026-08-24T11:05:38.111743",
+      "record_count": 6466
+    },
     "NPPES_Data_Dissemination_070620_071220_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:32.552470",
+      "processed_at": "2026-08-24T11:05:39.882377",
       "record_count": 7589
     },
+    "NPPES_Data_Dissemination_070626_071226_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:05:44.118837",
+      "record_count": 13635
+    },
     "NPPES_Data_Dissemination_070725_071325_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:35.056548",
+      "processed_at": "2026-08-24T11:05:49.221327",
       "record_count": 12807
     },
+    "NPPES_Data_Dissemination_070819_071419_Weekly.zip": {
+      "processed_at": "2026-08-24T11:05:52.704397",
+      "record_count": 8772
+    },
     "NPPES_Data_Dissemination_070824_071424_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:37.289137",
+      "processed_at": "2026-08-24T11:05:55.644606",
       "record_count": 11321
     },
+    "NPPES_Data_Dissemination_070918_071518_Weekly.zip": {
+      "processed_at": "2026-08-24T11:05:57.220601",
+      "record_count": 8047
+    },
+    "NPPES_Data_Dissemination_071017_071617_Weekly.zip": {
+      "processed_at": "2026-08-24T11:05:58.544330",
+      "record_count": 6934
+    },
     "NPPES_Data_Dissemination_071023_071623_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:39.559563",
+      "processed_at": "2026-08-24T11:06:01.177968",
       "record_count": 11049
     },
+    "NPPES_Data_Dissemination_071116_071716_Weekly.zip": {
+      "processed_at": "2026-08-24T11:06:02.667672",
+      "record_count": 6851
+    },
     "NPPES_Data_Dissemination_071122_071722_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:41.370442",
+      "processed_at": "2026-08-24T11:06:04.575433",
       "record_count": 9821
     },
     "NPPES_Data_Dissemination_071221_071821_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:43.077794",
+      "processed_at": "2026-08-24T11:06:06.658412",
       "record_count": 9386
     },
+    "NPPES_Data_Dissemination_071315_071915_Weekly.zip": {
+      "processed_at": "2026-08-24T11:06:09.034394",
+      "record_count": 7712
+    },
     "NPPES_Data_Dissemination_071320_071920_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:44.756906",
+      "processed_at": "2026-08-24T11:06:10.693507",
       "record_count": 7371
     },
+    "NPPES_Data_Dissemination_071326_071926_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:06:20.918496",
+      "record_count": 13175
+    },
     "NPPES_Data_Dissemination_071425_072025_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:47.289680",
+      "processed_at": "2026-08-24T11:06:23.556013",
       "record_count": 12875
     },
+    "NPPES_Data_Dissemination_071519_072119_Weekly.zip": {
+      "processed_at": "2026-08-24T11:06:25.195275",
+      "record_count": 8591
+    },
     "NPPES_Data_Dissemination_071524_072124_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:49.711498",
+      "processed_at": "2026-08-24T11:06:27.443386",
       "record_count": 11467
     },
+    "NPPES_Data_Dissemination_071618_072218_Weekly.zip": {
+      "processed_at": "2026-08-24T11:06:29.052330",
+      "record_count": 8094
+    },
+    "NPPES_Data_Dissemination_071717_072317_Weekly.zip": {
+      "processed_at": "2026-08-24T11:06:30.113656",
+      "record_count": 6799
+    },
     "NPPES_Data_Dissemination_071723_072323_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:51.804502",
+      "processed_at": "2026-08-24T11:06:32.017778",
       "record_count": 10417
     },
+    "NPPES_Data_Dissemination_071816_072416_Weekly.zip": {
+      "processed_at": "2026-08-24T11:06:33.212714",
+      "record_count": 6835
+    },
     "NPPES_Data_Dissemination_071822_072422_Weekly.zip": {
-      "processed_at": "2026-02-16T13:54:59.374945",
+      "processed_at": "2026-08-24T11:06:42.054297",
       "record_count": 9475
     },
     "NPPES_Data_Dissemination_071921_072521_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:01.167106",
+      "processed_at": "2026-08-24T11:06:44.303846",
       "record_count": 10002
     },
+    "NPPES_Data_Dissemination_072015_072615_Weekly.zip": {
+      "processed_at": "2026-08-24T11:06:45.689534",
+      "record_count": 5952
+    },
     "NPPES_Data_Dissemination_072020_072620_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:02.687343",
+      "processed_at": "2026-08-24T11:06:47.118491",
       "record_count": 7935
     },
+    "NPPES_Data_Dissemination_072026_072626_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:06:50.352889",
+      "record_count": 13661
+    },
     "NPPES_Data_Dissemination_072125_072725_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:05.217946",
+      "processed_at": "2026-08-24T11:06:52.791854",
       "record_count": 12463
     },
     "NPPES_Data_Dissemination_072219_072819_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:06.780287",
+      "processed_at": "2026-08-24T11:06:54.150688",
       "record_count": 8424
     },
     "NPPES_Data_Dissemination_072224_072824_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:09.055688",
+      "processed_at": "2026-08-24T11:06:56.208011",
       "record_count": 11432
     },
+    "NPPES_Data_Dissemination_072318_072918_Weekly.zip": {
+      "processed_at": "2026-08-24T11:06:57.502082",
+      "record_count": 7744
+    },
+    "NPPES_Data_Dissemination_072417_073017_Weekly.zip": {
+      "processed_at": "2026-08-24T11:06:58.557348",
+      "record_count": 7077
+    },
     "NPPES_Data_Dissemination_072423_073023_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:11.065667",
+      "processed_at": "2026-08-24T11:07:00.560241",
       "record_count": 10242
     },
+    "NPPES_Data_Dissemination_072516_073116_Weekly.zip": {
+      "processed_at": "2026-08-24T11:07:02.414971",
+      "record_count": 6184
+    },
     "NPPES_Data_Dissemination_072522_073122_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:12.827923",
+      "processed_at": "2026-08-24T11:07:04.660369",
       "record_count": 9307
     },
     "NPPES_Data_Dissemination_072621_080121_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:14.524957",
+      "processed_at": "2026-08-24T11:07:06.998763",
       "record_count": 9095
     },
+    "NPPES_Data_Dissemination_072715_080215_Weekly.zip": {
+      "processed_at": "2026-08-24T11:07:09.032519",
+      "record_count": 6182
+    },
     "NPPES_Data_Dissemination_072720_080220_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:16.081538",
+      "processed_at": "2026-08-24T11:07:12.172445",
       "record_count": 8161
     },
+    "NPPES_Data_Dissemination_072726_080226_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:07:15.933567",
+      "record_count": 14274
+    },
     "NPPES_Data_Dissemination_072825_080325_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:18.572960",
+      "processed_at": "2026-08-24T11:07:18.674998",
       "record_count": 12953
     },
     "NPPES_Data_Dissemination_072919_080419_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:20.060736",
+      "processed_at": "2026-08-24T11:07:20.295716",
       "record_count": 8145
     },
     "NPPES_Data_Dissemination_072924_080424_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:22.346665",
+      "processed_at": "2026-08-24T11:07:22.967589",
       "record_count": 11469
     },
+    "NPPES_Data_Dissemination_073018_080518_Weekly.zip": {
+      "processed_at": "2026-08-24T11:07:24.649477",
+      "record_count": 7935
+    },
+    "NPPES_Data_Dissemination_073117_080617_Weekly.zip": {
+      "processed_at": "2026-08-24T11:07:26.234036",
+      "record_count": 7695
+    },
     "NPPES_Data_Dissemination_073123_080623_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:24.486231",
+      "processed_at": "2026-08-24T11:07:28.868322",
       "record_count": 10688
     },
+    "NPPES_Data_Dissemination_080116_080716_Weekly.zip": {
+      "processed_at": "2026-08-24T11:07:30.406325",
+      "record_count": 6357
+    },
     "NPPES_Data_Dissemination_080122_080722_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:26.375210",
+      "processed_at": "2026-08-24T11:07:32.443771",
       "record_count": 9521
     },
     "NPPES_Data_Dissemination_080221_080821_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:28.181421",
+      "processed_at": "2026-08-24T11:07:34.088666",
       "record_count": 9400
     },
+    "NPPES_Data_Dissemination_080315_080915_Weekly.zip": {
+      "processed_at": "2026-08-24T11:07:35.269033",
+      "record_count": 6459
+    },
     "NPPES_Data_Dissemination_080320_080920_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:29.805212",
+      "processed_at": "2026-08-24T11:07:36.697086",
       "record_count": 8295
     },
+    "NPPES_Data_Dissemination_080326_080926_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:07:39.144574",
+      "record_count": 13836
+    },
     "NPPES_Data_Dissemination_080425_081025_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:32.356743",
+      "processed_at": "2026-08-24T11:07:41.470016",
       "record_count": 13260
     },
     "NPPES_Data_Dissemination_080519_081119_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:34.055654",
+      "processed_at": "2026-08-24T11:07:43.523280",
       "record_count": 8719
     },
     "NPPES_Data_Dissemination_080524_081124_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:36.264981",
+      "processed_at": "2026-08-24T11:07:45.512081",
       "record_count": 11482
     },
+    "NPPES_Data_Dissemination_080618_081218_Weekly.zip": {
+      "processed_at": "2026-08-24T11:07:46.808870",
+      "record_count": 8861
+    },
+    "NPPES_Data_Dissemination_080717_081317_Weekly.zip": {
+      "processed_at": "2026-08-24T11:07:47.862371",
+      "record_count": 6617
+    },
     "NPPES_Data_Dissemination_080723_081323_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:38.476094",
+      "processed_at": "2026-08-24T11:07:49.880540",
       "record_count": 11054
     },
+    "NPPES_Data_Dissemination_080816_081416_Weekly.zip": {
+      "processed_at": "2026-08-24T11:07:51.007471",
+      "record_count": 6274
+    },
     "NPPES_Data_Dissemination_080822_081422_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:40.432955",
+      "processed_at": "2026-08-24T11:07:52.777861",
       "record_count": 10309
     },
     "NPPES_Data_Dissemination_080921_081521_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:42.164242",
+      "processed_at": "2026-08-24T11:07:54.306449",
       "record_count": 9109
     },
+    "NPPES_Data_Dissemination_081015_081615_Weekly.zip": {
+      "processed_at": "2026-08-24T11:07:55.390074",
+      "record_count": 6195
+    },
     "NPPES_Data_Dissemination_081020_081620_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:43.949069",
+      "processed_at": "2026-08-24T11:07:56.973692",
       "record_count": 9839
     },
+    "NPPES_Data_Dissemination_081026_081626_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:07:59.429508",
+      "record_count": 14392
+    },
     "NPPES_Data_Dissemination_081125_081725_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:46.488989",
+      "processed_at": "2026-08-24T11:08:01.794404",
       "record_count": 13278
     },
     "NPPES_Data_Dissemination_081219_081819_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:48.238008",
+      "processed_at": "2026-08-24T11:08:03.392558",
       "record_count": 8847
     },
     "NPPES_Data_Dissemination_081224_081824_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:50.509507",
+      "processed_at": "2026-08-24T11:08:05.578381",
       "record_count": 11825
     },
+    "NPPES_Data_Dissemination_081318_081918_Weekly.zip": {
+      "processed_at": "2026-08-24T11:08:06.982596",
+      "record_count": 9216
+    },
+    "NPPES_Data_Dissemination_081417_082017_Weekly.zip": {
+      "processed_at": "2026-08-24T11:08:08.069673",
+      "record_count": 7714
+    },
     "NPPES_Data_Dissemination_081423_082023_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:52.645617",
+      "processed_at": "2026-08-24T11:08:10.111822",
       "record_count": 11541
     },
+    "NPPES_Data_Dissemination_081516_082116_Weekly.zip": {
+      "processed_at": "2026-08-24T11:08:11.245228",
+      "record_count": 6499
+    },
     "NPPES_Data_Dissemination_081522_082122_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:54.465923",
+      "processed_at": "2026-08-24T11:08:12.896924",
       "record_count": 9092
     },
     "NPPES_Data_Dissemination_081621_082221_Weekly.zip": {
-      "processed_at": "2026-02-16T13:55:56.428995",
+      "processed_at": "2026-08-24T11:08:14.877571",
       "record_count": 10517
     },
+    "NPPES_Data_Dissemination_081715_082315_Weekly.zip": {
+      "processed_at": "2026-08-24T11:08:15.919859",
+      "record_count": 6293
+    },
     "NPPES_Data_Dissemination_081720_082320_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:09.918863",
+      "processed_at": "2026-08-24T11:08:28.298321",
       "record_count": 9994
     },
+    "NPPES_Data_Dissemination_081726_082326_Weekly_V2.zip": {
+      "processed_at": "2026-08-24T11:08:30.784649",
+      "record_count": 15007
+    },
     "NPPES_Data_Dissemination_081825_082425_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:12.506789",
+      "processed_at": "2026-08-24T11:08:33.070351",
       "record_count": 13276
     },
     "NPPES_Data_Dissemination_081919_082519_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:14.125990",
+      "processed_at": "2026-08-24T11:08:34.471088",
       "record_count": 8775
     },
     "NPPES_Data_Dissemination_081924_082524_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:16.316185",
+      "processed_at": "2026-08-24T11:08:36.421989",
       "record_count": 11873
     },
+    "NPPES_Data_Dissemination_082018_082618_Weekly.zip": {
+      "processed_at": "2026-08-24T11:08:37.735438",
+      "record_count": 9288
+    },
+    "NPPES_Data_Dissemination_082117_082717_Weekly.zip": {
+      "processed_at": "2026-08-24T11:08:38.898712",
+      "record_count": 8082
+    },
     "NPPES_Data_Dissemination_082123_082723_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:18.457102",
+      "processed_at": "2026-08-24T11:08:40.804096",
       "record_count": 11145
     },
+    "NPPES_Data_Dissemination_082216_082816_Weekly.zip": {
+      "processed_at": "2026-08-24T11:08:42.164676",
+      "record_count": 8059
+    },
     "NPPES_Data_Dissemination_082222_082822_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:20.563309",
+      "processed_at": "2026-08-24T11:08:43.900771",
       "record_count": 10575
     },
     "NPPES_Data_Dissemination_082321_082921_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:22.415008",
+      "processed_at": "2026-08-24T11:08:45.522980",
       "record_count": 10184
     },
+    "NPPES_Data_Dissemination_082415_083015_Weekly.zip": {
+      "processed_at": "2026-08-24T11:08:46.597294",
+      "record_count": 6457
+    },
     "NPPES_Data_Dissemination_082420_083020_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:24.118167",
+      "processed_at": "2026-08-24T11:08:48.128233",
       "record_count": 9637
     },
     "NPPES_Data_Dissemination_082525_083125_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:26.603714",
+      "processed_at": "2026-08-24T11:08:50.292955",
       "record_count": 13107
     },
     "NPPES_Data_Dissemination_082619_090119_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:28.096400",
+      "processed_at": "2026-08-24T11:08:51.614186",
       "record_count": 8666
     },
     "NPPES_Data_Dissemination_082624_090124_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:30.828221",
+      "processed_at": "2026-08-24T11:08:53.598805",
       "record_count": 11209
     },
+    "NPPES_Data_Dissemination_082718_090218_Weekly.zip": {
+      "processed_at": "2026-08-24T11:08:54.861348",
+      "record_count": 8949
+    },
+    "NPPES_Data_Dissemination_082817_090317_Weekly.zip": {
+      "processed_at": "2026-08-24T11:08:55.959916",
+      "record_count": 7596
+    },
     "NPPES_Data_Dissemination_082823_090323_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:33.601663",
+      "processed_at": "2026-08-24T11:08:57.857439",
       "record_count": 10489
     },
+    "NPPES_Data_Dissemination_082916_090416_Weekly.zip": {
+      "processed_at": "2026-08-24T11:08:59.321846",
+      "record_count": 9809
+    },
     "NPPES_Data_Dissemination_082922_090422_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:36.078483",
+      "processed_at": "2026-08-24T11:09:01.005289",
       "record_count": 10585
     },
     "NPPES_Data_Dissemination_083021_090521_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:38.032276",
+      "processed_at": "2026-08-24T11:09:02.636832",
       "record_count": 10330
     },
+    "NPPES_Data_Dissemination_083115_090615_Weekly.zip": {
+      "processed_at": "2026-08-24T11:09:03.711876",
+      "record_count": 6129
+    },
     "NPPES_Data_Dissemination_083120_090620_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:40.043024",
+      "processed_at": "2026-08-24T11:09:05.458179",
       "record_count": 8909
     },
     "NPPES_Data_Dissemination_090125_090725_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:42.429078",
+      "processed_at": "2026-08-24T11:09:07.455317",
       "record_count": 11290
     },
     "NPPES_Data_Dissemination_090219_090819_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:44.155994",
+      "processed_at": "2026-08-24T11:09:08.796823",
       "record_count": 7436
     },
     "NPPES_Data_Dissemination_090224_090824_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:46.197306",
+      "processed_at": "2026-08-24T11:09:10.539259",
       "record_count": 10060
     },
+    "NPPES_Data_Dissemination_090318_090918_Weekly.zip": {
+      "processed_at": "2026-08-24T11:09:11.613458",
+      "record_count": 7420
+    },
+    "NPPES_Data_Dissemination_090417_091017_Weekly.zip": {
+      "processed_at": "2026-08-24T11:09:12.539348",
+      "record_count": 6010
+    },
     "NPPES_Data_Dissemination_090423_091023_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:48.720143",
+      "processed_at": "2026-08-24T11:09:14.294620",
       "record_count": 9218
     },
+    "NPPES_Data_Dissemination_090516_091116_Weekly.zip": {
+      "processed_at": "2026-08-24T11:09:15.360021",
+      "record_count": 6367
+    },
     "NPPES_Data_Dissemination_090522_091122_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:50.296263",
+      "processed_at": "2026-08-24T11:09:16.747357",
       "record_count": 8416
     },
     "NPPES_Data_Dissemination_090621_091221_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:52.080886",
+      "processed_at": "2026-08-24T11:09:18.260588",
       "record_count": 8686
     },
     "NPPES_Data_Dissemination_090720_091320_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:53.686065",
+      "processed_at": "2026-08-24T11:09:19.659801",
       "record_count": 8099
     },
     "NPPES_Data_Dissemination_090825_091425_Weekly.zip": {
-      "processed_at": "2026-02-16T13:56:59.640185",
+      "processed_at": "2026-08-24T11:09:24.815746",
       "record_count": 13392
     },
     "NPPES_Data_Dissemination_090919_091519_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:01.300418",
+      "processed_at": "2026-08-24T11:09:26.193211",
       "record_count": 8516
     },
     "NPPES_Data_Dissemination_090924_091524_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:03.618834",
+      "processed_at": "2026-08-24T11:09:28.272177",
       "record_count": 11470
     },
+    "NPPES_Data_Dissemination_091018_091618_Weekly.zip": {
+      "processed_at": "2026-08-24T11:09:29.567502",
+      "record_count": 8039
+    },
+    "NPPES_Data_Dissemination_091117_091717_Weekly.zip": {
+      "processed_at": "2026-08-24T11:09:30.677586",
+      "record_count": 6958
+    },
     "NPPES_Data_Dissemination_091123_091723_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:05.683183",
+      "processed_at": "2026-08-24T11:09:32.666832",
       "record_count": 10501
     },
+    "NPPES_Data_Dissemination_091216_091816_Weekly.zip": {
+      "processed_at": "2026-08-24T11:09:33.906300",
+      "record_count": 6482
+    },
     "NPPES_Data_Dissemination_091222_091822_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:07.468006",
+      "processed_at": "2026-08-24T11:09:35.475339",
       "record_count": 9431
     },
     "NPPES_Data_Dissemination_091321_091921_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:09.408374",
+      "processed_at": "2026-08-24T11:09:37.190131",
       "record_count": 9706
     },
+    "NPPES_Data_Dissemination_091415_092015_Weekly.zip": {
+      "processed_at": "2026-08-24T11:09:38.321792",
+      "record_count": 6814
+    },
     "NPPES_Data_Dissemination_091420_092020_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:11.163453",
+      "processed_at": "2026-08-24T11:09:39.821097",
       "record_count": 9042
     },
     "NPPES_Data_Dissemination_091525_092125_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:13.778544",
+      "processed_at": "2026-08-24T11:09:42.098522",
       "record_count": 12828
     },
     "NPPES_Data_Dissemination_091619_092219_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:15.512076",
+      "processed_at": "2026-08-24T11:09:43.590211",
       "record_count": 8181
     },
     "NPPES_Data_Dissemination_091624_092224_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:17.777720",
+      "processed_at": "2026-08-24T11:09:45.653115",
       "record_count": 11032
     },
+    "NPPES_Data_Dissemination_091718_092318_Weekly.zip": {
+      "processed_at": "2026-08-24T11:09:47.017606",
+      "record_count": 7869
+    },
+    "NPPES_Data_Dissemination_091817_092417_Weekly.zip": {
+      "processed_at": "2026-08-24T11:09:47.998491",
+      "record_count": 6422
+    },
     "NPPES_Data_Dissemination_091823_092423_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:19.786078",
+      "processed_at": "2026-08-24T11:09:49.742355",
       "record_count": 10181
     },
+    "NPPES_Data_Dissemination_091916_092516_Weekly.zip": {
+      "processed_at": "2026-08-24T11:09:50.865147",
+      "record_count": 6502
+    },
     "NPPES_Data_Dissemination_091922_092522_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:21.638770",
+      "processed_at": "2026-08-24T11:09:52.482694",
       "record_count": 9660
     },
     "NPPES_Data_Dissemination_092021_092621_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:23.530843",
+      "processed_at": "2026-08-24T11:09:54.142386",
       "record_count": 9555
     },
+    "NPPES_Data_Dissemination_092115_092715_Weekly.zip": {
+      "processed_at": "2026-08-24T11:09:55.166660",
+      "record_count": 5922
+    },
     "NPPES_Data_Dissemination_092120_092720_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:25.489553",
+      "processed_at": "2026-08-24T11:09:56.836604",
       "record_count": 9240
     },
     "NPPES_Data_Dissemination_092225_092825_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:27.933120",
+      "processed_at": "2026-08-24T11:09:58.944743",
       "record_count": 12324
     },
     "NPPES_Data_Dissemination_092319_092919_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:29.487905",
+      "processed_at": "2026-08-24T11:10:00.235694",
       "record_count": 8324
     },
     "NPPES_Data_Dissemination_092324_092924_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:31.735772",
+      "processed_at": "2026-08-24T11:10:02.115979",
       "record_count": 10734
     },
+    "NPPES_Data_Dissemination_092418_093018_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:03.342016",
+      "record_count": 7804
+    },
+    "NPPES_Data_Dissemination_092517_100117_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:04.308544",
+      "record_count": 6104
+    },
     "NPPES_Data_Dissemination_092523_100123_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:33.717343",
+      "processed_at": "2026-08-24T11:10:06.040169",
       "record_count": 9577
     },
+    "NPPES_Data_Dissemination_092616_100216_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:07.025116",
+      "record_count": 5498
+    },
     "NPPES_Data_Dissemination_092622_100222_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:35.471236",
+      "processed_at": "2026-08-24T11:10:08.559099",
       "record_count": 8960
     },
     "NPPES_Data_Dissemination_092721_100321_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:37.320613",
+      "processed_at": "2026-08-24T11:10:10.157579",
       "record_count": 9022
     },
+    "NPPES_Data_Dissemination_092815_100415_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:11.241381",
+      "record_count": 5843
+    },
     "NPPES_Data_Dissemination_092820_100420_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:39.138182",
+      "processed_at": "2026-08-24T11:10:12.811065",
       "record_count": 8635
     },
     "NPPES_Data_Dissemination_092925_100525_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:41.540002",
+      "processed_at": "2026-08-24T11:10:14.880018",
       "record_count": 11797
     },
     "NPPES_Data_Dissemination_093019_100619_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:43.151099",
+      "processed_at": "2026-08-24T11:10:16.257029",
       "record_count": 7612
     },
     "NPPES_Data_Dissemination_093024_100624_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:45.240207",
+      "processed_at": "2026-08-24T11:10:18.012123",
       "record_count": 9648
     },
+    "NPPES_Data_Dissemination_100118_100718_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:19.261855",
+      "record_count": 7268
+    },
+    "NPPES_Data_Dissemination_100217_100817_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:20.188292",
+      "record_count": 6205
+    },
     "NPPES_Data_Dissemination_100223_100823_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:47.235410",
+      "processed_at": "2026-08-24T11:10:21.904657",
       "record_count": 9579
     },
+    "NPPES_Data_Dissemination_100316_100916_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:23.027423",
+      "record_count": 6262
+    },
     "NPPES_Data_Dissemination_100322_100922_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:49.102297",
+      "processed_at": "2026-08-24T11:10:24.604710",
       "record_count": 9021
     },
     "NPPES_Data_Dissemination_100421_101021_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:50.722831",
+      "processed_at": "2026-08-24T11:10:25.983631",
       "record_count": 8712
     },
     "NPPES_Data_Dissemination_100520_101120_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:52.541009",
+      "processed_at": "2026-08-24T11:10:27.568691",
       "record_count": 8431
     },
     "NPPES_Data_Dissemination_100625_101225_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:54.964411",
+      "processed_at": "2026-08-24T11:10:29.903072",
       "record_count": 11779
     },
     "NPPES_Data_Dissemination_100719_101319_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:56.399482",
+      "processed_at": "2026-08-24T11:10:31.154963",
       "record_count": 7533
     },
     "NPPES_Data_Dissemination_100724_101324_Weekly.zip": {
-      "processed_at": "2026-02-16T13:57:58.499435",
+      "processed_at": "2026-08-24T11:10:32.971191",
       "record_count": 10167
     },
+    "NPPES_Data_Dissemination_100818_101418_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:34.035206",
+      "record_count": 6897
+    },
+    "NPPES_Data_Dissemination_100917_101517_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:34.490773",
+      "record_count": 5604
+    },
     "NPPES_Data_Dissemination_100923_101523_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:00.444742",
+      "processed_at": "2026-08-24T11:10:36.206461",
       "record_count": 8945
     },
+    "NPPES_Data_Dissemination_101016_101616_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:37.306163",
+      "record_count": 6538
+    },
     "NPPES_Data_Dissemination_101022_101622_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:02.080582",
+      "processed_at": "2026-08-24T11:10:38.722633",
       "record_count": 8490
     },
     "NPPES_Data_Dissemination_101121_101721_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:03.540024",
+      "processed_at": "2026-08-24T11:10:39.970227",
       "record_count": 8011
     },
+    "NPPES_Data_Dissemination_101215_101815_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:40.948595",
+      "record_count": 5635
+    },
     "NPPES_Data_Dissemination_101220_101820_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:05.491734",
+      "processed_at": "2026-08-24T11:10:42.630028",
       "record_count": 8791
     },
     "NPPES_Data_Dissemination_101325_101925_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:08.143878",
+      "processed_at": "2026-08-24T11:10:44.592336",
       "record_count": 10623
     },
     "NPPES_Data_Dissemination_101419_102019_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:09.687754",
+      "processed_at": "2026-08-24T11:10:45.860851",
       "record_count": 6526
     },
     "NPPES_Data_Dissemination_101424_102024_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:11.765153",
+      "processed_at": "2026-08-24T11:10:47.598324",
       "record_count": 9620
     },
+    "NPPES_Data_Dissemination_101518_102118_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:48.818866",
+      "record_count": 6667
+    },
+    "NPPES_Data_Dissemination_101617_102217_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:49.702696",
+      "record_count": 5940
+    },
     "NPPES_Data_Dissemination_101623_102223_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:14.053885",
+      "processed_at": "2026-08-24T11:10:51.432478",
       "record_count": 9167
     },
+    "NPPES_Data_Dissemination_101716_102316_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:52.619134",
+      "record_count": 7197
+    },
     "NPPES_Data_Dissemination_101722_102322_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:15.883550",
+      "processed_at": "2026-08-24T11:10:54.098331",
       "record_count": 8556
     },
     "NPPES_Data_Dissemination_101821_102421_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:17.526413",
+      "processed_at": "2026-08-24T11:10:55.481710",
       "record_count": 8423
     },
+    "NPPES_Data_Dissemination_101915_102515_Weekly.zip": {
+      "processed_at": "2026-08-24T11:10:56.553293",
+      "record_count": 5795
+    },
     "NPPES_Data_Dissemination_101920_102520_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:19.632620",
+      "processed_at": "2026-08-24T11:10:58.303143",
       "record_count": 8719
     },
     "NPPES_Data_Dissemination_102025_102625_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:22.203974",
+      "processed_at": "2026-08-24T11:11:00.480605",
       "record_count": 11406
     },
     "NPPES_Data_Dissemination_102119_102719_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:23.583806",
+      "processed_at": "2026-08-24T11:11:01.663265",
       "record_count": 7115
     },
     "NPPES_Data_Dissemination_102124_102724_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:25.507840",
+      "processed_at": "2026-08-24T11:11:03.431229",
       "record_count": 8650
     },
+    "NPPES_Data_Dissemination_102218_102818_Weekly.zip": {
+      "processed_at": "2026-08-24T11:11:04.754851",
+      "record_count": 7323
+    },
+    "NPPES_Data_Dissemination_102317_102917_Weekly.zip": {
+      "processed_at": "2026-08-24T11:11:05.663172",
+      "record_count": 5881
+    },
     "NPPES_Data_Dissemination_102323_102923_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:27.498067",
+      "processed_at": "2026-08-24T11:11:07.354729",
       "record_count": 8934
     },
+    "NPPES_Data_Dissemination_102416_103016_Weekly.zip": {
+      "processed_at": "2026-08-24T11:11:08.488171",
+      "record_count": 6749
+    },
     "NPPES_Data_Dissemination_102422_103022_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:29.367742",
+      "processed_at": "2026-08-24T11:11:10.096136",
       "record_count": 8467
     },
     "NPPES_Data_Dissemination_102521_103121_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:30.916985",
+      "processed_at": "2026-08-24T11:11:11.433900",
       "record_count": 8324
     },
+    "NPPES_Data_Dissemination_102615_110115_Weekly.zip": {
+      "processed_at": "2026-08-24T11:11:12.492182",
+      "record_count": 5799
+    },
     "NPPES_Data_Dissemination_102620_110120_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:32.930029",
+      "processed_at": "2026-08-24T11:11:14.322084",
       "record_count": 10076
     },
     "NPPES_Data_Dissemination_102725_110225_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:35.133114",
+      "processed_at": "2026-08-24T11:11:16.242890",
       "record_count": 11026
     },
     "NPPES_Data_Dissemination_102819_110319_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:36.459157",
+      "processed_at": "2026-08-24T11:11:17.553562",
       "record_count": 6984
     },
     "NPPES_Data_Dissemination_102824_110324_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:38.528004",
+      "processed_at": "2026-08-24T11:11:19.792596",
       "record_count": 9999
     },
+    "NPPES_Data_Dissemination_102918_110418_Weekly.zip": {
+      "processed_at": "2026-08-24T11:11:21.050951",
+      "record_count": 7050
+    },
+    "NPPES_Data_Dissemination_103017_110517_Weekly.zip": {
+      "processed_at": "2026-08-24T11:11:22.149778",
+      "record_count": 5867
+    },
     "NPPES_Data_Dissemination_103023_110523_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:40.581015",
+      "processed_at": "2026-08-24T11:11:24.343397",
       "record_count": 8469
     },
+    "NPPES_Data_Dissemination_103116_110616_Weekly.zip": {
+      "processed_at": "2026-08-24T11:11:25.644261",
+      "record_count": 5406
+    },
     "NPPES_Data_Dissemination_103122_110622_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:42.173467",
+      "processed_at": "2026-08-24T11:11:27.504190",
       "record_count": 8154
     },
     "NPPES_Data_Dissemination_110121_110721_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:43.814345",
+      "processed_at": "2026-08-24T11:11:29.263596",
       "record_count": 8065
     },
+    "NPPES_Data_Dissemination_110215_110815_Weekly.zip": {
+      "processed_at": "2026-08-24T11:11:30.521814",
+      "record_count": 5672
+    },
     "NPPES_Data_Dissemination_110220_110820_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:45.514841",
+      "processed_at": "2026-08-24T11:11:32.378605",
       "record_count": 9688
     },
     "NPPES_Data_Dissemination_110325_110925_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:48.055518",
+      "processed_at": "2026-08-24T11:11:34.894950",
       "record_count": 11507
     },
     "NPPES_Data_Dissemination_110419_111019_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:49.611488",
+      "processed_at": "2026-08-24T11:11:36.518211",
       "record_count": 7100
     },
     "NPPES_Data_Dissemination_110424_111024_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:51.640344",
+      "processed_at": "2026-08-24T11:11:38.757172",
       "record_count": 10011
     },
+    "NPPES_Data_Dissemination_110518_111118_Weekly.zip": {
+      "processed_at": "2026-08-24T11:11:40.237065",
+      "record_count": 7004
+    },
+    "NPPES_Data_Dissemination_110617_111217_Weekly.zip": {
+      "processed_at": "2026-08-24T11:11:41.291925",
+      "record_count": 5764
+    },
     "NPPES_Data_Dissemination_110623_111223_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:53.571805",
+      "processed_at": "2026-08-24T11:11:43.403635",
       "record_count": 8762
     },
+    "NPPES_Data_Dissemination_110716_111316_Weekly.zip": {
+      "processed_at": "2026-08-24T11:11:44.648652",
+      "record_count": 5250
+    },
     "NPPES_Data_Dissemination_110722_111322_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:55.126238",
+      "processed_at": "2026-08-24T11:11:46.363300",
       "record_count": 7831
     },
     "NPPES_Data_Dissemination_110821_111421_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:57.149014",
+      "processed_at": "2026-08-24T11:11:48.379628",
       "record_count": 8281
     },
+    "NPPES_Data_Dissemination_110915_111515_Weekly.zip": {
+      "processed_at": "2026-08-24T11:11:49.578418",
+      "record_count": 4761
+    },
     "NPPES_Data_Dissemination_110920_111520_Weekly.zip": {
-      "processed_at": "2026-02-16T13:58:58.884341",
+      "processed_at": "2026-08-24T11:11:51.478897",
       "record_count": 8934
     },
     "NPPES_Data_Dissemination_111025_111625_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:01.157073",
+      "processed_at": "2026-08-24T11:11:53.964834",
       "record_count": 11037
     },
     "NPPES_Data_Dissemination_111119_111719_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:02.391518",
+      "processed_at": "2026-08-24T11:11:55.310680",
       "record_count": 6529
     },
     "NPPES_Data_Dissemination_111124_111724_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:04.383083",
+      "processed_at": "2026-08-24T11:11:57.459757",
       "record_count": 9284
     },
+    "NPPES_Data_Dissemination_111218_111818_Weekly.zip": {
+      "processed_at": "2026-08-24T11:11:58.703608",
+      "record_count": 6610
+    },
+    "NPPES_Data_Dissemination_111317_111917_Weekly.zip": {
+      "processed_at": "2026-08-24T11:11:59.906312",
+      "record_count": 5982
+    },
     "NPPES_Data_Dissemination_111323_111923_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:06.221936",
+      "processed_at": "2026-08-24T11:12:01.853392",
       "record_count": 8350
     },
+    "NPPES_Data_Dissemination_111416_112016_Weekly.zip": {
+      "processed_at": "2026-08-24T11:12:03.343602",
+      "record_count": 5141
+    },
     "NPPES_Data_Dissemination_111422_112022_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:07.924390",
+      "processed_at": "2026-08-24T11:12:05.228582",
       "record_count": 8051
     },
     "NPPES_Data_Dissemination_111521_112121_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:09.706154",
+      "processed_at": "2026-08-24T11:12:07.118309",
       "record_count": 7569
     },
+    "NPPES_Data_Dissemination_111615_112215_Weekly.zip": {
+      "processed_at": "2026-08-24T11:12:08.337870",
+      "record_count": 5324
+    },
     "NPPES_Data_Dissemination_111620_112220_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:11.677339",
+      "processed_at": "2026-08-24T11:12:10.475342",
       "record_count": 11758
     },
     "NPPES_Data_Dissemination_111725_112325_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:14.205720",
+      "processed_at": "2026-08-24T11:12:13.060741",
       "record_count": 11440
     },
     "NPPES_Data_Dissemination_111819_112419_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:16.272203",
+      "processed_at": "2026-08-24T11:12:14.723101",
       "record_count": 6939
     },
     "NPPES_Data_Dissemination_111824_112424_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:18.773291",
+      "processed_at": "2026-08-24T11:12:16.941421",
       "record_count": 9330
     },
+    "NPPES_Data_Dissemination_111918_112518_Weekly.zip": {
+      "processed_at": "2026-08-24T11:12:17.775003",
+      "record_count": 4420
+    },
+    "NPPES_Data_Dissemination_112017_112617_Weekly.zip": {
+      "processed_at": "2026-08-24T11:12:18.411027",
+      "record_count": 3320
+    },
     "NPPES_Data_Dissemination_112023_112623_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:20.023480",
+      "processed_at": "2026-08-24T11:12:19.649601",
       "record_count": 5610
     },
+    "NPPES_Data_Dissemination_112116_112716_Weekly.zip": {
+      "processed_at": "2026-08-24T11:12:20.506802",
+      "record_count": 3473
+    },
     "NPPES_Data_Dissemination_112122_112722_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:21.119415",
+      "processed_at": "2026-08-24T11:12:21.579954",
       "record_count": 5085
     },
     "NPPES_Data_Dissemination_112221_112821_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:22.614573",
+      "processed_at": "2026-08-24T11:12:22.789634",
       "record_count": 4837
     },
+    "NPPES_Data_Dissemination_112315_112915_Weekly.zip": {
+      "processed_at": "2026-08-24T11:12:23.532802",
+      "record_count": 2944
+    },
     "NPPES_Data_Dissemination_112320_112920_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:24.772627",
+      "processed_at": "2026-08-24T11:12:24.910181",
       "record_count": 7812
     },
     "NPPES_Data_Dissemination_112425_113025_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:26.666217",
+      "processed_at": "2026-08-24T11:12:26.464587",
       "record_count": 7100
     },
     "NPPES_Data_Dissemination_112519_120119_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:27.642510",
+      "processed_at": "2026-08-24T11:12:27.267708",
       "record_count": 4264
     },
     "NPPES_Data_Dissemination_112524_120124_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:29.045481",
+      "processed_at": "2026-08-24T11:12:28.457412",
       "record_count": 5902
     },
+    "NPPES_Data_Dissemination_112618_120218_Weekly.zip": {
+      "processed_at": "2026-08-24T11:12:29.800999",
+      "record_count": 7245
+    },
+    "NPPES_Data_Dissemination_112717_120317_Weekly.zip": {
+      "processed_at": "2026-08-24T11:12:30.885370",
+      "record_count": 5562
+    },
     "NPPES_Data_Dissemination_112723_120323_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:31.559237",
+      "processed_at": "2026-08-24T11:12:33.553227",
       "record_count": 8931
     },
+    "NPPES_Data_Dissemination_112816_120416_Weekly.zip": {
+      "processed_at": "2026-08-24T11:12:34.937741",
+      "record_count": 5435
+    },
     "NPPES_Data_Dissemination_112822_120422_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:33.124874",
+      "processed_at": "2026-08-24T11:12:36.568085",
       "record_count": 7660
     },
     "NPPES_Data_Dissemination_112921_120521_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:35.545607",
+      "processed_at": "2026-08-24T11:12:38.988665",
       "record_count": 7553
     },
+    "NPPES_Data_Dissemination_113015_120615_Weekly.zip": {
+      "processed_at": "2026-08-24T11:12:40.167132",
+      "record_count": 4928
+    },
     "NPPES_Data_Dissemination_113020_120620_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:38.826396",
+      "processed_at": "2026-08-24T11:12:42.712563",
       "record_count": 12943
     },
     "NPPES_Data_Dissemination_120125_120725_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:41.157561",
+      "processed_at": "2026-08-24T11:12:45.046402",
       "record_count": 10672
     },
     "NPPES_Data_Dissemination_120219_120819_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:42.749121",
+      "processed_at": "2026-08-24T11:12:46.682704",
       "record_count": 6444
     },
     "NPPES_Data_Dissemination_120224_120824_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:45.072243",
+      "processed_at": "2026-08-24T11:12:48.654360",
       "record_count": 9075
     },
+    "NPPES_Data_Dissemination_120318_120918_Weekly.zip": {
+      "processed_at": "2026-08-24T11:12:49.886291",
+      "record_count": 6289
+    },
+    "NPPES_Data_Dissemination_120417_121017_Weekly.zip": {
+      "processed_at": "2026-08-24T11:12:50.950249",
+      "record_count": 5690
+    },
     "NPPES_Data_Dissemination_120423_121023_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:47.266877",
+      "processed_at": "2026-08-24T11:12:52.950971",
       "record_count": 8763
     },
+    "NPPES_Data_Dissemination_120516_121116_Weekly.zip": {
+      "processed_at": "2026-08-24T11:12:54.285728",
+      "record_count": 4775
+    },
     "NPPES_Data_Dissemination_120522_121122_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:48.921699",
+      "processed_at": "2026-08-24T11:12:56.037368",
       "record_count": 8022
     },
     "NPPES_Data_Dissemination_120621_121221_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:50.732083",
+      "processed_at": "2026-08-24T11:12:58.014476",
       "record_count": 7538
     },
+    "NPPES_Data_Dissemination_120715_121315_Weekly.zip": {
+      "processed_at": "2026-08-24T11:12:59.153514",
+      "record_count": 5081
+    },
     "NPPES_Data_Dissemination_120720_121320_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:52.549498",
+      "processed_at": "2026-08-24T11:13:01.142206",
       "record_count": 9913
     },
     "NPPES_Data_Dissemination_120825_121425_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:54.721714",
+      "processed_at": "2026-08-24T11:13:03.514758",
       "record_count": 10571
     },
     "NPPES_Data_Dissemination_120919_121519_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:56.027376",
+      "processed_at": "2026-08-24T11:13:04.903359",
       "record_count": 6599
     },
     "NPPES_Data_Dissemination_120924_121524_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:57.945070",
+      "processed_at": "2026-08-24T11:13:07.009312",
       "record_count": 9138
     },
+    "NPPES_Data_Dissemination_121018_121618_Weekly.zip": {
+      "processed_at": "2026-08-24T11:13:08.376533",
+      "record_count": 5100
+    },
+    "NPPES_Data_Dissemination_121117_121717_Weekly.zip": {
+      "processed_at": "2026-08-24T11:13:09.520857",
+      "record_count": 5547
+    },
     "NPPES_Data_Dissemination_121123_121723_Weekly.zip": {
-      "processed_at": "2026-02-16T13:59:59.618668",
+      "processed_at": "2026-08-24T11:13:11.407266",
       "record_count": 8159
     },
+    "NPPES_Data_Dissemination_121216_121816_Weekly.zip": {
+      "processed_at": "2026-08-24T11:13:12.669046",
+      "record_count": 4487
+    },
     "NPPES_Data_Dissemination_121222_121822_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:01.084386",
+      "processed_at": "2026-08-24T11:13:14.374132",
       "record_count": 7146
     },
     "NPPES_Data_Dissemination_121321_121921_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:02.878832",
+      "processed_at": "2026-08-24T11:13:16.296334",
       "record_count": 6569
     },
+    "NPPES_Data_Dissemination_121415_122015_Weekly.zip": {
+      "processed_at": "2026-08-24T11:13:17.546186",
+      "record_count": 4565
+    },
     "NPPES_Data_Dissemination_121420_122020_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:04.373266",
+      "processed_at": "2026-08-24T11:13:19.242865",
       "record_count": 7888
     },
     "NPPES_Data_Dissemination_121525_122125_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:06.401887",
+      "processed_at": "2026-08-24T11:13:21.476166",
       "record_count": 10010
     },
     "NPPES_Data_Dissemination_121619_122219_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:07.882235",
+      "processed_at": "2026-08-24T11:13:23.025218",
       "record_count": 6142
     },
     "NPPES_Data_Dissemination_121624_122224_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:09.756463",
+      "processed_at": "2026-08-24T11:13:25.019416",
       "record_count": 9151
     },
+    "NPPES_Data_Dissemination_121718_122318_Weekly.zip": {
+      "processed_at": "2026-08-24T11:13:26.066358",
+      "record_count": 7067
+    },
+    "NPPES_Data_Dissemination_121817_122417_Weekly.zip": {
+      "processed_at": "2026-08-24T11:13:26.983544",
+      "record_count": 5325
+    },
     "NPPES_Data_Dissemination_121823_122423_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:11.568810",
+      "processed_at": "2026-08-24T11:13:28.884854",
       "record_count": 7739
     },
+    "NPPES_Data_Dissemination_121916_122516_Weekly.zip": {
+      "processed_at": "2026-08-24T11:13:29.756854",
+      "record_count": 3880
+    },
     "NPPES_Data_Dissemination_121922_122522_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:12.887645",
+      "processed_at": "2026-08-24T11:13:30.928979",
       "record_count": 6130
     },
     "NPPES_Data_Dissemination_122021_122621_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:14.178913",
+      "processed_at": "2026-08-24T11:13:32.084093",
       "record_count": 5007
     },
+    "NPPES_Data_Dissemination_122115_122715_Weekly.zip": {
+      "processed_at": "2026-08-24T11:13:32.808269",
+      "record_count": 2944
+    },
     "NPPES_Data_Dissemination_122120_122720_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:15.327664",
+      "processed_at": "2026-08-24T11:13:33.887389",
       "record_count": 5567
     },
     "NPPES_Data_Dissemination_122225_122825_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:16.433198",
+      "processed_at": "2026-08-24T11:13:34.885793",
       "record_count": 5398
     },
     "NPPES_Data_Dissemination_122319_122919_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:17.076791",
+      "processed_at": "2026-08-24T11:13:35.448873",
       "record_count": 3283
     },
     "NPPES_Data_Dissemination_122324_122924_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:18.038993",
+      "processed_at": "2026-08-24T11:13:36.288470",
       "record_count": 4569
     },
+    "NPPES_Data_Dissemination_122418_123018_Weekly.zip": {
+      "processed_at": "2026-08-24T11:13:36.836014",
+      "record_count": 3259
+    },
+    "NPPES_Data_Dissemination_122517_123117_Weekly.zip": {
+      "processed_at": "2026-08-24T11:13:37.403507",
+      "record_count": 4002
+    },
     "NPPES_Data_Dissemination_122523_123123_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:19.190645",
+      "processed_at": "2026-08-24T11:13:38.404064",
       "record_count": 5310
     },
+    "NPPES_Data_Dissemination_122616_010117_Weekly.zip": {
+      "processed_at": "2026-08-24T11:13:39.062795",
+      "record_count": 3133
+    },
     "NPPES_Data_Dissemination_122622_010123_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:20.204834",
+      "processed_at": "2026-08-24T11:13:39.951272",
       "record_count": 4814
     },
     "NPPES_Data_Dissemination_122721_010222_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:21.450005",
+      "processed_at": "2026-08-24T11:13:41.050903",
       "record_count": 5167
     },
+    "NPPES_Data_Dissemination_122815_010316_Weekly.zip": {
+      "processed_at": "2026-08-24T11:13:41.860458",
+      "record_count": 3998
+    },
     "NPPES_Data_Dissemination_122820_010321_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:22.840531",
+      "processed_at": "2026-08-24T11:13:43.093750",
       "record_count": 6459
     },
     "NPPES_Data_Dissemination_122925_010426_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:24.275747",
+      "processed_at": "2026-08-24T11:13:44.361273",
       "record_count": 6907
     },
     "NPPES_Data_Dissemination_123019_010520_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:25.468544",
+      "processed_at": "2026-08-24T11:13:45.402515",
       "record_count": 4748
     },
     "NPPES_Data_Dissemination_123024_010525_Weekly.zip": {
-      "processed_at": "2026-02-16T14:00:26.908540",
+      "processed_at": "2026-08-24T11:13:46.685625",
       "record_count": 7298
     },
-    "NPPES_Data_Dissemination_010526_011126_Weekly.zip": {
-      "processed_at": "2026-02-16T14:05:41.344524",
-      "record_count": 12042
-    },
-    "NPPES_Data_Dissemination_011226_011826_Weekly.zip": {
-      "processed_at": "2026-02-16T14:05:43.736920",
-      "record_count": 12102
-    },
-    "NPPES_Data_Dissemination_011926_012526_Weekly.zip": {
-      "processed_at": "2026-02-16T14:05:45.900680",
-      "record_count": 10840
-    },
-    "NPPES_Data_Dissemination_012626_020126_Weekly.zip": {
-      "processed_at": "2026-02-16T14:05:48.148741",
-      "record_count": 11727
-    },
-    "NPPES_Data_Dissemination_061019_061619_Weekly.zip": {
-      "processed_at": "2026-02-16T14:05:50.470929",
-      "record_count": 9287
-    },
-    "NPPES_Data_Dissemination_061719_062319_Weekly.zip": {
-      "processed_at": "2026-02-16T14:05:52.586454",
-      "record_count": 9165
-    },
-    "NPPES_Data_Dissemination_062419_063019_Weekly.zip": {
-      "processed_at": "2026-02-16T14:05:54.528385",
-      "record_count": 9408
-    },
-    "NPPES_Data_Dissemination_070119_070719_Weekly.zip": {
-      "processed_at": "2026-02-16T14:05:56.075841",
-      "record_count": 6680
-    },
-    "NPPES_Data_Dissemination_070819_071419_Weekly.zip": {
-      "processed_at": "2026-02-16T14:05:58.196763",
-      "record_count": 8772
-    },
-    "NPPES_Data_Dissemination_071519_072119_Weekly.zip": {
-      "processed_at": "2026-02-16T14:06:00.391081",
-      "record_count": 8591
+    "NPPES_Data_Dissemination_123118_010619_Weekly.zip": {
+      "processed_at": "2026-08-24T11:13:47.703873",
+      "record_count": 5357
     }
   },
-  "last_run": "2026-02-16T14:06:00.392077"
+  "last_run": "2026-08-24T11:13:47.753825"
 }

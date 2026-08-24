@@ -1,0 +1,222 @@
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: rgba(15, 23, 42, 0.6);
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-tertiary: #64748b;
+            --accent-color: #6366f1;
+            --input-bg: rgba(255, 255, 255, 0.05);
+            --input-border: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glow-from: #6366f1;
+            --glow-to: #06b6d4;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f1f5f9;
+            --bg-secondary: rgba(255, 255, 255, 0.8);
+            --bg-card: rgba(255, 255, 255, 0.6);
+            --border-color: rgba(15, 23, 42, 0.1);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            --accent-color: #6366f1;
+            --input-bg: rgba(255, 255, 255, 0.8);
+            --input-border: rgba(15, 23, 42, 0.15);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glow-from: #6366f1;
+            --glow-to: #06b6d4;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .glass-effect {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="light"] .glass-effect {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .gradient-border {
+            position: relative;
+        }
+
+        .gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 1.5rem;
+            padding: 1px;
+            background: linear-gradient(to bottom right, var(--border-color), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: var(--input-bg);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(135deg, var(--glow-from), var(--glow-to));
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle.active .theme-toggle-slider {
+            transform: translateX(30px);
+        }
+
+        .loader {
+            border-top-color: #6366f1;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes pulse-soft {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes phone-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(10deg);
+            }
+
+            50% {
+                transform: rotate(-10deg);
+            }
+
+            75% {
+                transform: rotate(10deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-pulse-icon {
+            animation: pulse-soft 3s ease-in-out infinite;
+        }
+
+        .animate-float-hover:hover svg {
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .phone-link:hover svg {
+            animation: phone-ring 0.5s ease-in-out;
+        }
+
+        .month-card {
+            transition: all 0.2s;
+        }
+
+        .month-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Cache progress bar */
+        #cacheProgressBar {
+            transition: width 0.4s ease;
+        }
+
+        .month-card.cached {
+            border-color: rgba(99, 102, 241, 0.4) !important;
+        }
+
+        .month-card.cached::after {
+            content: '✓';
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            font-size: 8px;
+            color: #6366f1;
+            font-weight: 900;
+        }
+
+        .month-card {
+            position: relative;
+        }
+
+        .card-active {
+            border-color: rgba(99, 102, 241, 0.6) !important;
+            background: rgba(99, 102, 241, 0.08) !important;
+            box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.3), 0 20px 50px rgba(99, 102, 241, 0.15) !important;
+        }
+
+        .card-active .npi-badge {
+            background: rgba(99, 102, 241, 0.1) !important;
+            color: rgb(165 180 252) !important;
+            border-color: rgba(99, 102, 241, 0.2) !important;
+        }

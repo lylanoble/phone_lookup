@@ -57,11 +57,233 @@
 
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.png" type="image/png">
-    <!-- CSS -->
-    <link rel="stylesheet" href="styles.css">
 
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: rgba(15, 23, 42, 0.6);
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-tertiary: #64748b;
+            --accent-color: #6366f1;
+            --input-bg: rgba(255, 255, 255, 0.05);
+            --input-border: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glow-from: #6366f1;
+            --glow-to: #06b6d4;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f1f5f9;
+            --bg-secondary: rgba(255, 255, 255, 0.8);
+            --bg-card: rgba(255, 255, 255, 0.6);
+            --border-color: rgba(15, 23, 42, 0.1);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            --accent-color: #6366f1;
+            --input-bg: rgba(255, 255, 255, 0.8);
+            --input-border: rgba(15, 23, 42, 0.15);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glow-from: #6366f1;
+            --glow-to: #06b6d4;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .glass-effect {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="light"] .glass-effect {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .gradient-border {
+            position: relative;
+        }
+
+        .gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 1.5rem;
+            padding: 1px;
+            background: linear-gradient(to bottom right, var(--border-color), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: var(--input-bg);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(135deg, var(--glow-from), var(--glow-to));
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle.active .theme-toggle-slider {
+            transform: translateX(30px);
+        }
+
+        .loader {
+            border-top-color: #6366f1;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes pulse-soft {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes phone-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(10deg);
+            }
+
+            50% {
+                transform: rotate(-10deg);
+            }
+
+            75% {
+                transform: rotate(10deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-pulse-icon {
+            animation: pulse-soft 3s ease-in-out infinite;
+        }
+
+        .animate-float-hover:hover svg {
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .phone-link:hover svg {
+            animation: phone-ring 0.5s ease-in-out;
+        }
+
+        .month-card {
+            transition: all 0.2s;
+        }
+
+        .month-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Index build progress bar */
+        #cacheProgressBar {
+            transition: width 0.4s ease;
+        }
+
+        .month-card.cached {
+            border-color: rgba(99, 102, 241, 0.4) !important;
+        }
+
+        .month-card.cached::after {
+            content: '✓';
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            font-size: 8px;
+            color: #6366f1;
+            font-weight: 900;
+        }
+
+        .month-card {
+            position: relative;
+        }
+
+        .card-active {
+            border-color: rgba(99, 102, 241, 0.6) !important;
+            background: rgba(99, 102, 241, 0.08) !important;
+            box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.3), 0 20px 50px rgba(99, 102, 241, 0.15) !important;
+        }
+
+        .card-active .npi-badge {
+            background: rgba(99, 102, 241, 0.1) !important;
+            color: rgb(165 180 252) !important;
+            border-color: rgba(99, 102, 241, 0.2) !important;
+        }
+    </style>
 </head>
 
 <body class="min-h-screen text-slate-200 p-4 md:p-16">
@@ -112,7 +334,7 @@
                         <label class="block text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3">Global
                             Phone / NPI Search</label>
                         <div class="relative group">
-                            <input type="text" id="phoneInput" placeholder="Enter NPI or Phone"
+                            <input type="text" id="phoneInput" placeholder="Enter NPI or Phone (start of number)"
                                 class="w-full pl-5 pr-32 py-4 rounded-2xl focus:border-indigo-500/50 outline-none transition-all text-base font-medium"
                                 style="background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-primary);">
                             <button id="execSearch"
@@ -192,15 +414,14 @@
                         <span id="statusText" class="text-sm font-bold text-indigo-300">Searching...</span>
                     </div>
                     <button id="stopBtn"
-                        class="text-xs font-bold text-red-400 hover:text-red-300 uppercase tracking-tight transition-colors">Stop
-                        Search</button>
+                        class="text-xs font-bold text-red-400 hover:text-red-300 uppercase tracking-tight transition-colors">Stop</button>
                 </div>
 
-                <!-- Background Cache Progress Bar -->
+                <!-- Background Index Build Progress Bar -->
                 <div id="cacheProgressContainer" class="hidden mt-4 px-1">
                     <div class="flex items-center justify-between mb-1">
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-indigo-400/60">Caching
-                            database in background</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-indigo-400/60">Building local
+                            search index (one-time, stored on disk)</span>
                         <span id="cacheProgressText" class="text-[10px] font-bold text-indigo-400/60">0%</span>
                     </div>
                     <div class="w-full rounded-full h-1" style="background: var(--input-bg);">
@@ -338,12 +559,777 @@
         </div>
     </div>
 
+    <script>
+        const BASE_URL = `https://lylanoble.github.io/phone_lookup/npi_ndjson/`;
+        const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+        const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const RESULTS_PER_PAGE = 100;
+        const IMPORT_BATCH_SIZE = 2000;
 
+        // IndexedDB config
+        const DB_NAME = 'npi_search_index';
+        const DB_VERSION = 1;
+        const RECORDS_STORE = 'records';
+        const META_STORE = 'meta';
 
+        const phoneInput = document.getElementById('phoneInput');
+        const resultsArea = document.getElementById('resultsArea');
+        const statusBar = document.getElementById('statusBar');
+        const statusText = document.getElementById('statusText');
+        const execSearch = document.getElementById('execSearch');
+        const stopBtn = document.getElementById('stopBtn');
 
-    <script src="app.js"></script>
+        const monthPickerBtn = document.getElementById('monthPickerBtn');
+        const monthPickerDropdown = document.getElementById('monthPickerDropdown');
+        const selectedMonthText = document.getElementById('selectedMonthText');
+        const monthPickerChevron = document.getElementById('monthPickerChevron');
+        const currentYearElem = document.getElementById('currentYear');
+        const monthsGrid = document.getElementById('monthsGrid');
+        const prevYearBtn = document.getElementById('prevYear');
+        const nextYearBtn = document.getElementById('nextYear');
 
+        const paginationTop = document.getElementById('paginationTop');
+        const paginationBottom = document.getElementById('paginationBottom');
+        const rangeStart = document.getElementById('rangeStart');
+        const rangeEnd = document.getElementById('rangeEnd');
+        const totalResultsElem = document.getElementById('totalResults');
+        const currentPageNum = document.getElementById('currentPageNum');
+        const currentPageNum2 = document.getElementById('currentPageNum2');
+        const totalPagesElem = document.getElementById('totalPages');
+        const totalPagesElem2 = document.getElementById('totalPages2');
 
+        const firstBtn = document.getElementById('firstBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const lastBtn = document.getElementById('lastBtn');
+        const firstBtn2 = document.getElementById('firstBtn2');
+        const prevBtn2 = document.getElementById('prevBtn2');
+        const nextBtn2 = document.getElementById('nextBtn2');
+        const lastBtn2 = document.getElementById('lastBtn2');
+
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const cacheProgressContainer = document.getElementById('cacheProgressContainer');
+        const cacheProgressBar = document.getElementById('cacheProgressBar');
+        const cacheProgressText = document.getElementById('cacheProgressText');
+
+        let db = null;
+        let activeCard = null;
+
+        // Pagination state — nothing but the CURRENT PAGE's records ever lives in JS.
+        // mode: 'idle' | 'month' | 'search'
+        let mode = 'idle';
+        let currentPage = 1;
+        let totalPages = 1;
+        let totalCount = 0;
+        let currentMonthFile = null;   // for mode === 'month'
+        let currentSearchIds = [];     // for mode === 'search' — just numeric primary keys, cheap to hold
+        let currentQuery = '';
+
+        let availableMonths = [];      // candidate months (last 20 years), oldest-first for import order
+        let importedMonths = new Set();
+        let importCancelled = false;
+        let backgroundImportRunning = false;
+        const inFlightImports = new Map(); // fileName -> Promise, dedupes concurrent import requests
+
+        let displayYear = new Date().getFullYear();
+
+        // ─────────────────────────────────────────────
+        // IndexedDB plumbing
+        // ─────────────────────────────────────────────
+        function openDatabase() {
+            return new Promise((resolve, reject) => {
+                const req = indexedDB.open(DB_NAME, DB_VERSION);
+                req.onupgradeneeded = (e) => {
+                    const d = e.target.result;
+                    if (!d.objectStoreNames.contains(RECORDS_STORE)) {
+                        const store = d.createObjectStore(RECORDS_STORE, { keyPath: 'id', autoIncrement: true });
+                        store.createIndex('npi', 'npi', { unique: false });
+                        store.createIndex('phones', 'phones', { unique: false, multiEntry: true });
+                        store.createIndex('month', 'month', { unique: false });
+                    }
+                    if (!d.objectStoreNames.contains(META_STORE)) {
+                        d.createObjectStore(META_STORE, { keyPath: 'month' });
+                    }
+                };
+                req.onsuccess = (e) => resolve(e.target.result);
+                req.onerror = (e) => reject(e.target.error);
+            });
+        }
+
+        function reqToPromise(req) {
+            return new Promise((resolve, reject) => {
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        function txDone(tx) {
+            return new Promise((resolve, reject) => {
+                tx.oncomplete = () => resolve();
+                tx.onerror = () => reject(tx.error);
+                tx.onabort = () => reject(tx.error);
+            });
+        }
+
+        async function getMeta(fileName) {
+            const tx = db.transaction(META_STORE, 'readonly');
+            return reqToPromise(tx.objectStore(META_STORE).get(fileName));
+        }
+
+        async function setMeta(fileName, count) {
+            const tx = db.transaction(META_STORE, 'readwrite');
+            tx.objectStore(META_STORE).put({ month: fileName, count, importedAt: Date.now() });
+            return txDone(tx);
+        }
+
+        async function loadImportedMonths() {
+            const tx = db.transaction(META_STORE, 'readonly');
+            const keys = await reqToPromise(tx.objectStore(META_STORE).getAllKeys());
+            importedMonths = new Set(keys);
+        }
+
+        // Collect only PRIMARY KEYS matching a prefix range on an index — never touches full records.
+        function collectKeysForRange(index, range, targetSet) {
+            return new Promise((resolve, reject) => {
+                const req = index.openKeyCursor(range);
+                req.onsuccess = (e) => {
+                    const cursor = e.target.result;
+                    if (cursor) {
+                        targetSet.add(cursor.primaryKey);
+                        cursor.continue();
+                    } else {
+                        resolve();
+                    }
+                };
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        // Query the index engine directly — cost scales with matches, not with table size.
+        async function searchIndex(query) {
+            const range = IDBKeyRange.bound(query, query + '\uffff');
+            const tx = db.transaction(RECORDS_STORE, 'readonly');
+            const store = tx.objectStore(RECORDS_STORE);
+            const idSet = new Set();
+            await Promise.all([
+                collectKeysForRange(store.index('npi'), range, idSet),
+                collectKeysForRange(store.index('phones'), range, idSet)
+            ]);
+            return Array.from(idSet).sort((a, b) => a - b);
+        }
+
+        async function fetchRecordsByIds(ids) {
+            if (ids.length === 0) return [];
+            const tx = db.transaction(RECORDS_STORE, 'readonly');
+            const store = tx.objectStore(RECORDS_STORE);
+            const records = await Promise.all(ids.map((id) => reqToPromise(store.get(id))));
+            return records.filter(Boolean);
+        }
+
+        async function getMonthCount(fileName) {
+            const tx = db.transaction(RECORDS_STORE, 'readonly');
+            const index = tx.objectStore(RECORDS_STORE).index('month');
+            return reqToPromise(index.count(IDBKeyRange.only(fileName)));
+        }
+
+        // Cursor-paged read — only pulls the ~100 rows for the requested page off disk.
+        async function getMonthPage(fileName, page, pageSize) {
+            const tx = db.transaction(RECORDS_STORE, 'readonly');
+            const index = tx.objectStore(RECORDS_STORE).index('month');
+            const range = IDBKeyRange.only(fileName);
+            const skip = (page - 1) * pageSize;
+
+            return new Promise((resolve, reject) => {
+                const results = [];
+                let didAdvance = false;
+                const req = index.openCursor(range);
+                req.onsuccess = (e) => {
+                    const cursor = e.target.result;
+                    if (!cursor) return resolve(results);
+                    if (!didAdvance && skip > 0) {
+                        didAdvance = true;
+                        cursor.advance(skip);
+                        return;
+                    }
+                    didAdvance = true;
+                    if (results.length < pageSize) {
+                        results.push(cursor.value);
+                        cursor.continue();
+                    } else {
+                        resolve(results);
+                    }
+                };
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        // ─────────────────────────────────────────────
+        // Import a single month's ndjson into the index (one-time, persisted).
+        // Only ever holds ONE month's raw text/lines in memory, and only transiently
+        // while parsing that month's batches — never accumulates across months.
+        // ─────────────────────────────────────────────
+        async function importMonth(fileName, onProgress) {
+            const existing = await getMeta(fileName);
+            if (existing) {
+                importedMonths.add(fileName);
+                return existing.count;
+            }
+
+            if (inFlightImports.has(fileName)) {
+                return inFlightImports.get(fileName);
+            }
+
+            const promise = (async () => {
+                let res;
+                try {
+                    res = await fetch(`${BASE_URL}${fileName}.ndjson`);
+                } catch (e) {
+                    return 0;
+                }
+                if (!res.ok) return 0;
+
+                let text = await res.text();
+                const lines = text.split('\n').filter((l) => l.trim());
+                text = null; // drop the raw text reference as soon as we have lines
+
+                let imported = 0;
+                for (let i = 0; i < lines.length; i += IMPORT_BATCH_SIZE) {
+                    if (importCancelled) break;
+                    const batch = lines.slice(i, i + IMPORT_BATCH_SIZE);
+                    const tx = db.transaction(RECORDS_STORE, 'readwrite');
+                    const store = tx.objectStore(RECORDS_STORE);
+                    for (const line of batch) {
+                        let item;
+                        try {
+                            item = JSON.parse(line);
+                        } catch (e) {
+                            continue;
+                        }
+                        const phones = [item[6], item[7], item[8]].filter(Boolean);
+                        store.put({ npi: item[0], phones, month: fileName, data: item });
+                    }
+                    await txDone(tx);
+                    imported += batch.length;
+                    if (onProgress) onProgress(imported, lines.length);
+                }
+
+                if (!importCancelled) {
+                    await setMeta(fileName, imported);
+                    importedMonths.add(fileName);
+                }
+                return imported;
+            })();
+
+            inFlightImports.set(fileName, promise);
+            try {
+                return await promise;
+            } finally {
+                inFlightImports.delete(fileName);
+            }
+        }
+
+        async function ensureMonthImported(fileName, onProgress) {
+            if (importedMonths.has(fileName)) return true;
+            const count = await importMonth(fileName, onProgress);
+            return count > 0;
+        }
+
+        // ─────────────────────────────────────────────
+        // Background index build — walks every candidate month, imports what's
+        // missing, refreshes an active search as new months land.
+        // ─────────────────────────────────────────────
+        async function backgroundImportAll() {
+            if (backgroundImportRunning) return;
+            backgroundImportRunning = true;
+            importCancelled = false;
+
+            const pending = availableMonths.filter((m) => !importedMonths.has(m));
+            if (pending.length === 0) {
+                backgroundImportRunning = false;
+                return;
+            }
+
+            cacheProgressContainer.classList.remove('hidden');
+            cacheProgressContainer.style.opacity = '1';
+            let doneMonths = 0;
+
+            for (const fileName of pending) {
+                if (importCancelled) break;
+
+                await ensureMonthImported(fileName, (done, total) => {
+                    const withinMonth = total > 0 ? done / total : 1;
+                    const pct = Math.round(((doneMonths + withinMonth) / pending.length) * 100);
+                    cacheProgressBar.style.width = pct + '%';
+                    cacheProgressText.textContent = pct + '%';
+                });
+
+                markMonthCached(fileName);
+                doneMonths++;
+
+                // Refresh an in-progress global search as more data becomes available.
+                if (mode === 'search' && currentQuery) {
+                    await performSearch(currentQuery, { silent: true });
+                }
+
+                await new Promise((r) => setTimeout(r, 10)); // keep UI responsive
+            }
+
+            backgroundImportRunning = false;
+
+            if (!importCancelled) {
+                cacheProgressBar.style.width = '100%';
+                cacheProgressText.textContent = '100%';
+                setTimeout(() => {
+                    cacheProgressContainer.style.transition = 'opacity 0.5s ease';
+                    cacheProgressContainer.style.opacity = '0';
+                    setTimeout(() => cacheProgressContainer.classList.add('hidden'), 600);
+                }, 1200);
+            }
+        }
+
+        function markMonthCached(fileName) {
+            const btn = monthsGrid.querySelector(`[data-file-name="${fileName}"]`);
+            if (btn) btn.classList.add('cached');
+        }
+
+        // ─────────────────────────────────────────────
+        // Theme Management
+        // ─────────────────────────────────────────────
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+        }
+
+        function setTheme(theme) {
+            if (theme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeToggle.classList.add('active');
+                themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                themeToggle.classList.remove('active');
+                themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
+            }
+            localStorage.setItem('theme', theme); // theme flag only — a few bytes, not data
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // ─────────────────────────────────────────────
+        // Month Picker
+        // ─────────────────────────────────────────────
+        function initMonthPicker() {
+            const set = [];
+            let d = new Date();
+            for (let i = 0; i < 240; i++) {
+                const monthIdx = d.getMonth();
+                const year = d.getFullYear();
+                set.push(`${MONTHS[monthIdx]}_${year}`);
+                d.setMonth(d.getMonth() - 1);
+            }
+            availableMonths = set.reverse(); // oldest-first import order
+            displayYear = new Date().getFullYear();
+            renderMonthsGrid();
+        }
+
+        function renderMonthsGrid() {
+            currentYearElem.textContent = displayYear;
+            monthsGrid.innerHTML = '';
+            const availableSet = new Set(availableMonths);
+
+            MONTHS.forEach((month, idx) => {
+                const fileName = `${month}_${displayYear}`;
+                const isAvailable = availableSet.has(fileName);
+                const isCached = importedMonths.has(fileName);
+
+                const monthBtn = document.createElement('button');
+                monthBtn.className = `month-card px-4 py-3 rounded-xl border font-semibold text-xs uppercase transition-all ${isAvailable
+                    ? 'hover:bg-indigo-500/10 hover:border-indigo-500/30 cursor-pointer'
+                    : 'cursor-not-allowed opacity-40'
+                    } ${isCached ? 'cached' : ''}`;
+                monthBtn.style.cssText = isAvailable
+                    ? `border-color: var(--border-color); background: var(--input-bg); color: var(--text-secondary);`
+                    : `border-color: var(--border-color); background: rgba(0,0,0,0.1); color: var(--text-tertiary);`;
+                monthBtn.textContent = month.toUpperCase();
+                monthBtn.disabled = !isAvailable;
+
+                if (isAvailable) {
+                    monthBtn.dataset.fileName = fileName;
+                    monthBtn.dataset.displayName = `${MONTH_NAMES[idx]} ${displayYear}`;
+                    monthBtn.addEventListener('click', () => selectMonth(fileName, `${MONTH_NAMES[idx]} ${displayYear}`));
+                }
+
+                monthsGrid.appendChild(monthBtn);
+            });
+        }
+
+        function navigateYear(direction) {
+            displayYear += direction;
+            renderMonthsGrid();
+        }
+
+        prevYearBtn.addEventListener('click', () => navigateYear(-1));
+        nextYearBtn.addEventListener('click', () => navigateYear(1));
+
+        function toggleMonthPicker() {
+            const isHidden = monthPickerDropdown.classList.contains('hidden');
+            monthPickerDropdown.classList.toggle('hidden', !isHidden);
+            monthPickerChevron.classList.toggle('rotate-180', isHidden);
+        }
+
+        function selectMonth(fileName, displayName) {
+            selectedMonthText.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                <span style="color: var(--text-primary);">${displayName}</span>
+            `;
+            monthPickerDropdown.classList.add('hidden');
+            monthPickerChevron.classList.remove('rotate-180');
+            loadMonth(fileName);
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!monthPickerBtn.contains(e.target) && !monthPickerDropdown.contains(e.target)) {
+                monthPickerDropdown.classList.add('hidden');
+                monthPickerChevron.classList.remove('rotate-180');
+            }
+        });
+
+        monthPickerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMonthPicker();
+        });
+
+        // ─────────────────────────────────────────────
+        // UI Helpers
+        // ─────────────────────────────────────────────
+        function setStatus(msg, show = true, showLoader = true) {
+            statusBar.classList.toggle('hidden', !show);
+            statusBar.classList.toggle('flex', show);
+            statusText.innerText = msg;
+            const loader = statusBar.querySelector('.loader');
+            if (loader) loader.style.display = showLoader ? 'block' : 'none';
+            stopBtn.style.display = showLoader ? 'block' : 'none';
+        }
+
+        function updatePaginationControls() {
+            const start = totalCount > 0 ? (currentPage - 1) * RESULTS_PER_PAGE + 1 : 0;
+            const end = Math.min(currentPage * RESULTS_PER_PAGE, totalCount);
+
+            rangeStart.textContent = start;
+            rangeEnd.textContent = end;
+            totalResultsElem.textContent = totalCount;
+            currentPageNum.textContent = currentPage;
+            currentPageNum2.textContent = currentPage;
+            totalPagesElem.textContent = totalPages;
+            totalPagesElem2.textContent = totalPages;
+
+            const isFirstPage = currentPage === 1;
+            const isLastPage = currentPage === totalPages;
+
+            [firstBtn, prevBtn, firstBtn2, prevBtn2].forEach((b) => (b.disabled = isFirstPage));
+            [nextBtn, lastBtn, nextBtn2, lastBtn2].forEach((b) => (b.disabled = isLastPage));
+
+            const showPagination = totalCount > RESULTS_PER_PAGE;
+            paginationTop.classList.toggle('hidden', !showPagination);
+            paginationBottom.classList.toggle('hidden', !showPagination);
+        }
+
+        function showEmptyState(message) {
+            resultsArea.innerHTML = '';
+            const emptyDiv = document.createElement('div');
+            emptyDiv.className = 'md:col-span-2 glass-effect p-12 rounded-3xl border border-dashed text-center';
+            emptyDiv.style.cssText = 'background: var(--bg-card); border-color: var(--border-color); color: var(--text-tertiary);';
+            emptyDiv.innerHTML = `<p class="text-sm font-medium">${message}</p>`;
+            resultsArea.appendChild(emptyDiv);
+        }
+
+        // Pulls ONLY the current page's rows from IndexedDB — nothing else stays resident.
+        async function renderCurrentPage() {
+            let pageRecords = [];
+
+            if (mode === 'month' && currentMonthFile) {
+                pageRecords = await getMonthPage(currentMonthFile, currentPage, RESULTS_PER_PAGE);
+            } else if (mode === 'search') {
+                const start = (currentPage - 1) * RESULTS_PER_PAGE;
+                const pageIds = currentSearchIds.slice(start, start + RESULTS_PER_PAGE);
+                pageRecords = await fetchRecordsByIds(pageIds);
+            }
+
+            resultsArea.innerHTML = '';
+            if (pageRecords.length === 0 && totalCount === 0) {
+                showEmptyState(
+                    mode === 'search'
+                        ? 'No matches found in the indexed data so far.'
+                        : 'No records found for this month.'
+                );
+            } else {
+                pageRecords.forEach((rec) => {
+                    const card = createCard(rec.data, rec.month);
+                    resultsArea.appendChild(card);
+                });
+            }
+
+            updatePaginationControls();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        async function goToPage(page) {
+            currentPage = Math.max(1, Math.min(page, totalPages));
+            await renderCurrentPage();
+        }
+
+        // ─────────────────────────────────────────────
+        // Load by Month — imports on demand if not yet indexed, then paginates
+        // straight from IndexedDB (no full month array in JS memory).
+        // ─────────────────────────────────────────────
+        async function loadMonth(fileName) {
+            mode = 'month';
+            currentMonthFile = fileName;
+            currentQuery = '';
+            phoneInput.value = '';
+            currentPage = 1;
+
+            const alreadyIndexed = importedMonths.has(fileName);
+            if (!alreadyIndexed) {
+                setStatus(`Indexing ${fileName.toUpperCase()}...`, true, true);
+                await ensureMonthImported(fileName, (done, total) => {
+                    if (total > 0) setStatus(`Indexing ${fileName.toUpperCase()}... ${Math.round((done / total) * 100)}%`, true, true);
+                });
+                markMonthCached(fileName);
+            } else {
+                setStatus(`Loading ${fileName.toUpperCase()}...`, true, true);
+            }
+
+            try {
+                totalCount = await getMonthCount(fileName);
+                totalPages = Math.max(1, Math.ceil(totalCount / RESULTS_PER_PAGE));
+                await renderCurrentPage();
+                setStatus(`Showing ${totalCount} records from ${fileName.toUpperCase()}`, true, false);
+                setTimeout(() => setStatus('', false, false), 3000);
+            } catch (e) {
+                setStatus(`Error: Could not load ${fileName}`, true, false);
+                setTimeout(() => setStatus('', false, false), 5000);
+            }
+        }
+
+        // ─────────────────────────────────────────────
+        // Global Search — hits IndexedDB's own indexes directly (prefix match on
+        // NPI or phone number). Only matching primary keys are held in JS; only the
+        // current page's full records are ever read off disk.
+        // ─────────────────────────────────────────────
+        async function performSearch(query, opts = {}) {
+            const { silent = false } = opts;
+            currentSearchIds = await searchIndex(query);
+            mode = 'search';
+            totalCount = currentSearchIds.length;
+            totalPages = Math.max(1, Math.ceil(totalCount / RESULTS_PER_PAGE));
+            if (currentPage > totalPages) currentPage = 1;
+            await renderCurrentPage();
+
+            if (!silent) {
+                const indexedCount = importedMonths.size;
+                const totalMonths = availableMonths.length;
+                const coverageNote = indexedCount < totalMonths
+                    ? ` (index ${Math.round((indexedCount / totalMonths) * 100)}% built — results will grow as it completes)`
+                    : '';
+                setStatus(`Found ${totalCount} result(s)${coverageNote}`, true, false);
+                setTimeout(() => setStatus('', false, false), 4000);
+            }
+        }
+
+        async function globalSearch() {
+            const query = phoneInput.value.replace(/\D/g, '');
+            if (query.length < 3) return alert('Enter at least 3 digits');
+
+            currentQuery = query;
+            mode = 'search';
+            currentPage = 1;
+            selectedMonthText.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                <span style="color: var(--text-tertiary);">Select Month...</span>
+            `;
+
+            setStatus('Searching indexed records...', true, true);
+            await performSearch(query);
+            setStatus('', false, false);
+
+            // Make sure the full dataset is being (or gets) indexed so results keep completing.
+            backgroundImportAll();
+        }
+
+        // ─────────────────────────────────────────────
+        // Card Renderer
+        // ─────────────────────────────────────────────
+        function createCard(item, source = '') {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'group relative transition-all duration-500 z-0';
+
+            const glow = document.createElement('div');
+            glow.className = 'absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-700';
+
+            const isIndividual = item[1] == '1';
+            const providerIcon = isIndividual
+                ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                   </svg>`
+                : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                    <path d="M3 21h18"/>
+                    <path d="M5 21V7l8-4v18"/>
+                    <path d="M19 21V11l-6-4"/>
+                    <path d="M9 9v.01"/>
+                    <path d="M9 12v.01"/>
+                    <path d="M9 15v.01"/>
+                    <path d="M9 18v.01"/>
+                   </svg>`;
+
+            const card = document.createElement('div');
+            card.className = 'glass-effect relative p-5 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 h-full';
+            card.style.background = 'var(--bg-secondary)';
+            card.innerHTML = `
+                <div class="md:w-1/2 flex flex-col justify-between">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="animate-float-hover flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 shadow-inner transition-colors hover:bg-indigo-500/20">
+                            ${providerIcon}
+                        </span>
+                        <a href="https://npiregistry.cms.hhs.gov/provider-view/${item[0]}" target="_blank" onclick="event.stopPropagation()" class="npi-badge bg-indigo-500/10 hover:text-white hover:bg-indigo-600/30 hover:border-indigo-400/50 transition-all duration-300 text-[10px] font-black px-3 py-1.5 rounded-lg border border-indigo-500/20 tracking-widest uppercase flex items-center gap-2 group/npi" style="color: rgb(165 180 252); background: rgba(99,102,241,0.1); border-color: rgba(99,102,241,0.2);">
+                            <span style="color: rgb(165 180 252);">NPI ${item[0]}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="opacity-50 group-hover/npi:translate-x-0.5 group-hover/npi:-translate-y-0.5 transition-transform">
+                                <path d="M7 7h10v10"/><path d="M7 17 17 7"/>
+                            </svg>
+                        </a>
+                        ${source ? `<span class="text-[10px] font-bold uppercase tracking-wide" style="color: var(--text-tertiary);">• ${source}</span>` : ''}
+                    </div>
+                    <h3 class="font-black text-xl md:text-2xl uppercase leading-tight tracking-tight group-hover:text-indigo-400 transition-colors" style="color: var(--text-primary);">${item[2]}</h3>
+                    <div class="flex flex-wrap gap-3 mt-3">
+                        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full" style="color: var(--text-tertiary); background: var(--input-bg); border: 1px solid var(--border-color);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400 animate-pulse-icon">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span class="text-xs font-semibold uppercase tracking-wide opacity-90">${item[5]}</span>
+                        </div>
+                        <div class="flex items-center gap-2 border-l pl-3" style="color: var(--text-tertiary); border-color: var(--border-color);">
+                            <span class="text-[10px] font-bold uppercase tracking-tighter">${isIndividual ? 'Individual' : 'Organization'}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 p-4 rounded-2xl flex flex-col justify-between backdrop-blur-sm" style="background: var(--input-bg); border: 1px solid var(--border-color);">
+                    ${item[7] ? `
+                    <a href="tel:${item[7].replace(/\D/g, '')}" class="phone-link flex justify-between items-center mb-2 hover:opacity-80 transition-opacity group/phone">
+                        <span class="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5" style="color: var(--text-tertiary);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Practice
+                        </span>
+                        <span class="text-sm font-bold text-indigo-400 group-hover/phone:text-indigo-300 transition-colors underline decoration-indigo-500/30 underline-offset-4">${item[7]}</span>
+                    </a>` : `
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] font-black uppercase tracking-wider" style="color: var(--text-tertiary);">Practice</span>
+                        <span class="text-sm font-bold text-indigo-400">N/A</span>
+                    </div>`}
+                    <div class="h-[1px] w-full my-2" style="background: var(--border-color);"></div>
+                    ${item[6] ? `
+                    <a href="tel:${item[6].replace(/\D/g, '')}" class="phone-link flex justify-between items-center hover:opacity-80 transition-opacity group/phone">
+                        <span class="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5" style="color: var(--text-tertiary);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Mailing
+                        </span>
+                        <span class="text-sm font-bold text-indigo-400 group-hover/phone:text-indigo-300 transition-colors underline decoration-indigo-500/30 underline-offset-4">${item[6]}</span>
+                    </a>` : `
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] font-black uppercase tracking-wider" style="color: var(--text-tertiary);">Mailing</span>
+                        <span class="text-sm font-bold text-indigo-400">N/A</span>
+                    </div>`}
+                    <div class="h-[1px] w-full my-2" style="background: var(--border-color);"></div>
+                    ${item[8] ? `
+                    <a href="tel:${item[8].replace(/\D/g, '')}" class="phone-link flex justify-between items-center hover:opacity-80 transition-opacity group/phone">
+                        <span class="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5" style="color: var(--text-tertiary);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Authorized
+                        </span>
+                        <span class="text-sm font-bold text-indigo-400 group-hover/phone:text-indigo-300 transition-colors underline decoration-indigo-500/30 underline-offset-4">${item[8]}</span>
+                    </a>` : `
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] font-black uppercase tracking-wider" style="color: var(--text-tertiary);">Authorized</span>
+                        <span class="text-sm font-bold text-indigo-400">N/A</span>
+                    </div>`}
+                </div>
+            `;
+
+            wrapper.appendChild(glow);
+            wrapper.appendChild(card);
+
+            wrapper.addEventListener('click', () => {
+                if (activeCard && activeCard !== card) {
+                    activeCard.style.removeProperty('border');
+                    activeCard.style.removeProperty('box-shadow');
+                    activeCard = null;
+                }
+                const isNowActive = card !== activeCard;
+                if (isNowActive) {
+                    card.style.setProperty('border', '2px solid rgba(99,102,241,0.7)', 'important');
+                    card.style.setProperty('box-shadow', '0 0 0 1px rgba(99,102,241,0.4)', 'important');
+                    activeCard = card;
+                } else {
+                    card.style.removeProperty('border');
+                    card.style.removeProperty('box-shadow');
+                    activeCard = null;
+                }
+            });
+
+            return wrapper;
+        }
+
+        // ─────────────────────────────────────────────
+        // Pagination events
+        // ─────────────────────────────────────────────
+        firstBtn.addEventListener('click', () => goToPage(1));
+        prevBtn.addEventListener('click', () => goToPage(currentPage - 1));
+        nextBtn.addEventListener('click', () => goToPage(currentPage + 1));
+        lastBtn.addEventListener('click', () => goToPage(totalPages));
+        firstBtn2.addEventListener('click', () => goToPage(1));
+        prevBtn2.addEventListener('click', () => goToPage(currentPage - 1));
+        nextBtn2.addEventListener('click', () => goToPage(currentPage + 1));
+        lastBtn2.addEventListener('click', () => goToPage(totalPages));
+
+        execSearch.addEventListener('click', globalSearch);
+        stopBtn.addEventListener('click', () => {
+            importCancelled = true;
+            setStatus('Stopped.', true, false);
+            setTimeout(() => setStatus('', false, false), 2000);
+        });
+        phoneInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') globalSearch(); });
+
+        // ─────────────────────────────────────────────
+        // Init
+        // ─────────────────────────────────────────────
+        async function init() {
+            initTheme();
+
+            try {
+                db = await openDatabase();
+                await loadImportedMonths();
+            } catch (e) {
+                console.error('IndexedDB unavailable — this app requires it to function.', e);
+                showEmptyState('Your browser blocked IndexedDB, which this app requires to store the search index. Please allow site storage and reload.');
+                return;
+            }
+
+            initMonthPicker();
+
+            // Kick off the one-time background index build (skips months already imported).
+            setTimeout(() => backgroundImportAll(), 800);
+        }
+
+        init();
+    </script>
 </body>
 
 </html>
